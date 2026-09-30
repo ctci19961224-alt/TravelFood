@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenData-地方美食資料練習</title>
+    <link rel="stylesheet" href="myall.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --ff-night: #080d1a;
+            --ff-blue: #102a43;
+            --ff-blue-light: #1d5d8f;
+            --ff-cyan: #7ee7ff;
+            --ff-gold: #d9b45b;
+            --ff-gold-light: #ffe9a3;
+            --ff-white: #eef7ff;
+            --ff-silver: #aebdca;
+            --ff-purple: #5d4a88;
+            --ff-card: rgba(13, 28, 48, 0.92);
+            --ff-shadow: rgba(0, 0, 0, 0.65);
+            --ff-glow: rgba(126, 231, 255, 0.45);
+            --ff-radius: 14px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            min-height: 100vh;
+            color: var(--ff-white);
+            font-family:
+                "Noto Sans TC",
+                "Microsoft JhengHei",
+                Arial,
+                sans-serif;
+
+            background:
+                radial-gradient(circle at 50% 0%,
+                    rgba(53, 112, 157, 0.35) 0%,
+                    transparent 38%),
+                radial-gradient(circle at 15% 80%,
+                    rgba(93, 74, 136, 0.2) 0%,
+                    transparent 30%),
+                linear-gradient(135deg,
+                    var(--ff-night) 0%,
+                    #0b1728 45%,
+                    #050914 100%);
+
+            background-attachment: fixed;
+        }
+
+        /* ========================================
+   標題
+   ======================================== */
+
+        .display-1.mytitle-03 {
+            position: relative;
+
+            width: min(1024px, 94%);
+            margin: 45px auto 25px;
+
+            padding: 18px 20px;
+
+            color: var(--ff-gold-light);
+
+            text-align: center;
+            letter-spacing: 8px;
+            font-size: clamp(28px, 5vw, 48px);
+            font-weight: 700;
+
+            text-shadow:
+                0 0 8px rgba(255, 233, 163, 0.6),
+                0 0 20px rgba(126, 231, 255, 0.25);
+
+            background:
+                linear-gradient(90deg,
+                    transparent,
+                    rgba(16, 42, 67, 0.8),
+                    transparent);
+
+            border-top: 1px solid var(--ff-gold);
+            border-bottom: 1px solid var(--ff-gold);
+
+            box-shadow:
+                0 0 15px rgba(126, 231, 255, 0.12),
+                inset 0 0 20px rgba(126, 231, 255, 0.08);
+        }
+
+        /* 標題左右裝飾線 */
+        .display-1.mytitle-03::before,
+        .display-1.mytitle-03::after {
+            content: "✦";
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+
+            color: var(--ff-cyan);
+            font-size: 20px;
+
+            text-shadow:
+                0 0 8px var(--ff-cyan),
+                0 0 15px var(--ff-glow);
+        }
+
+        .display-1.mytitle-03::before {
+            left: 25px;
+        }
+
+        .display-1.mytitle-03::after {
+            right: 25px;
+        }
+
+        /* ========================================
+   外層容器
+   ======================================== */
+
+        .wrapper {
+            position: relative;
+
+            width: 1024px;
+            max-width: 94%;
+
+            margin: 0 auto 50px;
+            padding: 20px;
+
+            overflow: hidden;
+
+            background:
+                linear-gradient(135deg,
+                    rgba(16, 42, 67, 0.92),
+                    rgba(5, 12, 24, 0.96));
+
+            border: 1px solid var(--ff-gold);
+            border-radius: var(--ff-radius);
+
+            box-shadow:
+                0 0 0 1px rgba(126, 231, 255, 0.15),
+                0 0 25px rgba(0, 0, 0, 0.8),
+                0 0 35px rgba(126, 231, 255, 0.08),
+                inset 0 0 35px rgba(0, 0, 0, 0.5);
+        }
+
+        /* 容器內部光線 */
+        .wrapper::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            pointer-events: none;
+
+            background:
+                linear-gradient(120deg,
+                    transparent 0%,
+                    rgba(126, 231, 255, 0.04) 50%,
+                    transparent 100%);
+        }
+
+        /* ========================================
+   餐廳卡片
+   ======================================== */
+
+        .demo {
+            position: relative;
+
+            width: 32%;
+            margin-top: 15px;
+            margin-right: 1%;
+            padding-bottom: 12px;
+
+            float: left;
+
+            overflow: hidden;
+            overflow-wrap: anywhere;
+
+            color: var(--ff-white);
+
+            background:
+                linear-gradient(145deg,
+                    rgba(25, 55, 82, 0.96),
+                    var(--ff-card));
+
+            border: 1px solid rgba(217, 180, 91, 0.65);
+            border-radius: var(--ff-radius);
+
+            box-shadow:
+                0 8px 18px var(--ff-shadow),
+                0 0 12px rgba(126, 231, 255, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+
+            transition:
+                transform 0.3s ease,
+                box-shadow 0.3s ease,
+                border-color 0.3s ease;
+        }
+
+        /* 卡片滑入效果 */
+        .demo:hover {
+            transform: translateY(-6px);
+
+            border-color: var(--ff-cyan);
+
+            box-shadow:
+                0 14px 28px rgba(0, 0, 0, 0.75),
+                0 0 18px rgba(126, 231, 255, 0.28),
+                inset 0 0 15px rgba(126, 231, 255, 0.05);
+        }
+
+        /* ========================================
+   圖片
+   ======================================== */
+
+        .demo img {
+            display: block;
+
+            width: 100%;
+            height: 180px;
+
+            object-fit: cover;
+
+            border-bottom: 2px solid var(--ff-gold);
+
+            filter:
+                brightness(0.82) saturate(0.9) contrast(1.08);
+
+            transition:
+                transform 0.5s ease,
+                filter 0.5s ease;
+        }
+
+        .demo:hover img {
+            transform: scale(1.04);
+
+            filter:
+                brightness(1) saturate(1.05) contrast(1.05);
+        }
+
+        /* ========================================
+   店家文字
+   ======================================== */
+
+        .demo p {
+            margin: 0;
+
+            padding: 10px 14px 4px;
+
+            color: var(--ff-silver);
+
+            font-size: 16px;
+            line-height: 1.6;
+
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+
+            text-shadow: 0 1px 2px #000;
+        }
+
+        /* 店家名稱 */
+        .demo p:first-of-type {
+            padding-top: 14px;
+
+            color: var(--ff-gold-light);
+
+            font-size: 18px;
+            font-weight: 700;
+
+            text-shadow:
+                0 0 5px rgba(255, 233, 163, 0.25),
+                0 2px 3px #000;
+        }
+
+        /* 電話 */
+        .demo p:last-of-type {
+            color: var(--ff-cyan);
+
+            font-size: 15px;
+        }
+
+        /* ========================================
+   裝飾框線
+   ======================================== */
+
+        .demo::before {
+            content: "";
+            position: absolute;
+
+            top: 8px;
+            left: 8px;
+
+            width: 14px;
+            height: 14px;
+
+            border-top: 2px solid var(--ff-cyan);
+            border-left: 2px solid var(--ff-cyan);
+
+            opacity: 0.8;
+
+            pointer-events: none;
+        }
+
+        .demo::after {
+            content: "";
+            position: absolute;
+
+            right: 8px;
+            bottom: 8px;
+
+            width: 14px;
+            height: 14px;
+
+            border-right: 2px solid var(--ff-gold);
+            border-bottom: 2px solid var(--ff-gold);
+
+            opacity: 0.8;
+
+            pointer-events: none;
+        }
+
+        /* ========================================
+   平板
+   ======================================== */
+
+        @media screen and (max-width: 1024px) {
+
+            .wrapper {
+                width: 94%;
+                padding: 15px;
+            }
+
+            .demo {
+                width: 100%;
+                margin-right: 0;
+            }
+        }
+
+        /* ========================================
+   手機
+   ======================================== */
+
+        @media screen and (max-width: 600px) {
+
+            .display-1.mytitle-03 {
+                margin-top: 25px;
+                margin-bottom: 18px;
+
+                padding: 14px 40px;
+
+                letter-spacing: 4px;
+                font-size: clamp(24px, 8vw, 34px);
+            }
+
+            .display-1.mytitle-03::before {
+                left: 12px;
+            }
+
+            .display-1.mytitle-03::after {
+                right: 12px;
+            }
+
+            .wrapper {
+                width: 94%;
+                padding: 10px;
+
+                border-radius: 10px;
+            }
+
+            .demo {
+                width: 100%;
+                margin-top: 12px;
+                margin-right: 0;
+
+                border-radius: 12px;
+            }
+
+            .demo img {
+                display: block;
+
+                width: 100%;
+                height: 150px;
+
+                object-fit: cover;
+            }
+
+            .demo p {
+                padding: 7px 10px;
+
+                font-size: 14px;
+
+                overflow-wrap: anywhere;
+            }
+
+            .demo p:first-of-type {
+                padding-top: 11px;
+
+                font-size: 17px;
+            }
+
+            .demo p:last-of-type {
+                font-size: 14px;
+            }
+        }
+
+        .wrapper {
+            width: 1024px;
+            margin-top: 50px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 2px 2px 2px 2px #414640;
+            padding: 15px;
+            overflow: hidden;
+            /* 防止float跑板 */
+            background-color: aquamarine;
+        }
+
+        .demo {
+            border-radius: 20px;
+            background-color: rgb(255, 242, 242);
+            width: 32%;
+            box-shadow: 2px 2px 1px 1px #474444;
+            margin-top: 15px;
+            margin-right: 1%;
+            float: left;
+            /*會跑板 */
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        .demo img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .demo p {
+            white-space: nowrap;
+            /* 強制文字不換行 */
+            overflow: hidden;
+            /*overflow 的屬性值 visible 和 hidden 分別表示元素的內容「完整顯示」和「超出範圍就隱藏」*/
+            text-overflow: ellipsis;
+            /*當文字超出範圍時顯示 ...*/
+        }
+
+
+
+        /* .demo .logo{
+            width: 100%;
+            height: 220px;
+            background-image: url(image/photo-1511289081-d06dda19034d.avif);
+        } */
+
+        @media screen and (max-width:1024px) {
+            .wrapper {
+                width: 94%;
+                padding: 15px;
+            }
+
+            .demo {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width:600px) {
+            .wrapper {
+                width: 94%;
+                padding: 15px;
+            }
+
+            .demo {
+                width: 100%;
+            }
+
+            .demo img {
+                display: block;
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+            }
+
+            .demo p {
+                padding: 5px 10px;
+                overflow-wrap: anywhere;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="display-1 mytitle-03">地方美食餐廳列表</div>
+    <div class="wrapper" id="foodlist">
+        <!-- <div class="demo">
+            <div class="logo bg-img"></div>
+            <img width=150px height=150px src="image/山羌.avif" alt="">
+            <p class="mytitle-04">店家:</p>
+            <p class="mytitle-04">電話:</p>
+        </div> -->
+        <!-- <div class="demo">
+            <div class="logo bg-img"></div>
+            <p class="mytitle-04">店家:</p>
+            <p class="mytitle-04">電話:</p>
+        </div>
+        <div class="demo">
+            <div class="logo bg-img"></div>
+            <p class="mytitle-04">店家:</p>
+            <p class="mytitle-04">電話:</p>
+        </div> -->
+    </div>
+    <script src="JS/jquery-4.0.0.js"></script>
+    <script src="JS/TravelFood.js"></script>
+    <script>
+        food.forEach(function (item) {
+            $("#foodlist").append('<div class="demo" ><div class="logo bg-img"></div><img src=' + item.PicURL + ' alt=""></img><p class="mytitle-04">店家:' + item.Name + '</p><p class="mytitle-04">電話:' + item.Tel + '</p>')
+        })
+        // console.log(food);
+        // food.forEach(function(item){
+        //     console.log(item.Name);
+        //     console.log(item.city);
+        //     console.log(item.Email);
+        // })
+    </script>
+
+</body>
+
+</html>

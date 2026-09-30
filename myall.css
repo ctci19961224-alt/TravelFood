@@ -1,0 +1,131 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@300;400;500;700;900&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=DotGothic16&display=swap');
+:root {
+    /* 主體與背景顏色 (硬派暗黑風格) */
+    --color-page-bg: #121212;
+    /* 頁面整體主背景 (暗夜黑) */
+    --color-logo-bg: #1f1f1f;
+    /* Logo區塊底色 (深碳灰) */
+    --color-nav-bg: #000000;
+    /* 導覽列背景色 (純黑) */
+    --color-content-bg: #1a1a1a;
+    /* 內容主區塊背景色 (硬派深灰) */
+    --color-footer-bg: #0d0d0d;
+    /* 頁尾背景色 (極致黑) */
+
+    /* 導覽列 5 個按鈕主題色 (熱血、力量與金屬感) */
+    --color-nav-btn-a1: #d32f2f;
+    /* 導覽鈕1: 戰神鮮紅 */
+    --color-nav-btn-a2: #ff9800;
+    /* 導覽鈕2: 力量耀橙 */
+    --color-nav-btn-a3: #ffd700;
+    /* 導覽鈕3: 冠軍尊爵金 */
+    --color-nav-btn-a4: #424242;
+    /* 導覽鈕4: 鋼鐵深灰 */
+    --color-nav-btn-a5: #b0bec5;
+    /* 導覽鈕5: 鈦金銀灰 */
+
+    /* 文字顏色 */
+    --color-text-nav-default: #121212;
+    /* 導覽按鈕預設文字色 (深黑) */
+    --color-text-nav-hover: #ffffff;
+    /* 導覽按鈕懸浮文字色 (純白) */
+    --color-text-heading: #ff1744;
+    /* 內容區大標題 (烈焰紅) */
+    --color-text-body: #e0e0e0;
+    /* 內容內文顏色 (明亮灰，高可讀性) */
+    --color-text-btn-default: #ffffff;
+    /* 內容區按鈕預設文字色 (純白) */
+    --color-text-btn-hover: #ffea00;
+    /* 內容區按鈕懸浮文字色 (高亮金黃) */
+
+    /* CTA 操作按鈕顏色 (.Content a) */
+    --color-btn-cta-bg: #b71c1c;
+    /* 了解更多按鈕預設底色 (深血紅) */
+    --color-btn-cta-hover-bg: #ff1744;
+    /* 了解更多按鈕懸浮底色 (亮焰紅) */
+
+    /* 陰影顏色 */
+    --color-shadow-dark: #000000;
+    /* 區塊與按鈕陰影 (純黑立體陰影) */
+}
+
+
+body{
+   /* font-family: "Zen Maru Gothic", sans-serif; */
+    font-family: "DotGothic16", sans-serif;
+    
+}
+
+.fw-100{
+    font: weight 100px;
+}
+
+.fw-200{
+    font: weight 200px;
+}
+
+.fw-300 {
+    font: weight 300px;
+}
+
+.fw-400 {
+    font: weight 400;
+}
+
+.fw-500 {
+    font: weight 500px;
+}
+
+.fw-600 {
+    font: weight 600px;
+}
+
+.fw-700 {
+    font: weight 700px;
+}
+
+.fw-800 {
+    font: weight 800px;
+}
+
+.fw-900 {
+    font: weight 900px;
+}
+
+/* 標題 */
+.mytitle-01 {
+    font-size: 30px;
+    font-weight: 700;
+    text-align: center;
+    color: #ff3333;
+    /* 警報紅 */
+}
+
+.mytitle-02 {
+    font-size: 40px;
+    font-weight: 800;
+    text-align: center;
+    color: #ffd000;
+    /* 警示黃 */
+}
+
+.mytitle-03 {
+    font-size: 50px;
+    font-weight: 900;
+    text-align: center;
+    color: #4000b6;
+    /* 緊急白 */
+}
+.mytitle-04 {
+    font-size: 20px;
+    font-weight: 900;
+    text-align: center;
+    color: #f7750b;
+    /* 緊急白 */
+}
+/* 背景圖 */
+.bg-img{
+    background-position: center center;
+    background-size: cover;
+}
