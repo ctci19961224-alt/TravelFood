@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX1</title>
+    <link rel="stylesheet" href="myall.css">
+    <style>
+        :root{
+            --bgcolor01:#ffa9db;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bgcolor01);
+        }
+
+        .Wapper {
+            width: 1024px;
+            margin-top: 0px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo {
+            width: 1024px;
+            height: 300px;
+            background-color: cadetblue;
+            background-image: url(image/山羌.avif);
+            /* background-position: center 13%;
+            background-size: 75%; */
+        }
+
+        .nav {
+            background-color: rgb(238, 102, 48);
+            text-align: center;
+            padding-top: 7px;
+            padding-bottom: 7px;
+        }
+
+        .nav ul {
+            display: inline-block;
+            margin: 0;
+        }
+
+        .nav ul li {
+            float: left;
+            list-style-type: none;
+            text-align: center;
+        }
+
+        .nav ul li a {
+            display: block;
+            /* background-color: rgb(136, 64, 5); */
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            font-weight: bolder;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 60px;
+            padding-right: 60px;
+            margin-right: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px 2px #302d2d;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav ul li a:hover {
+            color: rgb(255, 255, 255);
+        }
+
+        .a1 {
+            background-color: crimson;
+        }
+
+        .a2 {
+            background-color: rgb(109, 211, 236);
+        }
+
+        .a3 {
+            background-color: chartreuse;
+        }
+
+        .a4 {
+            background-color: gold;
+        }
+
+        .a5 {
+            background-color: deeppink;
+        }
+
+        .Content {
+            padding: 30px 80px;
+            background-color: aquamarine;
+        }
+
+        /* .Content h1 {
+            text-align: center;
+            font-weight: bold;
+            color: rgb(192, 1, 1);
+            font-size: 50px;
+        } */
+
+        .Content a {
+            display: block;
+            /*區塊化佔一行*/
+            padding: 5px 5px;
+            /* 內距 上下 左右 */
+            margin-top: 5px;
+            /*外距上*/
+            margin-bottom: 0;
+            /*外距下*/
+            margin-left: auto;
+            /*外距左*/
+            margin-right: auto;
+            /*外距右*/
+            width: 130px;
+            /* 寬 */
+            height: 40px;
+            /* 高 */
+            background-color: maroon;
+            /* 底色 */
+            color: aliceblue;
+            /* 字體色 */
+            box-shadow: 2px 2px 10px 2px #302d2d;
+            /* 陰影 */
+            border-radius: 10px;
+            /* 圓角 */
+            text-decoration: none;
+            /* 去底線 */
+            font-size: 30px;
+            /* 自大小 */
+            text-align: center;
+            /* 置中 */
+            line-height: 40px;
+            /* 與height數值相同時會置中 */
+        }
+
+        .Content a:hover {
+            background-color: rgb(224, 104, 194);
+            padding: 10px 10px;
+            color: rgb(9, 34, 255);
+        }
+
+        .Content p {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+
+        .footer {
+            background-color: cadetblue;
+            text-align: center;
+            font-size: 24px;
+            font-weight:bold ;
+            padding-top: 10px;
+        }
+        /* 響應式指令RWD */
+        @media screen and (max-width:1024px){
+            .Wapper{
+                width: 95%;
+            }
+            .logo{
+                width: 95%;
+                height: 200px;
+                background-image: url(image/GUNFIRE.avif);
+            }
+            .nav{
+                 width: 95%;
+            }
+            .nav ul{
+                width: 95%;
+                display: block;             
+            }
+            .nav ul li{
+                width: 90%;
+                float: none;
+                padding-right: 15px;
+                padding-left: 15px;
+                margin-bottom: 10px;
+            }
+            .nav ul li a{
+                width: 95%;
+                display: block;
+            }
+            .Content{
+                width: 95%;
+                padding: 0;
+
+            }
+            .Content h1{
+                font-size: 35px;
+            }
+            .Content p{
+                font-size: 18px;
+            }
+            .Content a{
+                width: 100px;
+                height: 30px;
+                font-size: 24px;
+                padding-top: 0;
+                padding-bottom: 5px;
+            }
+            .footer{
+                width: 95%;
+            }
+
+        }
+        @media screen and (max-width:600px){
+
+    body{
+        background-color:#111;
+        font-family: Arial, "Microsoft JhengHei", sans-serif;
+    }
+
+    .Wapper{
+        width:100%;
+        margin:0;
+        background-color:#111;
+    }
+
+    /* 頂部圖片 */
+    .logo{
+        width:100%;
+        height:220px;
+        background-color:#000;
+        background-image:url(image/GUNFIRE.avif);
+  
+
+        /* 強烈紅色濾鏡感 */
+        border-bottom:8px solid #e60000;
+        box-shadow:0 5px 15px #ff0000;
+    }
+
+    /* 導覽列 */
+    .nav{
+        width:100%;
+        background-color:#111;
+        padding:10px 0;
+        border-top:5px solid #ff0000;
+        border-bottom:5px solid #ff0000;
+    }
+
+    .nav ul{
+        width:100%;
+        display:block;
+        margin:0;
+    }
+
+    .nav ul li{
+        width:100%;
+        float:none;
+        padding:0;
+        margin:0;
+    }
+
+    .nav ul li a{
+        box-sizing:border-box;
+        width:92%;
+        margin:8px auto;
+        padding:12px 5px;
+
+        color:#fff;
+        border-radius:0;
+        border:3px solid #fff;
+
+        font-size:24px;
+        font-weight:900;
+        text-align:center;
+
+        box-shadow:
+            5px 5px 0 #000,
+            0 0 10px rgba(255,0,0,.7);
+
+        text-shadow:2px 2px #000;
+    }
+
+    .nav ul li a:hover{
+        color:#fff;
+        transform:scale(1.03);
+    }
+
+    /* 五個按鈕改成警報色系 */
+    .a1{
+        background-color:#d00000;
+    }
+
+    .a2{
+        background-color:#111;
+        border-color:#ff0000 !important;
+    }
+
+    .a3{
+        background-color:#333;
+        border-color:#ffd000 !important;
+        color:#ffd000 !important;
+    }
+
+    .a4{
+        background-color:#d00000;
+    }
+
+    .a5{
+        background-color:#ff0000;
+        color:#fff !important;
+    }
+
+    /* 內容區 */
+    .Content{
+        box-sizing:border-box;
+        width:100%;
+        padding:25px 15px;
+        background-color:#222;
+        color:#fff;
+
+        border-top:10px solid #ffd000;
+    }
+
+    /* 標題 */
+    .Content h1{
+        position:relative;
+
+        padding:15px 5px;
+        margin-bottom:20px;
+
+        background-color:#e60000;
+        color:#fff;
+
+        font-size:32px;
+        font-weight:900;
+        line-height:1.3;
+
+        border:4px solid #fff;
+        box-shadow:6px 6px 0 #000;
+
+        text-shadow:3px 3px #000;
+    }
+
+    /* 警告文字 */
+    .Content h1::before{
+        content:"⚠ 緊急直播 ⚠";
+        display:block;
+
+        margin-bottom:8px;
+
+        color:#ffd000;
+        font-size:18px;
+    }
+
+    /* 內文 */
+    .Content p{
+        padding:15px;
+        margin-top:15px;
+
+        background-color:#111;
+        color:#fff;
+
+        border-left:8px solid #e60000;
+
+        font-size:19px;
+        font-weight:bold;
+        line-height:1.8;
+
+        box-shadow:3px 3px 0 #000;
+    }
+
+    /* 重要句子增加紅色警報感 */
+    .Content p:first-of-type{
+        color:#ffd000;
+        border-left-color:#ffd000;
+    }
+
+    /* 了解更多按鈕 */
+    .Content a{
+        box-sizing:border-box;
+
+        width:90%;
+        height:auto;
+
+        padding:12px 5px;
+        margin:30px auto 10px;
+
+        background-color:#e60000;
+        color:#fff;
+
+        border:4px solid #fff;
+        border-radius:0;
+
+        font-size:25px;
+        font-weight:900;
+        line-height:normal;
+
+        box-shadow:
+            6px 6px 0 #000,
+            0 0 15px rgba(255,0,0,.8);
+
+        text-shadow:2px 2px #000;
+    }
+
+    .Content a:hover{
+        padding:12px 5px;
+        background-color:#ffd000;
+        color:#000;
+        transform:scale(1.03);
+    }
+
+    /* Footer */
+    .footer{
+        box-sizing:border-box;
+        width:100%;
+
+        padding:15px 5px;
+
+        background-color:#000;
+        color:#fff;
+
+        border-top:5px solid #e60000;
+
+        font-size:18px;
+        font-weight:900;
+    }
+}
+    </style>
+</head>
+
+<body>
+    <div class="Wapper">
+        <div class="banner">
+            <div class="logo bg-img"></div>
+            <div class="nav">
+                <ul>
+                    <li><a class="a1" href="#">一槍</a></li>
+                    <li><a class="a2" href="#">兩槍</a></li>
+                    <li><a class="a3" href="#">山羌</a></li>
+                    <li><a class="a4" href="#">阿阿阿阿阿</a></li>
+                    <li><a class="a5" href="#">幫我開直播</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Content">
+            <div class="Content_in">
+                <h1 class="mytitle-01">繼承我的意志</h1>
+                <P class="fw-400">
+                    幫我開直播 拿著 照我 師傅確定要拍嗎?確定要拍嗎? 
+                </P>
+                <P> 
+                    我中了兩槍....希望大家 如果我這一次不幸死的話請大家一定要傳承我的精神一定要傳承我的精神
+                </P>
+                <P>
+                    啊啊啊啊啊啊啊啊 請大家照顧我的老婆跟小孩拜託大家 拜託大家還有我的媽媽 拜託大家 啊啊啊啊啊啊啊啊
+                </P>
+
+                <a href="https://youtu.be/4_it-1aKpJ8?si=yKGjLIQ8l03iyWB7" target="_blank">
+                    了解更多
+                </a>
+            </div>
+        </div>
+        <div class="footer">
+            2026.09.23
+        </div>
+    </div>
+</body>
+
+</html>

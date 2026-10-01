@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenData-地方美食資料練習</title>
+    <link rel="stylesheet" href="myall.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .wrapper {
+            width: 1024px;
+            margin-top: 50px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+            box-shadow: 2px 2px 2px 2px #414640;
+            padding: 15px;
+            overflow: hidden;
+            /* 防止float跑板 */
+            background-color: aquamarine;
+        }
+
+        .demo {
+            border-radius: 20px;
+            background-color: rgb(255, 242, 242);
+            width: 32%;
+            box-shadow: 2px 2px 1px 1px #474444;
+            margin-top: 15px;
+            margin-right: 1%;
+            float: left;
+            /*會跑板 */
+            overflow: hidden;
+            overflow-wrap: anywhere;
+        }
+
+        .demo img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+
+        .demo p {
+            white-space: nowrap;/* 強制文字不換行 */
+            overflow: hidden;/*overflow 的屬性值 visible 和 hidden 分別表示元素的內容「完整顯示」和「超出範圍就隱藏」*/
+            text-overflow: ellipsis;/*當文字超出範圍時顯示 ...*/
+        }
+
+
+
+        /* .demo .logo{
+            width: 100%;
+            height: 220px;
+            background-image: url(image/photo-1511289081-d06dda19034d.avif);
+        } */
+
+        @media screen and (max-width:1024px) {
+            .wrapper {
+                width: 94%;
+                padding: 15px;
+            }
+
+            .demo {
+                width: 100%;
+            }
+        }
+
+        @media screen and (max-width:600px) {
+            .wrapper {
+                width: 94%;
+                padding: 15px;
+            }
+
+            .demo {
+                width: 100%;
+            }
+
+            .demo img {
+                display: block;
+                width: 100%;
+                height: 150px;
+                object-fit: cover;
+            }
+
+            .demo p {
+                padding: 5px 10px;
+                overflow-wrap: anywhere;
+            }           
+        }
+    </style>
+</head>
+
+<body>
+    <div class="display-1 mytitle-03">地方美食餐廳列表</div>
+    <div class="wrapper" id="foodlist">
+        <!-- <div class="demo">
+            <div class="logo bg-img"></div>
+            <img width=150px height=150px src="image/山羌.avif" alt="">
+            <p class="mytitle-04">店家:</p>
+            <p class="mytitle-04">電話:</p>
+        </div> -->
+        <!-- <div class="demo">
+            <div class="logo bg-img"></div>
+            <p class="mytitle-04">店家:</p>
+            <p class="mytitle-04">電話:</p>
+        </div>
+        <div class="demo">
+            <div class="logo bg-img"></div>
+            <p class="mytitle-04">店家:</p>
+            <p class="mytitle-04">電話:</p>
+        </div> -->
+    </div>
+    <script src="JS/jquery-4.0.0.js"></script>
+    <script src="JS/TravelFood.js"></script>
+    <script>
+        food.forEach(function (item) {
+            $("#foodlist").append('<div class="demo" ><div class="logo bg-img"></div><img src=' + item.PicURL + ' alt=""></img><p class="mytitle-04">店家:' + item.Name + '</p><p class="mytitle-04">電話:' + item.Tel + '</p>')
+        })
+        // console.log(food);
+        // food.forEach(function(item){
+        //     console.log(item.Name);
+        //     console.log(item.city);
+        //     console.log(item.Email);
+        // })
+    </script>
+
+</body>
+
+</html>
