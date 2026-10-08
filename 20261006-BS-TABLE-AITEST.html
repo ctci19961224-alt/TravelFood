@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>OpenData，地方美食餐廳列表</title>
+
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="myall.css">
+
+    <style>
+        /* ========================================
+           Final Fantasy Theme
+           ======================================== */
+        :root {
+            /* 主色 */
+            --ff-bg: #070b18;
+            --ff-bg-light: #111a31;
+
+            --ff-blue: #55bfff;
+            --ff-blue-light: #b8ecff;
+            --ff-blue-dark: #1677b8;
+
+            --ff-purple: #7c5cff;
+            --ff-purple-light: #c8baff;
+
+            --ff-gold: #f5d67a;
+            --ff-gold-light: #fff1b0;
+
+            --ff-white: #edf7ff;
+            --ff-text: #d9e9f5;
+            --ff-text-muted: #9eb4c8;
+
+            /* 表格 */
+            --ff-table-bg: rgba(10, 18, 38, 0.88);
+            --ff-table-border: rgba(85, 191, 255, 0.45);
+
+            /* 光暈 */
+            --ff-glow-blue:
+                0 0 8px rgba(85, 191, 255, 0.8),
+                0 0 20px rgba(85, 191, 255, 0.35);
+
+            --ff-glow-gold:
+                0 0 8px rgba(245, 214, 122, 0.8),
+                0 0 20px rgba(245, 214, 122, 0.35);
+
+            /* 圓角 */
+            --ff-radius: 12px;
+
+            /* 動畫 */
+            --ff-transition: 0.3s ease;
+        }
+
+
+        /* ========================================
+           全域設定
+           ======================================== */
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+
+            color: var(--ff-text);
+
+            font-family:
+                "Noto Sans TC",
+                "Microsoft JhengHei",
+                sans-serif;
+
+            background:
+                radial-gradient(
+                    circle at 20% 20%,
+                    rgba(80, 130, 255, 0.15),
+                    transparent 35%
+                ),
+                radial-gradient(
+                    circle at 80% 80%,
+                    rgba(124, 92, 255, 0.15),
+                    transparent 35%
+                ),
+                linear-gradient(
+                    135deg,
+                    #050814,
+                    var(--ff-bg),
+                    #0b1024
+                );
+
+            background-attachment: fixed;
+        }
+
+
+        /* ========================================
+           主容器
+           ======================================== */
+
+        .container {
+            padding-top: 30px;
+            padding-bottom: 50px;
+        }
+
+
+        /* ========================================
+           標題
+           ======================================== */
+
+        .display-2 {
+            position: relative;
+
+            padding: 25px 15px;
+
+            color: var(--ff-gold-light);
+
+            font-weight: 900;
+
+            letter-spacing: 4px;
+
+            text-shadow:
+                0 0 5px rgba(245, 214, 122, 0.9),
+                0 0 15px rgba(245, 214, 122, 0.5),
+                0 0 30px rgba(85, 191, 255, 0.25);
+        }
+
+        /* 標題下方的魔法線 */
+        .display-2::after {
+            content: "";
+
+            display: block;
+
+            width: 180px;
+            height: 2px;
+
+            margin: 18px auto 0;
+
+            background:
+                linear-gradient(
+                    90deg,
+                    transparent,
+                    var(--ff-blue),
+                    var(--ff-gold),
+                    var(--ff-blue),
+                    transparent
+                );
+
+            box-shadow: var(--ff-glow-blue);
+        }
+
+
+        /* ========================================
+           表格
+           ======================================== */
+
+        .table {
+            overflow: hidden;
+
+            margin-top: 25px;
+
+            color: var(--ff-text);
+
+            background: var(--ff-table-bg);
+
+            border: 1px solid var(--ff-table-border);
+
+            border-radius: var(--ff-radius);
+
+            box-shadow:
+                0 0 15px rgba(0, 0, 0, 0.5),
+                0 0 25px rgba(85, 191, 255, 0.08);
+
+            backdrop-filter: blur(8px);
+        }
+
+
+        /* 表格標題 */
+        .table thead {
+            color: var(--ff-gold-light);
+
+            background:
+                linear-gradient(
+                    135deg,
+                    #172746,
+                    #101b36
+                );
+
+            text-shadow: var(--ff-glow-gold);
+        }
+
+        .table thead th {
+            padding: 16px 10px;
+
+            vertical-align: middle;
+
+            border-color: var(--ff-table-border);
+
+            letter-spacing: 1px;
+        }
+
+
+        /* 表格內容 */
+        .table tbody td {
+            padding: 15px 10px;
+
+            color: var(--ff-text);
+
+            vertical-align: middle;
+
+            border-color: rgba(85, 191, 255, 0.2);
+
+            background: rgba(8, 15, 32, 0.65);
+
+            transition:
+                background var(--ff-transition),
+                box-shadow var(--ff-transition);
+        }
+
+
+        /* 滑鼠移入 */
+        .table tbody tr {
+            transition: var(--ff-transition);
+        }
+
+        .table tbody tr:hover td {
+            color: var(--ff-white);
+
+            background:
+                linear-gradient(
+                    90deg,
+                    rgba(85, 191, 255, 0.08),
+                    rgba(124, 92, 255, 0.12)
+                );
+
+            box-shadow:
+                inset 0 0 15px rgba(85, 191, 255, 0.08);
+        }
+
+
+        /* ========================================
+           圖片
+           ======================================== */
+
+        .table img {
+            display: block;
+
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+
+            border: 1px solid rgba(85, 191, 255, 0.5);
+
+            border-radius: 8px;
+
+            box-shadow:
+                0 0 8px rgba(85, 191, 255, 0.25);
+
+            transition:
+                transform var(--ff-transition),
+                box-shadow var(--ff-transition);
+        }
+
+        .table img:hover {
+            transform: scale(1.03);
+
+            box-shadow:
+                0 0 10px rgba(85, 191, 255, 0.8),
+                0 0 20px rgba(124, 92, 255, 0.4);
+        }
+
+
+        /* ========================================
+           RWD
+           ======================================== */
+
+        @media screen and (max-width: 768px) {
+
+            .container {
+                padding-left: 15px;
+                padding-right: 15px;
+            }
+
+            .display-2 {
+                font-size: 2rem;
+
+                padding: 20px 10px;
+
+                letter-spacing: 2px;
+            }
+
+
+            /* 隱藏表頭 */
+            .table.rwd thead {
+                display: none;
+            }
+
+
+            /* 每一列變成卡片 */
+            .table.rwd tbody tr {
+                display: block;
+
+                margin-top: 20px;
+                padding: 5px;
+
+                border: 1px solid var(--ff-blue);
+
+                border-radius: var(--ff-radius);
+
+                background:
+                    linear-gradient(
+                        145deg,
+                        rgba(16, 30, 58, 0.95),
+                        rgba(8, 14, 30, 0.95)
+                    );
+
+                box-shadow:
+                    0 0 10px rgba(85, 191, 255, 0.2),
+                    inset 0 0 15px rgba(124, 92, 255, 0.08);
+            }
+
+
+            /* 每個欄位 */
+            .table.rwd tbody tr td {
+                display: block;
+
+                overflow: hidden;
+
+                padding: 12px 8px;
+
+                border: none;
+
+                border-bottom:
+                    1px solid rgba(85, 191, 255, 0.15);
+
+                background: transparent;
+            }
+
+            .table.rwd tbody tr td:last-child {
+                border-bottom: none;
+            }
+
+
+            /* 欄位名稱 */
+            .table.rwd tbody tr td::before {
+                content: attr(data-th) ":";
+
+                display: block;
+
+                float: left;
+
+                width: 30%;
+
+                padding-right: 10px;
+
+                color: var(--ff-gold);
+
+                font-size: 16px;
+
+                font-weight: 900;
+
+                text-align: right;
+
+                text-shadow: var(--ff-glow-gold);
+            }
+
+
+            /* 欄位內容 */
+            .table.rwd tbody tr td span {
+                display: block;
+
+                float: left;
+
+                width: 70%;
+
+                color: var(--ff-text);
+            }
+
+
+            /* 手機版圖片 */
+            .table.rwd tbody tr td img {
+                display: block;
+
+                width: 100%;
+                max-width: 250px;
+                height: auto;
+
+                margin: 0 auto;
+
+                border-color: var(--ff-blue);
+
+                box-shadow:
+                    0 0 10px rgba(85, 191, 255, 0.3);
+            }
+
+
+            /* 手機版卡片滑過 */
+            .table.rwd tbody tr:hover {
+                border-color: var(--ff-gold);
+
+                box-shadow:
+                    0 0 15px rgba(245, 214, 122, 0.25);
+            }
+        }
+
+
+        /* ========================================
+           超小螢幕
+           ======================================== */
+
+        @media screen and (max-width: 480px) {
+
+            .display-2 {
+                font-size: 1.6rem;
+            }
+
+            .table.rwd tbody tr td::before {
+                width: 35%;
+
+                font-size: 14px;
+            }
+
+            .table.rwd tbody tr td span {
+                width: 65%;
+            }
+
+            .table.rwd tbody tr td img {
+                max-width: 200px;
+            }
+        }
+    </style>
+</head>
+
+
+<body>
+
+    <div class="container">
+
+        <!-- 標題 -->
+        <div class="display-2 fw-900 text-center my-4">
+            地方美食餐廳列表
+        </div>
+
+
+        <!-- 餐廳列表 -->
+        <table class="table table-bordered rwd">
+
+            <thead>
+                <tr>
+                    <th width="10%">餐廳名稱</th>
+                    <th width="25%">餐廳圖片</th>
+                    <th width="20%">餐廳地址</th>
+                    <th width="10%">餐廳電話</th>
+                    <th width="10%">餐廳信箱</th>
+                    <th width="25%">餐廳簡介</th>
+                </tr>
+            </thead>
+
+
+            <tbody id="mytbody">
+<!-- 
+                餐廳 1
+                <tr>
+
+                    <td data-th="餐廳名稱">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳圖片">
+                        <span>
+                            <img
+                                src="image/山羌.avif"
+                                class="img-fluid"
+                                alt="餐廳圖片">
+                        </span>
+                    </td>
+
+                    <td data-th="餐廳地址">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳電話">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳信箱">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳簡介">
+                        <span>XXXX</span>
+                    </td>
+
+                </tr> -->
+
+
+                <!-- 餐廳 2
+                <tr>
+
+                    <td data-th="餐廳名稱">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳圖片">
+                        <span>
+                            <img
+                                src="image/山羌.avif"
+                                class="img-fluid"
+                                alt="餐廳圖片">
+                        </span>
+                    </td>
+
+                    <td data-th="餐廳地址">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳電話">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳信箱">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳簡介">
+                        <span>XXXX</span>
+                    </td>
+
+                </tr>
+
+
+                餐廳 3
+                <tr>
+
+                    <td data-th="餐廳名稱">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳圖片">
+                        <span>
+                            <img
+                                src="image/山羌.avif"
+                                class="img-fluid"
+                                alt="餐廳圖片">
+                        </span>
+                    </td>
+
+                    <td data-th="餐廳地址">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳電話">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳信箱">
+                        <span>XXXX</span>
+                    </td>
+
+                    <td data-th="餐廳簡介">
+                        <span>XXXX</span>
+                    </td>
+
+                </tr> -->
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+
+    <script src="JS/bootstrap.bundle.min.js"></script>
+    <script src="JS/jquery-4.0.0.js"></script>
+    <script>
+        //抓取外部資料，農村地方美食小吃特色料理
+        //主程式:開始必定執行的地方
+               $(function () {
+            $.ajax({
+                type: "GET",
+                url: "https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx?IsTransData=1&UnitId=193",
+                dataType: "json",
+                success: showdata,
+                error: function () {
+                    console.log("抓取外部資料-農村地方美食小吃特色料理-失敗!")
+                }
+            });
+        });
+        //自訂函式 副程式
+        function showdata(data) {
+            console.log(data);
+            $("#mytbody").empty();
+            data.forEach(function (item) {
+            console.log(item.Name);
+
+            const strHTML = `<tr> 
+                <td data-th="餐廳名稱"> <span>${item.Name}</span></td>
+                <td data-th="餐廳圖片"><span><img src="${item.PicURL}" class"img-fluid" alt=""></span></td>
+                <td data-th="餐廳地址"><span>${item.City}${item.Address}</span></td>
+                <td data-th="餐廳電話"><span>${item.Tel}</span></td>
+                <td data-th="餐廳信箱"><span>${item.Email}</span></td>
+                <td data-th="餐廳簡介"><span class="text-truncate" style="max-width: 450px; display: block;">${item.FoodFeature}</span></td></tr>`;
+            $("#mytbody").append(strHTML);
+        })
+        }
+        
+    </script>
+
+</body>
+
+</html>

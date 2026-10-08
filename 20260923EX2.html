@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        :root {
+            /* 主體與背景顏色 (硬派暗黑風格) */
+            --color-page-bg: #121212;
+            /* 頁面整體主背景 (暗夜黑) */
+            --color-logo-bg: #1f1f1f;
+            /* Logo區塊底色 (深碳灰) */
+            --color-nav-bg: #000000;
+            /* 導覽列背景色 (純黑) */
+            --color-content-bg: #1a1a1a;
+            /* 內容主區塊背景色 (硬派深灰) */
+            --color-footer-bg: #0d0d0d;
+            /* 頁尾背景色 (極致黑) */
+
+            /* 導覽列 5 個按鈕主題色 (熱血、力量與金屬感) */
+            --color-nav-btn-a1: #d32f2f;
+            /* 導覽鈕1: 戰神鮮紅 */
+            --color-nav-btn-a2: #ff9800;
+            /* 導覽鈕2: 力量耀橙 */
+            --color-nav-btn-a3: #ffd700;
+            /* 導覽鈕3: 冠軍尊爵金 */
+            --color-nav-btn-a4: #424242;
+            /* 導覽鈕4: 鋼鐵深灰 */
+            --color-nav-btn-a5: #b0bec5;
+            /* 導覽鈕5: 鈦金銀灰 */
+
+            /* 文字顏色 */
+            --color-text-nav-default: #121212;
+            /* 導覽按鈕預設文字色 (深黑) */
+            --color-text-nav-hover: #ffffff;
+            /* 導覽按鈕懸浮文字色 (純白) */
+            --color-text-heading: #ff1744;
+            /* 內容區大標題 (烈焰紅) */
+            --color-text-body: #e0e0e0;
+            /* 內容內文顏色 (明亮灰，高可讀性) */
+            --color-text-btn-default: #ffffff;
+            /* 內容區按鈕預設文字色 (純白) */
+            --color-text-btn-hover: #ffea00;
+            /* 內容區按鈕懸浮文字色 (高亮金黃) */
+
+            /* CTA 操作按鈕顏色 (.Content a) */
+            --color-btn-cta-bg: #b71c1c;
+            /* 了解更多按鈕預設底色 (深血紅) */
+            --color-btn-cta-hover-bg: #ff1744;
+            /* 了解更多按鈕懸浮底色 (亮焰紅) */
+
+            /* 陰影顏色 */
+            --color-shadow-dark: #000000;
+            /* 區塊與按鈕陰影 (純黑立體陰影) */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .body {
+            background-color: var(--color-page-bg);
+        }
+
+        .wrapper {
+            margin: 0 auto;
+        }
+
+        .logo {
+            background-color: var(--color-logo-bg);
+            background-image: url(image/山羌.avif);
+            width: 1024px;
+            height: 300px;
+            background-position: center 13%;
+            background-size: 75%;
+        }
+
+        .nav {
+            background-color: var(--color-nav-bg);
+            text-align: center;
+            padding-top: 7px;
+            padding-bottom: 7px;
+        }
+
+        .a1 {
+            background-color: var(--color-nav-btn-a1);
+        }
+
+        .a2 {
+            background-color: var(--color-nav-btn-a2);
+        }
+
+        .a3 {
+            background-color: var(--color-nav-btn-a3);
+        }
+
+        .a4 {
+            background-color: var(--color-nav-btn-a4);
+        }
+
+        .a5 {
+            background-color: var(--color-nav-btn-a5);
+        }
+
+        .content {
+            background-color: var(--color-content-bg);
+        }
+
+
+        .footer {
+            background-color: var(--color-footer-bg);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="banner">
+            <div class="logo">
+            </div>
+            <nav>
+                <ul>
+                    <li><a class="a1" href="#">一槍</a></li>
+                    <li><a class="a2" href="#">兩槍</a></li>
+                    <li><a class="a3" href="#">山羌</a></li>
+                    <li><a class="a4" href="#">阿阿阿阿阿</a></li>
+                    <li><a class="a5" href="#">幫我開直播</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div class="content">
+            <h1>傳承意志</h1>
+            <p></p>
+            <p></p>
+            <p></p>
+        </div>
+        <div class="footer">
+
+        </div>
+
+    </div>
+</body>
+
+</html>

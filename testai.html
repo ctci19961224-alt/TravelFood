@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EX1</title>
+    <style>
+        :root {
+            /* 主體與背景顏色 (硬派暗黑風格) */
+            --color-page-bg: #121212;            /* 頁面整體主背景 (暗夜黑) */
+            --color-logo-bg: #1f1f1f;            /* Logo區塊底色 (深碳灰) */
+            --color-nav-bg: #000000;             /* 導覽列背景色 (純黑) */
+            --color-content-bg: #1a1a1a;         /* 內容主區塊背景色 (硬派深灰) */
+            --color-footer-bg: #0d0d0d;          /* 頁尾背景色 (極致黑) */
+
+            /* 導覽列 5 個按鈕主題色 (熱血、力量與金屬感) */
+            --color-nav-btn-a1: #d32f2f;         /* 導覽鈕1: 戰神鮮紅 */
+            --color-nav-btn-a2: #ff9800;         /* 導覽鈕2: 力量耀橙 */
+            --color-nav-btn-a3: #ffd700;         /* 導覽鈕3: 冠軍尊爵金 */
+            --color-nav-btn-a4: #424242;         /* 導覽鈕4: 鋼鐵深灰 */
+            --color-nav-btn-a5: #b0bec5;         /* 導覽鈕5: 鈦金銀灰 */
+
+            /* 文字顏色 */
+            --color-text-nav-default: #121212;   /* 導覽按鈕預設文字色 (深黑) */
+            --color-text-nav-hover: #ffffff;     /* 導覽按鈕懸浮文字色 (純白) */
+            --color-text-heading: #ff1744;       /* 內容區大標題 (烈焰紅) */
+            --color-text-body: #e0e0e0;          /* 內容內文顏色 (明亮灰，高可讀性) */
+            --color-text-btn-default: #ffffff;    /* 內容區按鈕預設文字色 (純白) */
+            --color-text-btn-hover: #ffea00;      /* 內容區按鈕懸浮文字色 (高亮金黃) */
+
+            /* CTA 操作按鈕顏色 (.Content a) */
+            --color-btn-cta-bg: #b71c1c;         /* 了解更多按鈕預設底色 (深血紅) */
+            --color-btn-cta-hover-bg: #ff1744;   /* 了解更多按鈕懸浮底色 (亮焰紅) */
+
+            /* 陰影顏色 */
+            --color-shadow-dark: #000000;        /* 區塊與按鈕陰影 (純黑立體陰影) */
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--color-page-bg);
+            color: var(--color-text-body);
+        }
+
+        .Wapper {
+            width: 1024px;
+            margin-top: 0px;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .logo {
+            width: 1024px;
+            height: 300px;
+            background-color: var(--color-logo-bg);
+            background-image: url(image/山羌.avif);
+            background-position: center 13%;
+            background-size: 75%;
+        }
+
+        .nav {
+            background-color: var(--color-nav-bg);
+            text-align: center;
+            padding-top: 7px;
+            padding-bottom: 7px;
+        }
+
+        .nav ul {
+            display: inline-block;
+            margin: 0;
+        }
+
+        .nav ul li {
+            float: left;
+            list-style-type: none;
+            text-align: center;
+        }
+
+        .nav ul li a {
+            display: block;
+            /* background-color: rgb(136, 64, 5); */
+            color: var(--color-text-nav-default);
+            text-decoration: none;
+            font-weight: bolder;
+            padding-top: 15px;
+            padding-bottom: 15px;
+            padding-left: 60px;
+            padding-right: 60px;
+            margin-right: 10px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px 2px var(--color-shadow-dark);
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .nav ul li a:hover {
+            color: var(--color-text-nav-hover);
+        }
+
+        .a1 {
+            background-color: var(--color-nav-btn-a1);
+        }
+
+        .a2 {
+            background-color: var(--color-nav-btn-a2);
+        }
+
+        .a3 {
+            background-color: var(--color-nav-btn-a3);
+        }
+
+        .a4 {
+            background-color: var(--color-nav-btn-a4);
+        }
+
+        .a5 {
+            background-color: var(--color-nav-btn-a5);
+        }
+
+        .Content {
+            padding: 30px 80px;
+            background-color: var(--color-content-bg);
+        }
+
+        .Content h1 {
+            text-align: center;
+            font-weight: bold;
+            color: var(--color-text-heading);
+            font-size: 50px;
+        }
+
+        .Content a {
+            display: block;
+            /*區塊化佔一行*/
+            padding: 5px 5px;
+            /* 內距 上下 左右 */
+            margin-top: 0px;
+            /*外距上*/
+            margin-bottom: 0;
+            /*外距下*/
+            margin-left: auto;
+            /*外距左*/
+            margin-right: auto;
+            /*外距右*/
+            width: 130px;
+            /* 寬 */
+            height: 40px;
+            /* 高 */
+            background-color: var(--color-btn-cta-bg);
+            /* 底色 */
+            color: var(--color-text-btn-default);
+            /* 字體色 */
+            box-shadow: 2px 2px 10px 2px var(--color-shadow-dark);
+            /* 陰影 */
+            border-radius: 10px;
+            /* 圓角 */
+            text-decoration: none;
+            /* 去底線 */
+            font-size: 30px;
+            /* 自大小 */
+            text-align: center;
+            /* 置中 */
+            line-height: 40px;
+            /* 與height數值相同時會置中 */
+        }
+
+        .Content a:hover {
+            background-color: var(--color-btn-cta-hover-bg);
+            padding: 10px 10px;
+            color: var(--color-text-btn-hover);
+        }
+
+        .Content p {
+            font-size: 24px;
+            margin-top: 20px;
+            color: var(--color-text-body);
+        }
+
+        .footer {
+            background-color: var(--color-footer-bg);
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            padding-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="Wapper">
+        <div class="banner">
+            <div class="logo"></div>
+            <div class="nav">
+                <ul>
+                    <li><a class="a1" href="#">一槍</a></li>
+                    <li><a class="a2" href="#">兩槍</a></li>
+                    <li><a class="a3" href="#">山羌</a></li>
+                    <li><a class="a4" href="#">阿阿阿阿阿</a></li>
+                    <li><a class="a5" href="#">幫我開直播</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="Content">
+            <div class="Content_in">
+                <h1>繼承我的意志</h1>
+                <P>
+                    幫我開直播 拿著 照我 師傅確定要拍嗎?確定要拍嗎? 
+                </P>
+                <P> 
+                    我中了兩槍....希望大家 如果我這一次不幸死的話請大家一定要傳承我的精神一定要傳承我的精神
+                </P>
+                <P>
+                    啊啊啊啊啊啊啊啊 請大家照顧我的老婆跟小孩拜託大家 拜託大家還有我的媽媽 拜託大家 啊啊啊啊啊啊啊啊
+                </P>
+
+                <a href="https://youtu.be/4_it-1aKpJ8?si=yKGjLIQ8l03iyWB7" target="_blank">
+                    了解更多
+                </a>
+            </div>
+        </div>
+        <div class="footer">
+            2026.09.23
+        </div>
+    </div>
+</body>
+
+</html>

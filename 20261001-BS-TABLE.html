@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap-Table(表格)</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="myall.css">
+    <style>
+        :root{
+            --border01: #dddffd       
+        }
+        @media screen and (max-width:768px){
+            .table-rwd thead{
+                display: none;
+            }
+            .table-rwd tbody tr{
+                display: block;
+                margin-top: 15px;
+                border: 2px solid var(--border01);
+            }
+            .table-rwd tbody tr td{
+                display: block;
+                overflow: hidden;
+            }
+            /*偽元素*/
+            .table-rwd tbody tr td::before{
+                content: attr(data-th)":";
+                font-weight: 900;
+                color: crimson;
+                display: block;
+                float: left;
+                width: 30%;
+                text-align: right;
+                padding-right: 10px;
+            }
+            .table-rwd tbody tr span{
+                display: block;
+                float: left;
+                width: 70%;
+                font-size: 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-2 fw-900 text-center mt-4">塔科夫5.45*39子彈表</div>
+        <table class="table mt-4 table-bordered table-striped table-hover table-sm table-rwd">
+            <thead class="table-danger">
+                <tr>
+                    <th>名稱</th>
+                    <th>貫穿</th>
+                    <th>傷害</th>
+                    <th>大出血機率</th>
+                    <th>小出血機率</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr>
+                    <td data-th="名稱"><span>PS</span></td>
+                    <td data-th="貫穿"><span>28</span></td>
+                    <td data-th="傷害"><span>56</span></td>
+                    <td data-th="大出血機率"><span>0</span></td>
+                    <td data-th="小出血機率"><span>一張魯蛇超市突然，文本以下糖尿病，調整免費電影，產生平靜，黃金同一楠雅還可以冠軍採購新增，應該他人按鈕解放幫我依舊異常強烈核心不需要會員價窗口，平台寫出來資金保健畢業就是，身材不怕慢慢，執行放棄資本把它像素青年已經大眾右鍵集中高級，現在路線技術實行點頭回。</span></td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>PP</td>
+                    <td>34</td>
+                    <td>51</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+            <tbody>
+                <tr>
+                    <td>BT</td>
+                    <td>37</td>
+                    <td>54</td>
+                    <td>0</td>
+                    <td>0</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <script src="JS/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

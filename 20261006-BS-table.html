@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Opemdata，地方美食餐廳列表</title>
+    <link rel="stylesheet" href="bootstrap.min.css">
+    <link rel="stylesheet" href="myall.css">
+    <style>
+        .table img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        @media screen and (max-width:768px) {
+            .table.rwd thead {
+                display: none;
+            }
+
+            .table.rwd tbody tr {
+                display: block;
+                border: 2px solid salmon;
+                margin-top: 15px;
+            }
+
+            .table.rwd tbody tr td {
+                display: block;
+                overflow: hidden;
+            }
+
+            .table.rwd tbody tr td::before {
+                content: attr(data-th)":";
+                font-size: 20px;
+                font-weight: 900;
+                display: block;
+                float: left;
+                width: 30%;
+                text-align: right;
+                padding-right: 15px;
+                color: chartreuse;
+            }
+
+            .table.rwd tbody tr td span {
+                display: block;
+                float: left;
+                width: 70%;
+            }
+
+            .table.rwd tbody tr td img {
+                max-width: 100%;
+                height: auto;
+                display: block;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="display-2 fw-900 text-center my-4">地方美食餐廳列表</div>
+        <table class="table table-bordered rwd">
+            <thead class="table-dark">
+                <tr>
+                    <th width="10%">餐廳名稱</th>
+                    <th width="25%">餐廳圖片</th>
+                    <th width="20%">餐廳地址</th>
+                    <th width="10%">餐廳電話</th>
+                    <th width="10%">餐廳信箱</th>
+                    <th width="25%">餐廳簡介</th>
+                </tr>
+            </thead>
+            <tbody id="mytbody">
+                <!-- <tr>
+                    <td data-th="餐廳名稱"><span>XXXX</span></td>
+                    <td data-th="餐廳圖片"><span><img src="image/山羌.avif" class="img-fluid" alt=" "></span></td>
+                    <td data-th="餐廳地址"><span>XXXX</span></td>
+                    <td data-th="餐廳電話"><span>XXXX</span></td>
+                    <td data-th="餐廳信箱"><span>XXXX</span></td>
+                    <td data-th="餐廳簡介"><span class="text-truncate" style="max-width: 450px; display: block;">XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX</span></td>
+                </tr>
+                <tr>
+                    <td data-th="餐廳名稱"><span>XXXX</span></td>
+                    <td data-th="餐廳圖片"><span><img src="image/山羌.avif" alt=""></span></td>
+                    <td data-th="餐廳地址"><span>XXXX</span></td>
+                    <td data-th="餐廳電話"><span>XXXX</span></td>
+                    <td data-th="餐廳信箱"><span>XXXX</span></td>
+                    <td data-th="餐廳簡介"><span>XXXX</span></td>
+                </tr>
+                <tr>
+                    <td data-th="餐廳名稱"><span>XXXX</span></td>
+                    <td data-th="餐廳圖片"><span><img src="image/山羌.avif" alt=""></span></td>
+                    <td data-th="餐廳地址"><span>XXXX</span></td>
+                    <td data-th="餐廳電話"><span>XXXX</span></td>
+                    <td data-th="餐廳信箱"><span>XXXX</span></td>
+                    <td data-th="餐廳簡介"><span>XXXX</span></td>
+                </tr> -->
+            </tbody>
+        </table>
+
+    </div>
+    <script src="JS/bootstrap.bundle.min.js"></script>
+    <script src="JS/jquery-4.0.0.js"></script>
+    <script>
+        //抓取外部資料，農村地方美食小吃特色料理
+        //主程式:開始必定執行的地方
+        $(function () {
+            $.ajax({
+                type: "GET",
+                url: "https://data.moa.gov.tw/Service/OpenData/ODwsv/ODwsvTravelFood.aspx?IsTransData=1&UnitId=193",
+                dataType: "json",
+                success: showdata,
+                error: function () {
+                    console.log("抓取外部資料-農村地方美食小吃特色料理-失敗!")
+                }
+            });
+        });
+        //自訂函式 副程式
+        function showdata(data) {
+            console.log(data);
+            // $("#mytbody").empty();
+            data.forEach(function (item) {
+            console.log(item.Name);
+
+            const strHTML = `<tr> 
+                <td data-th="餐廳名稱"> <span>${item.Name}</span></td>
+                <td data-th="餐廳圖片"><span><img src="${item.PicURL}" class"img-fluid" alt=""></span></td>
+                <td data-th="餐廳地址"><span>${item.City}${item.Address}</span></td>
+                <td data-th="餐廳電話"><span>${item.Tel}</span></td>
+                <td data-th="餐廳信箱"><span>${item.Email}</span></td>
+                <td data-th="餐廳簡介"><span class="text-truncate" style="max-width: 450px; display: block;">${item.FoodFeature}</span></td></tr>`;
+            $("#mytbody").append(strHTML);
+        })
+        }
+        
+    </script>
+</body>
+
+</html>
