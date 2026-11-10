@@ -1,0 +1,6751 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>作業</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="css/myall.css">
+    <link rel="stylesheet" href="/css/all.min.css">
+
+    <style>
+        :root {
+            /* Final Fantasy - Primary Colors */
+            --ff-midnight: #101827;
+            --ff-deep-blue: #172C45;
+            --ff-crystal-blue: #4CA6D9;
+            --ff-aether: #75D8E8;
+
+            /* Fantasy Colors */
+            --ff-mystic-purple: #7556A8;
+            --ff-magic-violet: #A68BD1;
+
+            /* Metallic Colors */
+            --ff-royal-gold: #D6B46A;
+            --ff-moon-silver: #DCE5EF;
+
+            /* Text Colors */
+            --ff-text-primary: #F2F5FA;
+            --ff-text-secondary: #AAB8C9;
+
+            /* Background Colors */
+            --ff-bg-primary: #101827;
+            --ff-bg-secondary: #172C45;
+            --ff-bg-card: rgba(255, 255, 255, 0.06);
+
+            /* Effects */
+            --ff-border: rgba(117, 216, 232, 0.3);
+            --ff-glow-blue: 0 0 15px rgba(76, 166, 217, 0.4);
+            --ff-glow-gold: 0 0 15px rgba(214, 180, 106, 0.35);
+
+            /* Gradient */
+            --ff-gradient-main: linear-gradient(135deg,
+                    #101827 0%,
+                    #172C45 50%,
+                    #30244B 100%);
+
+            --ff-gradient-crystal: linear-gradient(135deg,
+                    #4CA6D9,
+                    #7556A8,
+                    #D6B46A);
+            /* Final Fantasy - Magitek Purple Theme */
+            --ff-magitek-bg: #21182F;
+            --ff-magitek-deep: #2D2040;
+            --ff-magitek-card: #39294F;
+
+            /* Arcane Colors */
+            --ff-arcane-purple: #9872CC;
+            --ff-arcane-light: #C5A5F2;
+            --ff-arcane-glow: rgba(152, 114, 204, 0.4);
+
+            /* Fantasy Accent */
+            --ff-crystal-pink: #E0B5D8;
+            --ff-magic-gold: #D6B46A;
+
+            /* Borders & Effects */
+            --ff-magitek-border: rgba(197, 165, 242, 0.3);
+            --ff-magitek-shadow: 0 0 18px rgba(152, 114, 204, 0.3);
+
+            /* Gradient */
+            --ff-gradient-magitek: linear-gradient(135deg,
+                    #21182F 0%,
+                    #39294F 55%,
+                    #50345E 100%);
+        }
+
+        /* Section 1 - Final Fantasy Theme */
+
+        #sec1 {
+            background: var(--ff-gradient-main) !important;
+            color: var(--ff-text-primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Magical glow background */
+        #sec1::before {
+            content: "";
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            top: -180px;
+            right: -100px;
+            background: var(--ff-crystal-blue);
+            opacity: 0.12;
+            filter: blur(100px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* Social Media Icons */
+        #sec1 a {
+            color: var(--ff-moon-silver) !important;
+            margin-left: 15px;
+            transition: all 0.3s ease;
+            display: inline-block;
+        }
+
+        /* Hover Effect */
+        #sec1 a:hover {
+            color: var(--ff-royal-gold) !important;
+            transform: translateY(-5px);
+            filter: drop-shadow(0 0 8px var(--ff-royal-gold));
+        }
+
+        /* Threads */
+        #sec1 a:nth-child(1):hover {
+            color: var(--ff-aether) !important;
+        }
+
+        /* Instagram */
+        #sec1 a:nth-child(2):hover {
+            color: #E6A1C7 !important;
+        }
+
+        /* Facebook */
+        #sec1 a:nth-child(3):hover {
+            color: var(--ff-crystal-blue) !important;
+        }
+
+
+        /* ========================================
+   Final Fantasy - Section 2 Navbar
+======================================== */
+
+        #sec2 {
+            position: sticky;
+            top: 0;
+            z-index: 1020;
+            background: var(--ff-magitek-bg);
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Navbar Background */
+        #sec2 .navbar {
+            background: var(--ff-gradient-magitek) !important;
+            border-bottom: 1px solid var(--ff-magitek-border);
+            backdrop-filter: blur(12px);
+            padding: 12px 20px;
+        }
+
+        /* Navbar Brand */
+        #sec2 .navbar-brand {
+            color: var(--ff-magic-gold) !important;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            transition: all 0.3s ease;
+        }
+
+        #sec2 .navbar-brand:hover {
+            color: var(--ff-crystal-pink) !important;
+            text-shadow: 0 0 12px var(--ff-arcane-glow);
+        }
+
+        /* Navbar Links */
+        #sec2 .nav-link {
+            color: #D2C5E0 !important;
+            font-weight: 500;
+            margin: 0 6px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hover */
+        #sec2 .nav-link:hover,
+        #sec2 .nav-link:focus {
+            color: var(--ff-arcane-light) !important;
+            text-shadow: 0 0 12px var(--ff-arcane-glow);
+        }
+
+        /* Active */
+        #sec2 .nav-link.active {
+            color: var(--ff-magic-gold) !important;
+        }
+
+        /* Dropdown Menu */
+        #sec2 .dropdown-menu {
+            background: var(--ff-magitek-deep);
+            border: 1px solid var(--ff-magitek-border);
+            border-radius: 10px;
+            padding: 8px;
+            box-shadow: var(--ff-magitek-shadow);
+        }
+
+        /* Dropdown Items */
+        #sec2 .dropdown-item {
+            color: #D2C5E0;
+            border-radius: 6px;
+            padding: 9px 14px;
+            transition: all 0.25s ease;
+        }
+
+        /* Dropdown Hover */
+        #sec2 .dropdown-item:hover,
+        #sec2 .dropdown-item:focus {
+            color: #FFFFFF;
+            background: var(--ff-arcane-purple);
+        }
+
+        /* Dropdown Divider */
+        #sec2 .dropdown-divider {
+            border-top-color: var(--ff-magitek-border);
+        }
+
+        /* Navbar Toggler */
+        #sec2 .navbar-toggler {
+            border: 1px solid var(--ff-magitek-border);
+            box-shadow: none;
+        }
+
+        #sec2 .navbar-toggler:focus {
+            box-shadow: var(--ff-magitek-shadow);
+        }
+
+        /* Hamburger Icon */
+        #sec2 .navbar-toggler-icon {
+            filter: invert(75%) sepia(25%) saturate(700%) hue-rotate(220deg);
+        }
+
+        /* Mobile */
+        @media (max-width: 991.98px) {
+
+            #sec2 .navbar-collapse {
+                background: rgba(33, 24, 47, 0.98);
+                border: 1px solid var(--ff-magitek-border);
+                border-radius: 10px;
+                margin-top: 12px;
+                padding: 12px;
+            }
+
+            #sec2 .nav-link {
+                padding: 10px 14px;
+                margin: 2px 0;
+            }
+
+            #sec2 .dropdown-menu {
+                background: var(--ff-magitek-card);
+                box-shadow: none;
+                margin-left: 10px;
+            }
+        }
+
+        #sec3 {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            background: var(--ff-magitek-bg);
+        }
+
+        /* 輪播圖片 */
+        #sec3 .carousel-item {
+            height: 85vh;
+            min-height: 450px;
+            background: var(--ff-magitek-bg);
+        }
+
+        #sec3 .carousel-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+        /* 圖片暗化，增加文字可讀性 */
+        #sec3 .carousel-item::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(90deg,
+                    rgba(20, 14, 30, 0.65) 0%,
+                    rgba(20, 14, 30, 0.25) 55%,
+                    rgba(20, 14, 30, 0.05) 100%);
+        }
+
+        /* 固定自我介紹區 */
+        #sec3 .profile-overlay {
+            position: absolute;
+            left: 8%;
+            bottom: 15%;
+            z-index: 5;
+
+            width: 460px;
+            max-width: 80%;
+
+            padding: 30px;
+
+            background: rgba(33, 24, 47, 0.4);
+            backdrop-filter: blur(12px);
+
+            border: 1px solid var(--ff-magitek-border);
+            border-left: 4px solid var(--ff-arcane-purple);
+
+            border-radius: 12px;
+
+            box-shadow: var(--ff-magitek-shadow);
+        }
+
+        /* 介紹內容 */
+        #sec3 .profile-content h1 {
+            color: var(--ff-magic-gold);
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 15px 0;
+        }
+
+        #sec3 .profile-content h4 {
+            color: var(--ff-arcane-light);
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+        }
+
+        #sec3 .profile-content p {
+            color: var(--ff-text-primary);
+            line-height: 1.8;
+            margin-bottom: 0;
+        }
+
+        /* 個人標籤 */
+        #sec3 .profile-tag {
+            color: var(--ff-crystal-pink);
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+        }
+
+        /* 輪播指示器 */
+        #sec3 .carousel-indicators {
+            z-index: 6;
+        }
+
+        /* 輪播控制按鈕 */
+        #sec3 .carousel-control-prev,
+        #sec3 .carousel-control-next {
+            z-index: 7;
+        }
+
+        /* 手機版 */
+        @media (max-width: 768px) {
+
+            #sec3 .carousel-item {
+                height: 70vh;
+                min-height: 500px;
+            }
+
+            #sec3 .profile-overlay {
+                left: 5%;
+                bottom: 12%;
+                width: 90%;
+                max-width: 90%;
+                padding: 20px;
+            }
+
+            #sec3 .profile-content h1 {
+                font-size: 1.6rem;
+            }
+
+            #sec3 .profile-content h4 {
+                font-size: 0.95rem;
+            }
+
+            #sec3 .profile-content p {
+                font-size: 0.85rem;
+            }
+
+            /* ========================================
+   Section 4 - Final Fantasy Crystal Theme
+======================================== */
+
+            #sec4 {
+                background: var(--ff-gradient-main);
+                color: var(--ff-text-primary);
+                padding: 35px 0;
+
+                border-top: 1px solid var(--ff-border);
+                border-bottom: 1px solid var(--ff-border);
+            }
+
+            /* ========================================
+   左側圖片區域
+======================================== */
+
+            #sec4 .sec4-image-wrapper {
+                min-height: 450px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background: var(--ff-bg-primary);
+                padding: 20px;
+
+                border-right: 1px solid var(--ff-border);
+            }
+
+            /* 圖片完整顯示 */
+            #sec4 .sec4-image {
+                width: 100%;
+                height: 450px;
+
+                object-fit: contain;
+                object-position: center;
+
+                display: block;
+
+                filter: drop-shadow(0 0 12px rgba(76, 166, 217, 0.2));
+
+                transition: transform 0.4s ease;
+            }
+
+            #sec4 .sec4-image:hover {
+                transform: scale(1.03);
+            }
+
+            /* ========================================
+   右側文字區域
+======================================== */
+
+            #sec4 .sec4-content {
+                color: var(--ff-text-primary);
+            }
+
+            /* 主標題 */
+            #sec4 .sec4-title {
+                color: var(--ff-crystal-blue);
+
+                letter-spacing: 1px;
+                line-height: 1.5;
+
+                text-shadow: var(--ff-glow-blue);
+            }
+
+            /* 副標題 */
+            #sec4 .sec4-subtitle {
+                color: var(--ff-text-secondary);
+                line-height: 1.8;
+            }
+
+            /* ========================================
+   數據卡片
+======================================== */
+
+
+            /* ========================================
+   Section 4 - Final Fantasy Crystal Theme
+======================================== */
+
+            #sec4 {
+                background: var(--ff-gradient-main);
+                color: var(--ff-text-primary);
+                padding: 35px 0;
+
+                border-top: 1px solid var(--ff-border);
+                border-bottom: 1px solid var(--ff-border);
+            }
+
+            /* ========================================
+   左側圖片區域
+======================================== */
+
+            #sec4 .sec4-image-wrapper {
+                min-height: 450px;
+
+                display: flex;
+                align-items: center;
+                justify-content: center;
+
+                background: var(--ff-bg-primary);
+                padding: 20px;
+
+                border-right: 1px solid var(--ff-border);
+            }
+
+            /* 圖片完整顯示 */
+            #sec4 .sec4-image {
+                width: 100%;
+                height: 450px;
+
+                object-fit: contain;
+                object-position: center;
+
+                display: block;
+
+                filter: drop-shadow(0 0 12px rgba(76, 166, 217, 0.2));
+
+                transition: transform 0.4s ease;
+            }
+
+            #sec4 .sec4-image:hover {
+                transform: scale(1.03);
+            }
+
+            /* ========================================
+   右側文字區域
+======================================== */
+
+            #sec4 .sec4-content {
+                color: var(--ff-text-primary);
+            }
+
+            /* 主標題 */
+            #sec4 .sec4-title {
+                color: var(--ff-crystal-blue);
+
+                letter-spacing: 1px;
+                line-height: 1.5;
+
+                text-shadow: var(--ff-glow-blue);
+            }
+
+            /* 副標題 */
+            #sec4 .sec4-subtitle {
+                color: var(--ff-text-secondary);
+                line-height: 1.8;
+            }
+
+            /* ========================================
+   數據卡片
+======================================== */
+
+            #sec4 .sec4-stat-card {
+                height: 100%;
+
+                padding: 22px 10px;
+
+                background: var(--ff-bg-card);
+
+                border: 1px solid var(--ff-border);
+                border-radius: 12px;
+
+                transition: all 0.3s ease;
+            }
+
+            /* 卡片 Hover */
+            #sec4 .sec4-stat-card:hover {
+                background: rgba(76, 166, 217, 0.12);
+
+                border-color: var(--ff-crystal-blue);
+
+                box-shadow: var(--ff-glow-blue);
+
+                transform: translateY(-6px);
+            }
+
+            /* 數據標題 */
+            #sec4 .sec4-stat-card h5 {
+                color: var(--ff-text-secondary);
+
+                font-size: 1rem;
+                font-weight: 600;
+
+                margin-bottom: 15px;
+            }
+
+            /* 數據數字 */
+            #sec4 .counter01,
+            #sec4 .counter03 {
+                color: var(--ff-crystal-blue);
+                text-shadow: var(--ff-glow-blue);
+            }
+
+            #sec4 .counter02 {
+                color: var(--ff-magic-violet);
+                text-shadow: 0 0 12px rgba(166, 139, 209, 0.4);
+            }
+
+            #sec4 .counter04 {
+                color: var(--ff-royal-gold);
+                text-shadow: var(--ff-glow-gold);
+            }
+
+            /* 數據單位 */
+            #sec4 .sec4-stat-card small {
+                color: var(--ff-royal-gold);
+                font-weight: 700;
+                margin-left: 3px;
+            }
+
+            /* ========================================
+   RWD 手機版
+======================================== */
+
+            @media (max-width: 767.98px) {
+
+                #sec4 {
+                    padding: 20px 0;
+                }
+
+                #sec4 .sec4-image-wrapper {
+                    min-height: 300px;
+
+                    border-right: none;
+                    border-bottom: 1px solid var(--ff-border);
+                }
+
+                #sec4 .sec4-image {
+                    height: 300px;
+                }
+
+                #sec4 .sec4-title {
+                    font-size: 1.7rem;
+                }
+
+                #sec4 .sec4-subtitle {
+                    font-size: 0.9rem;
+                }
+
+                #sec4 .sec4-stat-card {
+                    padding: 18px 6px;
+                }
+
+                #sec4 .sec4-stat-card h5 {
+                    font-size: 0.85rem;
+                }
+            }
+
+
+        }
+
+
+        /* ========================================
+   SECTION 4 - FINAL FANTASY THEME
+   強制套用版本
+======================================== */
+
+        #sec4 {
+            background: var(--ff-gradient-main) !important;
+            color: var(--ff-text-primary) !important;
+            padding: 35px 0 !important;
+
+            border-top: 1px solid var(--ff-border);
+            border-bottom: 1px solid var(--ff-border);
+        }
+
+        /* 左側圖片容器 */
+        #sec4 .sec4-image-wrapper {
+            min-height: 450px !important;
+
+            display: flex !important;
+            align-items: center !important;
+            justify-content: center !important;
+
+            background: var(--ff-bg-primary) !important;
+            padding: 20px !important;
+
+            border-right: 1px solid var(--ff-border);
+        }
+
+        /* 圖片 */
+        #sec4 img.sec4-image {
+            display: block !important;
+
+            width: 100% !important;
+            height: 450px !important;
+
+            object-fit: contain !important;
+            object-position: center !important;
+
+            filter: drop-shadow(0 0 12px rgba(76, 166, 217, 0.35));
+        }
+
+        /* 右側內容 */
+        #sec4 .sec4-content {
+            background: transparent !important;
+            color: var(--ff-text-primary) !important;
+        }
+
+        /* 主標題 */
+        #sec4 h1.sec4-title {
+            color: var(--ff-crystal-blue) !important;
+
+            font-size: 2.2rem;
+            font-weight: 700 !important;
+
+            letter-spacing: 1px;
+
+            text-shadow: var(--ff-glow-blue) !important;
+        }
+
+        /* 副標題 */
+        #sec4 .sec4-subtitle {
+            color: var(--ff-text-secondary) !important;
+        }
+
+        /* 數據卡片 */
+        #sec4 .sec4-stat-card {
+            height: 100%;
+
+            padding: 22px 10px;
+
+            background: var(--ff-bg-card) !important;
+
+            border: 1px solid var(--ff-border) !important;
+            border-radius: 12px;
+
+            transition: all 0.3s ease;
+        }
+
+        /* 卡片 Hover */
+        #sec4 .sec4-stat-card:hover {
+            background: rgba(76, 166, 217, 0.12) !important;
+
+            border-color: var(--ff-crystal-blue) !important;
+
+            box-shadow: var(--ff-glow-blue);
+
+            transform: translateY(-6px);
+        }
+
+        /* 數據標題 */
+        #sec4 .sec4-stat-card h5 {
+            color: var(--ff-text-secondary) !important;
+            font-weight: 600;
+        }
+
+        /* 數據數字 */
+        #sec4 .counter01,
+        #sec4 .counter03 {
+            color: var(--ff-crystal-blue) !important;
+            text-shadow: var(--ff-glow-blue);
+        }
+
+        #sec4 .counter02 {
+            color: var(--ff-magic-violet) !important;
+            text-shadow: 0 0 12px rgba(166, 139, 209, 0.4);
+        }
+
+        #sec4 .counter04 {
+            color: var(--ff-royal-gold) !important;
+            text-shadow: var(--ff-glow-gold);
+        }
+
+        /* 數據單位 */
+        #sec4 .sec4-stat-card small {
+            color: var(--ff-royal-gold) !important;
+            font-weight: 700;
+        }
+
+        /* 手機版 */
+        @media (max-width: 767.98px) {
+
+            #sec4 {
+                padding: 20px 0 !important;
+            }
+
+            #sec4 .sec4-image-wrapper {
+                min-height: 300px !important;
+                border-right: none;
+                border-bottom: 1px solid var(--ff-border);
+            }
+
+            #sec4 img.sec4-image {
+                height: 300px !important;
+            }
+
+            #sec4 h1.sec4-title {
+                font-size: 1.7rem;
+            }
+
+            #sec4 .sec4-stat-card {
+                padding: 18px 6px;
+            }
+
+            #sec4 .sec4-stat-card h5 {
+                font-size: 0.85rem;
+            }
+        }
+
+        /* ========================================
+   Section 5 - Final Fantasy Philosophy
+======================================== */
+
+        #sec5 {
+            position: relative;
+
+            background: var(--ff-gradient-main);
+
+            border-top: 1px solid var(--ff-border);
+            border-bottom: 1px solid var(--ff-border);
+
+            color: var(--ff-text-primary);
+
+            overflow: hidden;
+        }
+
+        /* ========================================
+   區塊標題
+======================================== */
+
+        #sec5 .sec5-title {
+            color: var(--ff-crystal-blue);
+
+            letter-spacing: 2px;
+
+            text-shadow: var(--ff-glow-blue);
+        }
+
+        /* 英文副標題 */
+        #sec5 .sec5-subtitle {
+            color: var(--ff-royal-gold);
+
+            font-size: 0.85rem;
+            letter-spacing: 4px;
+            font-weight: 600;
+        }
+
+        /* ========================================
+   理念卡片
+======================================== */
+
+        #sec5 .sec5-card {
+            position: relative;
+
+            height: 100%;
+
+            background: var(--ff-bg-card);
+
+            border: 1px solid var(--ff-border);
+
+            border-radius: 14px !important;
+
+            backdrop-filter: blur(10px);
+
+            box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
+
+            transition: all 0.35s ease;
+
+            overflow: hidden;
+        }
+
+        /* 卡片上方裝飾線 */
+        #sec5 .sec5-card::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background: var(--ff-card-accent);
+
+            box-shadow: 0 0 12px var(--ff-card-glow);
+        }
+
+        /* Hover 效果 */
+        #sec5 .sec5-card:hover {
+            transform: translateY(-10px);
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border-color: var(--ff-card-accent);
+
+            box-shadow: 0 8px 28px var(--ff-card-glow);
+        }
+
+        /* ========================================
+   三張卡片個別配色
+======================================== */
+
+        /* 第一張：水晶藍 */
+        #sec5 .sec5-card-blue {
+            --ff-card-accent: var(--ff-crystal-blue);
+            --ff-card-glow: rgba(76, 166, 217, 0.25);
+        }
+
+        /* 第二張：魔法紫 */
+        #sec5 .sec5-card-purple {
+            --ff-card-accent: var(--ff-magic-violet);
+            --ff-card-glow: rgba(166, 139, 209, 0.25);
+        }
+
+        /* 第三張：皇家金 */
+        #sec5 .sec5-card-gold {
+            --ff-card-accent: var(--ff-royal-gold);
+            --ff-card-glow: rgba(214, 180, 106, 0.25);
+        }
+
+        /* ========================================
+   卡片圖示
+======================================== */
+
+        #sec5 .sec5-icon {
+            color: var(--ff-card-accent);
+
+            filter: drop-shadow(0 0 9px var(--ff-card-glow));
+
+            transition: all 0.35s ease;
+        }
+
+        /* Hover 圖示效果 */
+        #sec5 .sec5-card:hover .sec5-icon {
+            transform: scale(1.12);
+
+            filter: drop-shadow(0 0 15px var(--ff-card-glow));
+        }
+
+        /* ========================================
+   卡片標題
+======================================== */
+
+        #sec5 .sec5-card-title {
+            color: var(--ff-card-accent);
+
+            font-weight: 700;
+
+            letter-spacing: 1px;
+
+            transition: all 0.3s ease;
+        }
+
+        /* ========================================
+   卡片內文
+======================================== */
+
+        #sec5 .sec5-description {
+            color: var(--ff-text-secondary);
+
+            font-size: 0.95rem;
+
+            line-height: 1.9;
+
+            margin-bottom: 0;
+        }
+
+        /* ========================================
+   RWD 響應式
+======================================== */
+
+        @media (max-width: 767.98px) {
+
+            #sec5 {
+                padding-top: 30px !important;
+                padding-bottom: 30px !important;
+            }
+
+            #sec5 .sec5-title {
+                font-size: 2rem;
+            }
+
+            #sec5 .sec5-subtitle {
+                font-size: 0.75rem;
+                letter-spacing: 2px;
+            }
+
+            #sec5 .sec5-card {
+                padding: 25px !important;
+            }
+
+            #sec5 .sec5-icon {
+                font-size: 3rem;
+            }
+
+            #sec5 .sec5-card-title {
+                font-size: 1.35rem;
+            }
+
+            #sec5 .sec5-description {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* ========================================
+   Section 6 - Final Fantasy Timeline
+======================================== */
+
+        #sec6 {
+            background: var(--ff-gradient-main);
+            color: var(--ff-text-primary);
+
+            border-top: 1px solid var(--ff-border);
+            border-bottom: 1px solid var(--ff-border);
+
+            overflow: hidden;
+        }
+
+        /* ========================================
+   標題區
+======================================== */
+
+        #sec6 .sec6-title {
+            color: var(--ff-crystal-blue);
+            text-shadow: var(--ff-glow-blue);
+            letter-spacing: 2px;
+        }
+
+        #sec6 .sec6-subtitle {
+            color: var(--ff-royal-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 12px;
+        }
+
+        #sec6 .sec6-intro {
+            color: var(--ff-text-secondary);
+            margin-top: 18px;
+            line-height: 1.8;
+        }
+
+        /* ========================================
+   Timeline 主體
+======================================== */
+
+        #sec6 .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* 中央時間軸 */
+        #sec6 .timeline::before {
+            content: "";
+
+            position: absolute;
+
+            top: 0;
+            bottom: 0;
+            left: 50%;
+
+            width: 3px;
+
+            transform: translateX(-50%);
+
+            background: linear-gradient(to bottom,
+                    var(--ff-crystal-blue),
+                    var(--ff-mystic-purple),
+                    var(--ff-royal-gold));
+
+            box-shadow: var(--ff-glow-blue);
+        }
+
+        /* ========================================
+   每一個時間軸項目
+======================================== */
+
+        #sec6 .timeline-item {
+            position: relative;
+
+            width: 50%;
+
+            padding: 20px 45px;
+
+            box-sizing: border-box;
+        }
+
+        /* 左右交錯 */
+        #sec6 .timeline-item:nth-child(odd) {
+            left: 0;
+            text-align: right;
+        }
+
+        #sec6 .timeline-item:nth-child(even) {
+            left: 50%;
+            text-align: left;
+        }
+
+        /* ========================================
+   時間軸節點
+======================================== */
+
+        #sec6 .timeline-dot {
+            position: absolute;
+
+            top: 32px;
+
+            width: 18px;
+            height: 18px;
+
+            border-radius: 50%;
+
+            background: var(--ff-crystal-blue);
+
+            border: 3px solid var(--ff-bg-primary);
+
+            box-shadow:
+                0 0 0 3px var(--ff-crystal-blue),
+                var(--ff-glow-blue);
+
+            z-index: 2;
+        }
+
+        #sec6 .timeline-item:nth-child(odd) .timeline-dot {
+            right: -9px;
+        }
+
+        #sec6 .timeline-item:nth-child(even) .timeline-dot {
+            left: -9px;
+        }
+
+        /* ========================================
+   工作日期
+======================================== */
+
+        #sec6 .timeline-date {
+            display: inline-block;
+
+            color: var(--ff-royal-gold);
+
+            font-weight: 700;
+
+            font-size: 0.95rem;
+
+            letter-spacing: 1px;
+
+            margin-bottom: 12px;
+        }
+
+        /* ========================================
+   經歷卡片
+======================================== */
+
+        #sec6 .timeline-card {
+            background: var(--ff-bg-card);
+
+            border: 1px solid var(--ff-border);
+
+            border-radius: 14px;
+
+            padding: 25px;
+
+            text-align: left;
+
+            backdrop-filter: blur(10px);
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+            transition: all 0.35s ease;
+        }
+
+        /* 卡片 Hover */
+        #sec6 .timeline-card:hover {
+            transform: translateY(-6px);
+
+            border-color: var(--ff-crystal-blue);
+
+            box-shadow: var(--ff-glow-blue);
+        }
+
+        /* 經歷標籤 */
+        #sec6 .timeline-tag {
+            display: inline-block;
+
+            color: var(--ff-arcane-light);
+
+            font-size: 0.7rem;
+
+            font-weight: 700;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 12px;
+        }
+
+        /* 公司名稱 */
+        #sec6 .timeline-card h3 {
+            color: var(--ff-crystal-blue);
+
+            font-weight: 700;
+
+            margin-bottom: 10px;
+        }
+
+        /* 職位 */
+        #sec6 .timeline-card h5 {
+            color: var(--ff-magic-violet);
+
+            font-size: 1rem;
+
+            margin-bottom: 15px;
+        }
+
+        /* 工作內容 */
+        #sec6 .timeline-card p {
+            color: var(--ff-text-secondary);
+
+            font-size: 0.9rem;
+
+            line-height: 1.8;
+        }
+
+        /* ========================================
+   工作成果
+======================================== */
+
+        #sec6 .timeline-achievement {
+            background: rgba(255, 255, 255, 0.04);
+
+            border-left: 3px solid var(--ff-royal-gold);
+
+            border-radius: 5px;
+
+            padding: 15px;
+
+            margin-top: 18px;
+        }
+
+        #sec6 .timeline-achievement h6 {
+            color: var(--ff-royal-gold);
+
+            font-weight: 700;
+
+            margin-bottom: 12px;
+        }
+
+        #sec6 .timeline-achievement ul {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        #sec6 .timeline-achievement li {
+            color: var(--ff-text-secondary);
+
+            font-size: 0.85rem;
+
+            line-height: 1.9;
+
+            margin-bottom: 5px;
+        }
+
+        /* ========================================
+   RWD 手機版：改為單側時間軸
+======================================== */
+
+        @media (max-width: 767.98px) {
+
+            #sec6 .timeline {
+                padding-left: 35px;
+            }
+
+            #sec6 .timeline::before {
+                left: 10px;
+                transform: none;
+            }
+
+            #sec6 .timeline-item,
+            #sec6 .timeline-item:nth-child(odd),
+            #sec6 .timeline-item:nth-child(even) {
+
+                width: 100%;
+                left: 0;
+
+                padding: 15px 0 25px 25px;
+
+                text-align: left;
+            }
+
+            #sec6 .timeline-item:nth-child(odd) .timeline-dot,
+            #sec6 .timeline-item:nth-child(even) .timeline-dot {
+
+                left: -33px;
+                right: auto;
+            }
+
+            #sec6 .timeline-card {
+                padding: 20px;
+            }
+
+            #sec6 .sec6-title {
+                font-size: 2rem;
+            }
+
+            #sec6 .sec6-subtitle {
+                letter-spacing: 2px;
+            }
+
+        }
+
+        /* ========================================
+   Section 7 - Final Fantasy Skill Crystal
+======================================== */
+
+        #sec7 {
+            background: var(--ff-gradient-main);
+            color: var(--ff-text-primary);
+
+            border-top: 1px solid var(--ff-border);
+            border-bottom: 1px solid var(--ff-border);
+        }
+
+        /* 標題 */
+        #sec7 .sec7-title {
+            color: var(--ff-crystal-blue);
+            text-shadow: var(--ff-glow-blue);
+            letter-spacing: 2px;
+        }
+
+        #sec7 .sec7-subtitle {
+            color: var(--ff-royal-gold);
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            margin-top: 12px;
+        }
+
+        #sec7 .sec7-intro {
+            color: var(--ff-text-secondary);
+            margin-top: 18px;
+            line-height: 1.8;
+        }
+
+        /* ========================================
+   技能卡片
+======================================== */
+
+        #sec7 .sec7-card {
+            height: 100%;
+            min-height: 290px;
+
+            padding: 30px 24px;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+
+            background: var(--ff-bg-card);
+
+            border: 1px solid var(--ff-card-accent);
+            border-radius: 15px;
+
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+
+            backdrop-filter: blur(10px);
+
+            transition: all 0.35s ease;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 卡片頂部光線 */
+        #sec7 .sec7-card::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            left: 0;
+
+            width: 100%;
+            height: 3px;
+
+            background: var(--ff-card-accent);
+
+            box-shadow: 0 0 15px var(--ff-card-glow);
+        }
+
+        /* 卡片 Hover */
+        #sec7 .sec7-card:hover {
+            transform: translateY(-10px);
+
+            background: rgba(255, 255, 255, 0.1);
+
+            border-color: var(--ff-card-accent);
+
+            box-shadow: 0 8px 28px var(--ff-card-glow);
+        }
+
+        /* ========================================
+   個別卡片配色
+======================================== */
+
+        #sec7 .skill-blue {
+            --ff-card-accent: var(--ff-crystal-blue);
+            --ff-card-glow: rgba(76, 166, 217, 0.3);
+        }
+
+        #sec7 .skill-purple {
+            --ff-card-accent: var(--ff-magic-violet);
+            --ff-card-glow: rgba(166, 139, 209, 0.3);
+        }
+
+        #sec7 .skill-gold {
+            --ff-card-accent: var(--ff-royal-gold);
+            --ff-card-glow: rgba(214, 180, 106, 0.3);
+        }
+
+        /* ========================================
+   ICON
+======================================== */
+
+        #sec7 .sec7-icon {
+            font-size: 3.5rem;
+
+            color: var(--ff-card-accent);
+
+            margin-bottom: 22px;
+
+            filter: drop-shadow(0 0 10px var(--ff-card-glow));
+
+            transition: all 0.35s ease;
+        }
+
+        /* ICON Hover */
+        #sec7 .sec7-card:hover .sec7-icon {
+            transform: scale(1.15);
+
+            filter: drop-shadow(0 0 18px var(--ff-card-glow));
+        }
+
+        /* ========================================
+   技能標題
+======================================== */
+
+        #sec7 .sec7-card h3 {
+            color: var(--ff-card-accent);
+
+            font-size: 1.5rem;
+            font-weight: 700;
+
+            margin-bottom: 8px;
+
+            letter-spacing: 1px;
+        }
+
+        /* 英文副標題 */
+        #sec7 .sec7-en {
+            color: var(--ff-text-secondary);
+
+            font-size: 0.7rem;
+
+            font-weight: 600;
+
+            letter-spacing: 2px;
+
+            margin-bottom: 18px;
+        }
+
+        /* 技能介紹 */
+        #sec7 .sec7-description {
+            color: var(--ff-text-primary);
+
+            font-size: 0.9rem;
+
+            line-height: 1.9;
+
+            margin-bottom: 0;
+        }
+
+
+        /* ========================================
+   RWD
+======================================== */
+
+        @media (max-width: 767.98px) {
+
+            #sec7 .sec7-title {
+                font-size: 2rem;
+            }
+
+            #sec7 .sec7-subtitle {
+                letter-spacing: 2px;
+            }
+
+            #sec7 .sec7-card {
+                min-height: 250px;
+                padding: 25px 20px;
+            }
+
+            #sec7 .sec7-icon {
+                font-size: 3rem;
+            }
+
+            #sec7 .sec7-card h3 {
+                font-size: 1.3rem;
+            }
+
+        }
+
+
+        /* =========================================
+   Soft Skills｜軟實力
+   Final Fantasy Crystal × Magitek Theme
+========================================= */
+
+        .soft-skills-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 100px 7%;
+            background: var(--ff-gradient-main);
+            color: var(--ff-text-primary);
+        }
+
+        /* 背景魔法光暈 */
+        .soft-skills-section::before {
+            content: "";
+            position: absolute;
+            width: 420px;
+            height: 420px;
+            top: -180px;
+            left: -120px;
+            background: radial-gradient(circle,
+                    rgba(76, 166, 217, 0.15),
+                    transparent 70%);
+            filter: blur(25px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .soft-skills-section::after {
+            content: "";
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            bottom: -200px;
+            right: -120px;
+            background: radial-gradient(circle,
+                    rgba(117, 86, 168, 0.2),
+                    transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        /* =========================================
+   Section Header｜區塊標題
+========================================= */
+
+        .soft-skills-section .section-header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 65px;
+            z-index: 1;
+        }
+
+        .soft-skills-section .section-subtitle {
+            display: inline-block;
+            margin-bottom: 14px;
+            color: var(--ff-aether);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: var(--ff-glow-blue);
+        }
+
+        .soft-skills-section .section-header h2 {
+            position: relative;
+            display: inline-block;
+            margin: 0;
+            padding-bottom: 20px;
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: 2px;
+            color: var(--ff-text-primary);
+        }
+
+        .soft-skills-section .section-header h2 span {
+            color: var(--ff-royal-gold);
+            font-size: 0.65em;
+            font-weight: 600;
+        }
+
+        .soft-skills-section .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 90px;
+            height: 3px;
+            transform: translateX(-50%);
+            border-radius: 10px;
+            background: var(--ff-gradient-crystal);
+            box-shadow: var(--ff-glow-blue);
+        }
+
+        .soft-skills-section .section-header p {
+            margin-top: 22px;
+            color: var(--ff-text-secondary);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+   Grid Layout｜卡片排列
+========================================= */
+
+        .soft-skills-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 25px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+   Skill Card｜能力卡片
+========================================= */
+
+        .soft-skill-card {
+            --skill-accent: var(--ff-crystal-blue);
+
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            padding: 32px 26px;
+            min-height: 360px;
+
+            background: var(--ff-bg-card);
+            border: 1px solid var(--ff-border);
+            border-radius: 18px;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease,
+                background 0.35s ease;
+        }
+
+        /* 卡片頂部裝飾線 */
+        .soft-skill-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 15%;
+            width: 70%;
+            height: 2px;
+
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--skill-accent),
+                    transparent);
+
+            opacity: 0.7;
+            transition: opacity 0.35s ease;
+        }
+
+        /* 卡片背景光暈 */
+        .soft-skill-card::after {
+            content: "";
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 130px;
+            height: 130px;
+
+            background: radial-gradient(circle,
+                    var(--skill-accent),
+                    transparent 70%);
+
+            opacity: 0.07;
+            filter: blur(15px);
+            pointer-events: none;
+        }
+
+
+        /* =========================================
+   Individual Card Colors｜個別卡片配色
+========================================= */
+
+        /* 01 認真負責 */
+        .soft-skill-card:nth-child(1) {
+            --skill-accent: var(--ff-crystal-blue);
+        }
+
+        /* 02 抗壓與情緒管理 */
+        .soft-skill-card:nth-child(2) {
+            --skill-accent: var(--ff-arcane-purple);
+        }
+
+        /* 03 溝通表達與傾聽 */
+        .soft-skill-card:nth-child(3) {
+            --skill-accent: var(--ff-aether);
+        }
+
+        /* 04 團隊合作與適應力 */
+        .soft-skill-card:nth-child(4) {
+            --skill-accent: var(--ff-royal-gold);
+        }
+
+
+        /* =========================================
+   Hover Effects｜互動效果
+========================================= */
+
+        .soft-skill-card:hover {
+            transform: translateY(-12px);
+
+            background: rgba(255, 255, 255, 0.09);
+
+            border-color: var(--skill-accent);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                0 0 20px color-mix(in srgb,
+                    var(--skill-accent) 30%,
+                    transparent),
+                inset 0 0 20px rgba(255, 255, 255, 0.025);
+        }
+
+        .soft-skill-card:hover::before {
+            opacity: 1;
+        }
+
+
+        /* =========================================
+   Skill Icon｜能力圖示
+========================================= */
+
+        .soft-skill-card .skill-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 68px;
+            height: 68px;
+            margin-bottom: 24px;
+
+            font-size: 2rem;
+
+            background: color-mix(in srgb,
+                    var(--skill-accent) 12%,
+                    transparent);
+
+            border: 1px solid color-mix(in srgb,
+                    var(--skill-accent) 45%,
+                    transparent);
+
+            border-radius: 16px;
+
+            box-shadow:
+                0 0 15px color-mix(in srgb,
+                    var(--skill-accent) 15%,
+                    transparent);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .soft-skill-card:hover .skill-icon {
+            transform: scale(1.1) rotate(-5deg);
+
+            box-shadow:
+                0 0 20px color-mix(in srgb,
+                    var(--skill-accent) 40%,
+                    transparent);
+        }
+
+
+        /* =========================================
+   Skill Number｜英文分類編號
+========================================= */
+
+        .soft-skill-card .skill-number {
+            margin-bottom: 12px;
+
+            color: var(--skill-accent);
+
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+
+            opacity: 0.9;
+        }
+
+
+        /* =========================================
+   Skill Title｜能力名稱
+========================================= */
+
+        .soft-skill-card h3 {
+            margin: 0 0 18px;
+
+            color: var(--ff-text-primary);
+
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+
+            transition: color 0.3s ease;
+        }
+
+        .soft-skill-card:hover h3 {
+            color: var(--skill-accent);
+        }
+
+
+        /* =========================================
+   Skill Description｜能力描述
+========================================= */
+
+        .soft-skill-card p {
+            flex: 1;
+
+            margin: 0 0 25px;
+
+            color: var(--ff-text-secondary);
+
+            font-size: 0.92rem;
+            line-height: 2;
+            letter-spacing: 0.4px;
+
+            text-align: justify;
+        }
+
+
+        /* =========================================
+   Skill Tags｜特色標籤
+========================================= */
+
+        .soft-skill-card .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-top: auto;
+        }
+
+        .soft-skill-card .skill-tags span {
+            display: inline-block;
+
+            padding: 6px 12px;
+
+            color: var(--skill-accent);
+
+            background: color-mix(in srgb,
+                    var(--skill-accent) 10%,
+                    transparent);
+
+            border: 1px solid color-mix(in srgb,
+                    var(--skill-accent) 30%,
+                    transparent);
+
+            border-radius: 30px;
+
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease;
+        }
+
+        .soft-skill-card:hover .skill-tags span {
+            background: color-mix(in srgb,
+                    var(--skill-accent) 18%,
+                    transparent);
+        }
+
+
+        /* =========================================
+   Responsive｜RWD 響應式設計
+========================================= */
+
+        /* 平板：2 欄 */
+        @media (max-width: 1024px) {
+            .soft-skills-section {
+                padding: 80px 5%;
+            }
+
+            .soft-skills-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+            }
+
+            .soft-skill-card {
+                min-height: 340px;
+            }
+        }
+
+
+        /* 手機：1 欄 */
+        @media (max-width: 600px) {
+            .soft-skills-section {
+                padding: 65px 6%;
+            }
+
+            .soft-skills-section .section-header {
+                margin-bottom: 40px;
+            }
+
+            .soft-skills-section .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .soft-skills-section .section-header p {
+                font-size: 0.88rem;
+            }
+
+            .soft-skills-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .soft-skill-card {
+                min-height: auto;
+                padding: 28px 24px;
+            }
+
+            .soft-skill-card .skill-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 1.8rem;
+            }
+
+            .soft-skill-card h3 {
+                font-size: 1.2rem;
+            }
+
+            .soft-skill-card p {
+                font-size: 0.88rem;
+                line-height: 1.9;
+            }
+        }
+
+
+        /* =========================================
+   Accessibility｜減少動態效果
+========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .soft-skill-card,
+            .soft-skill-card *,
+            .soft-skill-card::before {
+                transition: none !important;
+                animation: none !important;
+            }
+
+            .soft-skill-card:hover {
+                transform: none;
+            }
+        }
+
+        /* =========================================
+   Certifications & Awards
+   Final Fantasy Crystal Gallery
+========================================= */
+
+        .certifications-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+            padding: 100px 7%;
+            background: var(--ff-gradient-magitek);
+            color: var(--ff-text-primary);
+        }
+
+        /* 背景魔法光暈 */
+        .certifications-section::before {
+            content: "";
+            position: absolute;
+            top: -180px;
+            right: -120px;
+            width: 450px;
+            height: 450px;
+
+            background: radial-gradient(circle,
+                    var(--ff-arcane-glow),
+                    transparent 70%);
+
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .certifications-section::after {
+            content: "";
+            position: absolute;
+            bottom: -200px;
+            left: -120px;
+            width: 450px;
+            height: 450px;
+
+            background: radial-gradient(circle,
+                    rgba(76, 166, 217, 0.15),
+                    transparent 70%);
+
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        /* =========================================
+   Section Header
+========================================= */
+
+        .certifications-section .section-header {
+            position: relative;
+            text-align: center;
+            margin-bottom: 60px;
+            z-index: 1;
+        }
+
+        .certifications-section .section-subtitle {
+            display: inline-block;
+            margin-bottom: 14px;
+
+            color: var(--ff-arcane-light);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+
+            text-shadow: var(--ff-magitek-shadow);
+        }
+
+        .certifications-section .section-header h2 {
+            position: relative;
+            display: inline-block;
+
+            margin: 0;
+            padding-bottom: 20px;
+
+            color: var(--ff-text-primary);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .certifications-section .section-header h2 span {
+            color: var(--ff-magic-gold);
+            font-size: 0.65em;
+            font-weight: 600;
+        }
+
+        .certifications-section .section-header h2::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+
+            width: 100px;
+            height: 3px;
+
+            transform: translateX(-50%);
+            border-radius: 10px;
+
+            background: var(--ff-gradient-crystal);
+            box-shadow: var(--ff-glow-blue);
+        }
+
+        .certifications-section .section-header p {
+            margin-top: 22px;
+
+            color: var(--ff-text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================
+   Gallery Grid
+========================================= */
+
+        .certificates-grid {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+   Certificate Card
+========================================= */
+
+        .certificate-card {
+            position: relative;
+            overflow: hidden;
+
+            background: rgba(255, 255, 255, 0.05);
+
+            border: 1px solid var(--ff-magitek-border);
+            border-radius: 16px;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .certificate-card:hover {
+            transform: translateY(-9px);
+
+            border-color: var(--ff-arcane-light);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                var(--ff-magitek-shadow),
+                0 0 18px rgba(76, 166, 217, 0.15);
+        }
+
+
+        /* =========================================
+   Certificate Image
+========================================= */
+
+        .certificate-image {
+            position: relative;
+            overflow: hidden;
+
+            width: 100%;
+            aspect-ratio: 4 / 3;
+
+            background: var(--ff-magitek-deep);
+
+            cursor: zoom-in;
+        }
+
+        .certificate-image img {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: contain;
+
+            padding: 12px;
+
+            transition:
+                transform 0.5s ease,
+                filter 0.35s ease;
+        }
+
+        .certificate-card:hover .certificate-image img {
+            transform: scale(1.04);
+            filter: brightness(0.65);
+        }
+
+
+        /* =========================================
+   Image Overlay
+========================================= */
+
+        .certificate-overlay {
+            position: absolute;
+            inset: 0;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            color: var(--ff-text-primary);
+
+            background: rgba(33, 24, 47, 0.2);
+
+            opacity: 0;
+
+            transition: opacity 0.35s ease;
+
+            pointer-events: none;
+        }
+
+        .certificate-card:hover .certificate-overlay {
+            opacity: 1;
+        }
+
+        .certificate-overlay span {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 55px;
+            height: 55px;
+
+            border: 1px solid var(--ff-arcane-light);
+            border-radius: 50%;
+
+            color: var(--ff-arcane-light);
+            font-size: 2.2rem;
+
+            box-shadow: var(--ff-magitek-shadow);
+        }
+
+        .certificate-overlay p {
+            margin-top: 12px;
+
+            color: var(--ff-text-primary);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+
+        /* =========================================
+   Certificate Information
+========================================= */
+
+        .certificate-info {
+            padding: 20px 22px 24px;
+
+            border-top: 1px solid rgba(197, 165, 242, 0.15);
+        }
+
+        .certificate-number {
+            display: block;
+            margin-bottom: 10px;
+
+            color: var(--ff-arcane-light);
+
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .certificate-info h3 {
+            margin: 0;
+
+            min-height: 28px;
+
+            color: var(--ff-text-primary);
+
+            font-size: 1rem;
+            font-weight: 600;
+            line-height: 1.6;
+            letter-spacing: 0.5px;
+
+            transition: color 0.3s ease;
+        }
+
+        .certificate-card:hover .certificate-info h3 {
+            color: var(--ff-magic-gold);
+        }
+
+
+        /* =========================================
+   Lightbox｜圖片放大視窗
+========================================= */
+
+        .certificate-lightbox {
+            position: fixed;
+            inset: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            padding: 50px 25px;
+
+            background: rgba(10, 12, 25, 0.92);
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            z-index: 9999;
+
+            opacity: 0;
+            visibility: hidden;
+
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+        }
+
+        .certificate-lightbox.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .lightbox-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            max-width: 95vw;
+            max-height: 90vh;
+
+            transform: scale(0.9);
+
+            transition: transform 0.35s ease;
+        }
+
+        .certificate-lightbox.active .lightbox-content {
+            transform: scale(1);
+        }
+
+        .lightbox-content img {
+            display: block;
+
+            max-width: 90vw;
+            max-height: 78vh;
+
+            width: auto;
+            height: auto;
+
+            object-fit: contain;
+
+            border: 2px solid var(--ff-magitek-border);
+            border-radius: 10px;
+
+            box-shadow:
+                0 0 25px rgba(152, 114, 204, 0.3),
+                0 0 50px rgba(76, 166, 217, 0.15);
+        }
+
+        .lightbox-content p {
+            margin-top: 20px;
+
+            color: var(--ff-magic-gold);
+
+            font-size: 1rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+
+            text-align: center;
+        }
+
+
+        /* =========================================
+   Lightbox Close Button
+========================================= */
+
+        .lightbox-close {
+            position: absolute;
+            top: 25px;
+            right: 35px;
+
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: rgba(152, 114, 204, 0.15);
+
+            border: 1px solid var(--ff-magitek-border);
+            border-radius: 50%;
+
+            color: var(--ff-text-primary);
+
+            font-size: 2rem;
+            line-height: 1;
+
+            cursor: pointer;
+
+            transition:
+                background 0.3s ease,
+                color 0.3s ease,
+                transform 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: var(--ff-arcane-purple);
+            color: white;
+
+            transform: rotate(90deg);
+
+            box-shadow: var(--ff-magitek-shadow);
+        }
+
+        /* =========================================
+   Lightbox Interaction Fix
+========================================= */
+
+        .certificate-image {
+            cursor: zoom-in;
+        }
+
+        .certificate-lightbox {
+            display: flex;
+            position: fixed;
+            inset: 0;
+
+            align-items: center;
+            justify-content: center;
+
+            z-index: 999999;
+
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            background: rgba(10, 12, 25, 0.94);
+
+            transition:
+                opacity 0.3s ease,
+                visibility 0.3s ease;
+        }
+
+        .certificate-lightbox.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .lightbox-content {
+            position: relative;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .lightbox-content img,
+        .lightbox-content p {
+            pointer-events: auto;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            z-index: 3;
+            cursor: pointer;
+        }
+
+
+
+        /* =========================================
+   Responsive｜RWD
+========================================= */
+
+        /* Tablet */
+        @media (max-width: 1024px) {
+            .certifications-section {
+                padding: 80px 5%;
+            }
+
+            .certificates-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+            }
+        }
+
+        /* Mobile */
+        @media (max-width: 600px) {
+            .certifications-section {
+                padding: 65px 6%;
+            }
+
+            .certifications-section .section-header {
+                margin-bottom: 40px;
+            }
+
+            .certifications-section .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .certifications-section .section-header p {
+                font-size: 0.88rem;
+            }
+
+            .certificates-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .certificate-info {
+                padding: 18px 20px 22px;
+            }
+
+            .certificate-lightbox {
+                padding: 55px 15px;
+            }
+
+            .lightbox-content img {
+                max-width: 94vw;
+                max-height: 75vh;
+            }
+
+            .lightbox-close {
+                top: 15px;
+                right: 15px;
+
+                width: 42px;
+                height: 42px;
+            }
+        }
+
+
+        /* =========================================
+   Accessibility
+========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .certificate-card,
+            .certificate-card *,
+            .certificate-lightbox,
+            .lightbox-content {
+                transition: none !important;
+            }
+
+            .certificate-card:hover {
+                transform: none;
+            }
+        }
+
+        /* =========================================
+   Testimonials｜推薦與評價
+   Final Fantasy Crystal × Magitek Theme
+========================================= */
+
+        .testimonials-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            padding: 100px 7%;
+
+            background: var(--ff-gradient-main);
+            color: var(--ff-text-primary);
+        }
+
+        /* Background Glow */
+        .testimonials-section::before {
+            content: "";
+            position: absolute;
+
+            top: -180px;
+            left: -120px;
+
+            width: 420px;
+            height: 420px;
+
+            background: radial-gradient(circle,
+                    rgba(117, 86, 168, 0.22),
+                    transparent 70%);
+
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .testimonials-section::after {
+            content: "";
+            position: absolute;
+
+            bottom: -180px;
+            right: -100px;
+
+            width: 420px;
+            height: 420px;
+
+            background: radial-gradient(circle,
+                    rgba(76, 166, 217, 0.16),
+                    transparent 70%);
+
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        /* =========================================
+   Section Header
+========================================= */
+
+        .testimonials-section .section-header {
+            position: relative;
+            z-index: 1;
+
+            text-align: center;
+            margin-bottom: 65px;
+        }
+
+        .testimonials-section .section-subtitle {
+            display: inline-block;
+
+            margin-bottom: 14px;
+
+            color: var(--ff-aether);
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+
+            text-shadow: var(--ff-glow-blue);
+        }
+
+        .testimonials-section .section-header h2 {
+            position: relative;
+            display: inline-block;
+
+            margin: 0;
+            padding-bottom: 20px;
+
+            color: var(--ff-text-primary);
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .testimonials-section .section-header h2 span {
+            color: var(--ff-royal-gold);
+            font-size: 0.65em;
+            font-weight: 600;
+        }
+
+        .testimonials-section .section-header h2::after {
+            content: "";
+
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+
+            width: 100px;
+            height: 3px;
+
+            transform: translateX(-50%);
+
+            border-radius: 10px;
+            background: var(--ff-gradient-crystal);
+
+            box-shadow: var(--ff-glow-blue);
+        }
+
+        .testimonials-section .section-header p {
+            margin-top: 22px;
+
+            color: var(--ff-text-secondary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+   Testimonials Grid
+========================================= */
+
+        .testimonials-grid {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 28px;
+
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+   Testimonial Card
+========================================= */
+
+        .testimonial-card {
+            --testimonial-accent: var(--ff-crystal-blue);
+
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 32px 28px;
+
+            min-height: 430px;
+
+            background: rgba(255, 255, 255, 0.055);
+
+            border: 1px solid var(--ff-border);
+            border-radius: 18px;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        /* Card Accent */
+        .testimonial-card::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            left: 15%;
+
+            width: 70%;
+            height: 2px;
+
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--testimonial-accent),
+                    transparent);
+        }
+
+        /* Individual Colors */
+        .testimonial-card:nth-child(1) {
+            --testimonial-accent: var(--ff-crystal-blue);
+        }
+
+        .testimonial-card:nth-child(2) {
+            --testimonial-accent: var(--ff-royal-gold);
+        }
+
+        .testimonial-card:nth-child(3) {
+            --testimonial-accent: var(--ff-arcane-light);
+        }
+
+
+        /* =========================================
+   Hover Effects
+========================================= */
+
+        .testimonial-card:hover {
+            transform: translateY(-10px);
+
+            border-color: var(--testimonial-accent);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(117, 216, 232, 0.12);
+        }
+
+
+        /* =========================================
+   Quote Symbol
+========================================= */
+
+        .testimonial-quote {
+            height: 65px;
+
+            color: var(--testimonial-accent);
+
+            font-family: Georgia, serif;
+            font-size: 5rem;
+            font-weight: bold;
+            line-height: 1;
+
+            opacity: 0.85;
+
+            text-shadow: 0 0 18px rgba(76, 166, 217, 0.25);
+
+            transition: transform 0.35s ease;
+        }
+
+        .testimonial-card:hover .testimonial-quote {
+            transform: translateY(-5px);
+        }
+
+
+        /* =========================================
+   Category
+========================================= */
+
+        .testimonial-category {
+            margin-bottom: 12px;
+
+            color: var(--testimonial-accent);
+
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+
+        /* =========================================
+   Card Title
+========================================= */
+
+        .testimonial-card h3 {
+            margin: 0 0 20px;
+
+            color: var(--ff-text-primary);
+
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+
+            transition: color 0.3s ease;
+        }
+
+        .testimonial-card:hover h3 {
+            color: var(--testimonial-accent);
+        }
+
+
+        /* =========================================
+   Content
+========================================= */
+
+        .testimonial-content {
+            flex: 1;
+
+            margin: 0;
+
+            color: var(--ff-text-secondary);
+
+            font-size: 0.9rem;
+            line-height: 2;
+
+            text-align: justify;
+        }
+
+
+        /* =========================================
+   Divider
+========================================= */
+
+        .testimonial-divider {
+            width: 100%;
+            height: 1px;
+
+            margin: 25px 0 20px;
+
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--testimonial-accent),
+                    transparent);
+
+            opacity: 0.4;
+        }
+
+
+        /* =========================================
+   Author
+========================================= */
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .author-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 46px;
+            height: 46px;
+
+            flex-shrink: 0;
+
+            border: 1px solid var(--testimonial-accent);
+            border-radius: 50%;
+
+            color: var(--testimonial-accent);
+
+            background: rgba(255, 255, 255, 0.04);
+
+            font-size: 0.85rem;
+            font-weight: 700;
+
+            box-shadow: 0 0 12px rgba(76, 166, 217, 0.12);
+        }
+
+        .author-info h4 {
+            margin: 0 0 5px;
+
+            color: var(--ff-text-primary);
+
+            font-size: 0.95rem;
+            font-weight: 700;
+        }
+
+        .author-info span {
+            color: var(--ff-text-secondary);
+
+            font-size: 0.75rem;
+        }
+
+
+        /* =========================================
+   Footer Statement
+========================================= */
+
+        .testimonial-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+
+            margin-top: 55px;
+
+            color: var(--ff-royal-gold);
+            text-align: center;
+        }
+
+        .testimonial-footer span {
+            font-size: 1rem;
+            text-shadow: var(--ff-glow-gold);
+        }
+
+        .testimonial-footer p {
+            margin: 0;
+
+            color: var(--ff-text-secondary);
+
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================
+   Responsive｜Tablet
+========================================= */
+
+        @media (max-width: 1024px) {
+
+            .testimonials-section {
+                padding: 80px 5%;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+            }
+
+            .testimonial-card {
+                min-height: 400px;
+            }
+
+        }
+
+
+        /* =========================================
+   Responsive｜Mobile
+========================================= */
+
+        @media (max-width: 600px) {
+
+            .testimonials-section {
+                padding: 65px 6%;
+            }
+
+            .testimonials-section .section-header {
+                margin-bottom: 40px;
+            }
+
+            .testimonials-section .section-header h2 {
+                font-size: 2rem;
+            }
+
+            .testimonials-section .section-header p {
+                font-size: 0.88rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 22px;
+            }
+
+            .testimonial-card {
+                min-height: auto;
+                padding: 28px 24px;
+            }
+
+            .testimonial-content {
+                font-size: 0.88rem;
+            }
+
+            .testimonial-footer {
+                gap: 10px;
+            }
+
+            .testimonial-footer p {
+                font-size: 0.8rem;
+            }
+
+        }
+
+
+        /* =========================================
+   Accessibility
+========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .testimonial-card,
+            .testimonial-card * {
+                transition: none !important;
+            }
+
+            .testimonial-card:hover {
+                transform: none;
+            }
+
+        }
+
+        /* =========================================
+   Interests & Hobbies
+   Final Fantasy Gaming Theme
+========================================= */
+
+        .interests-section {
+            position: relative;
+            isolation: isolate;
+            overflow: hidden;
+
+            padding: 100px 7%;
+
+            background: var(--ff-gradient-magitek);
+            color: var(--ff-text-primary);
+        }
+
+
+        /* Background Glow */
+
+        .interests-section::before {
+            content: "";
+
+            position: absolute;
+            top: -180px;
+            right: -120px;
+
+            width: 450px;
+            height: 450px;
+
+            background: radial-gradient(circle,
+                    rgba(152, 114, 204, 0.22),
+                    transparent 70%);
+
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .interests-section::after {
+            content: "";
+
+            position: absolute;
+            bottom: -180px;
+            left: -120px;
+
+            width: 450px;
+            height: 450px;
+
+            background: radial-gradient(circle,
+                    rgba(76, 166, 217, 0.15),
+                    transparent 70%);
+
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+
+        /* =========================================
+   Section Header
+========================================= */
+
+        .interests-section .section-header {
+            position: relative;
+            z-index: 1;
+
+            text-align: center;
+            margin-bottom: 55px;
+        }
+
+        .interests-section .section-subtitle {
+            display: inline-block;
+
+            margin-bottom: 14px;
+
+            color: var(--ff-arcane-light);
+
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+
+            text-shadow: var(--ff-magitek-shadow);
+        }
+
+        .interests-section .section-header h2 {
+            position: relative;
+            display: inline-block;
+
+            margin: 0;
+            padding-bottom: 20px;
+
+            color: var(--ff-text-primary);
+
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            letter-spacing: 2px;
+        }
+
+        .interests-section .section-header h2 span {
+            color: var(--ff-magic-gold);
+            font-size: 0.65em;
+        }
+
+        .interests-section .section-header h2::after {
+            content: "";
+
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+
+            width: 90px;
+            height: 3px;
+
+            transform: translateX(-50%);
+
+            background: var(--ff-gradient-crystal);
+            border-radius: 10px;
+
+            box-shadow: var(--ff-glow-blue);
+        }
+
+        .interests-section .section-header p {
+            margin-top: 22px;
+
+            color: var(--ff-text-secondary);
+
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+
+        /* =========================================
+   Personal Introduction
+========================================= */
+
+        .interest-intro {
+            position: relative;
+
+            max-width: 900px;
+
+            margin: 0 auto 85px;
+            padding: 40px 50px;
+
+            text-align: center;
+
+            background: rgba(255, 255, 255, 0.045);
+
+            border: 1px solid var(--ff-magitek-border);
+            border-radius: 20px;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 10px 30px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+        }
+
+        .intro-decoration {
+            color: var(--ff-royal-gold);
+
+            font-size: 2rem;
+
+            margin-bottom: 10px;
+
+            text-shadow: var(--ff-glow-gold);
+        }
+
+        .intro-label {
+            display: block;
+
+            margin-bottom: 12px;
+
+            color: var(--ff-aether);
+
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .interest-intro h3 {
+            margin: 0 0 25px;
+
+            color: var(--ff-arcane-light);
+
+            font-size: clamp(1.6rem, 3vw, 2.2rem);
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .interest-intro>p {
+            max-width: 720px;
+
+            margin: 0 auto 15px;
+
+            color: var(--ff-text-secondary);
+
+            font-size: 0.95rem;
+            line-height: 2;
+
+            text-align: justify;
+        }
+
+
+        /* Highlight */
+
+        .intro-highlight {
+            display: inline-flex;
+            flex-direction: column;
+            gap: 8px;
+
+            margin-top: 20px;
+            padding: 15px 30px;
+
+            border: 1px solid var(--ff-border);
+            border-radius: 12px;
+
+            background: rgba(76, 166, 217, 0.08);
+        }
+
+        .intro-highlight span {
+            color: var(--ff-text-secondary);
+
+            font-size: 0.65rem;
+            letter-spacing: 2px;
+        }
+
+        .intro-highlight strong {
+            color: var(--ff-royal-gold);
+
+            font-size: 1rem;
+            letter-spacing: 2px;
+
+            text-shadow: var(--ff-glow-gold);
+        }
+
+
+        /* =========================================
+   Gaming Heading
+========================================= */
+
+        .gaming-heading {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+        .gaming-heading>span {
+            color: var(--ff-aether);
+
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+        }
+
+        .gaming-heading h3 {
+            margin: 12px 0;
+
+            color: var(--ff-text-primary);
+
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        .gaming-heading p {
+            margin: 0;
+
+            color: var(--ff-text-secondary);
+            font-size: 0.9rem;
+        }
+
+
+        /* =========================================
+   Gaming Grid
+========================================= */
+
+        .gaming-grid {
+            position: relative;
+            z-index: 1;
+
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 28px;
+
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+
+        /* =========================================
+   Gaming Card
+========================================= */
+
+        .gaming-card {
+            --game-accent: var(--ff-crystal-blue);
+
+            position: relative;
+            overflow: hidden;
+
+            display: flex;
+            flex-direction: column;
+
+            padding: 35px 28px;
+
+            min-height: 390px;
+
+            background: rgba(255, 255, 255, 0.055);
+
+            border: 1px solid var(--ff-border);
+            border-radius: 18px;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 8px 25px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+            transition:
+                transform 0.35s ease,
+                border-color 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+
+        /* Individual Accent */
+
+        .gaming-card:nth-child(1) {
+            --game-accent: var(--ff-crystal-blue);
+        }
+
+        .gaming-card:nth-child(2) {
+            --game-accent: var(--ff-arcane-light);
+        }
+
+        .gaming-card:nth-child(3) {
+            --game-accent: var(--ff-royal-gold);
+        }
+
+
+        /* Top Accent Line */
+
+        .gaming-card::before {
+            content: "";
+
+            position: absolute;
+            top: 0;
+            left: 15%;
+
+            width: 70%;
+            height: 2px;
+
+            background: linear-gradient(90deg,
+                    transparent,
+                    var(--game-accent),
+                    transparent);
+        }
+
+
+        /* Background Glow */
+
+        .gaming-card::after {
+            content: "";
+
+            position: absolute;
+            top: -70px;
+            right: -70px;
+
+            width: 180px;
+            height: 180px;
+
+            background: radial-gradient(circle,
+                    var(--game-accent),
+                    transparent 70%);
+
+            opacity: 0.07;
+            filter: blur(20px);
+
+            pointer-events: none;
+        }
+
+
+        /* Hover */
+
+        .gaming-card:hover {
+            transform: translateY(-12px);
+
+            border-color: var(--game-accent);
+
+            box-shadow:
+                0 15px 35px rgba(0, 0, 0, 0.3),
+                0 0 20px rgba(117, 216, 232, 0.15);
+        }
+
+
+        /* =========================================
+   Gaming Icon
+========================================= */
+
+        .gaming-card-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            width: 68px;
+            height: 68px;
+
+            margin-bottom: 25px;
+
+            color: var(--game-accent);
+
+            background: rgba(255, 255, 255, 0.04);
+
+            border: 1px solid var(--game-accent);
+
+            border-radius: 16px;
+
+            font-size: 1.8rem;
+
+            box-shadow:
+                0 0 15px rgba(76, 166, 217, 0.12);
+
+            transition:
+                transform 0.35s ease,
+                box-shadow 0.35s ease;
+        }
+
+        .gaming-card:hover .gaming-card-icon {
+            transform: scale(1.1) rotate(-5deg);
+
+            box-shadow:
+                0 0 20px var(--game-accent);
+        }
+
+
+        /* =========================================
+   Gaming Text
+========================================= */
+
+        .gaming-number {
+            margin-bottom: 10px;
+
+            color: var(--game-accent);
+
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        .gaming-card h3 {
+            margin: 0 0 8px;
+
+            color: var(--ff-text-primary);
+
+            font-size: 1.8rem;
+            font-weight: 800;
+            letter-spacing: 1px;
+
+            transition: color 0.3s ease;
+        }
+
+        .gaming-card:hover h3 {
+            color: var(--game-accent);
+        }
+
+        .gaming-card h4 {
+            margin: 0 0 20px;
+
+            color: var(--game-accent);
+
+            font-size: 0.85rem;
+            font-weight: 500;
+            line-height: 1.5;
+        }
+
+        .gaming-card>p {
+            flex: 1;
+
+            margin: 0 0 25px;
+
+            color: var(--ff-text-secondary);
+
+            font-size: 0.9rem;
+            line-height: 2;
+
+            text-align: justify;
+        }
+
+
+        /* =========================================
+   Gaming Tags
+========================================= */
+
+        .gaming-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-top: auto;
+        }
+
+        .gaming-tags span {
+            padding: 6px 12px;
+
+            color: var(--game-accent);
+
+            background: rgba(255, 255, 255, 0.04);
+
+            border: 1px solid color-mix(in srgb,
+                    var(--game-accent) 35%,
+                    transparent);
+
+            border-radius: 30px;
+
+            font-size: 0.7rem;
+
+            transition: background 0.3s ease;
+        }
+
+        .gaming-card:hover .gaming-tags span {
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+
+        /* =========================================
+   Footer
+========================================= */
+
+        .interest-footer {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+            margin-top: 65px;
+
+            text-align: center;
+        }
+
+        .interest-footer span {
+            color: var(--ff-royal-gold);
+
+            font-size: 1.2rem;
+
+            text-shadow: var(--ff-glow-gold);
+        }
+
+        .interest-footer p {
+            margin: 0;
+
+            color: var(--ff-text-secondary);
+
+            font-size: 0.9rem;
+            line-height: 1.8;
+            letter-spacing: 1px;
+        }
+
+
+        /* =========================================
+   Responsive｜Tablet
+========================================= */
+
+        @media (max-width: 1024px) {
+
+            .interests-section {
+                padding: 80px 5%;
+            }
+
+            .gaming-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 22px;
+            }
+
+            .gaming-card:last-child {
+                grid-column: 1 / -1;
+            }
+
+        }
+
+
+        /* =========================================
+   Responsive｜Mobile
+========================================= */
+
+        @media (max-width: 600px) {
+
+            .interests-section {
+                padding: 65px 6%;
+            }
+
+            .interest-intro {
+                padding: 30px 22px;
+                margin-bottom: 60px;
+            }
+
+            .interest-intro>p {
+                font-size: 0.88rem;
+            }
+
+            .gaming-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gaming-card:last-child {
+                grid-column: auto;
+            }
+
+            .gaming-card {
+                min-height: auto;
+                padding: 28px 24px;
+            }
+
+            .gaming-heading h3 {
+                font-size: 1.5rem;
+            }
+
+        }
+
+
+        /* =========================================
+   Accessibility
+========================================= */
+
+        @media (prefers-reduced-motion: reduce) {
+
+            .gaming-card,
+            .gaming-card *,
+            .interest-intro * {
+                transition: none !important;
+                animation: none !important;
+            }
+
+            .gaming-card:hover {
+                transform: none;
+            }
+
+        }
+
+        .wow {
+            visibility: visible;
+        }
+
+        .wow.animate__animated {
+            visibility: visible;
+        }
+
+        /* 動畫完成後維持顯示 */
+        .wow.animate__animated {
+            animation-fill-mode: both;
+        }
+
+        /* 減少動態效果時仍然正常顯示 */
+        @media (prefers-reduced-motion: reduce) {
+
+            .wow,
+            .wow.animate__animated {
+                visibility: visible !important;
+                animation: none !important;
+            }
+        }
+
+        /* =========================================
+   SECTION 12 - FAVORITE GAMES
+========================================= */
+
+        .favorite-games-section {
+            position: relative;
+            padding: 100px 5%;
+            overflow: hidden;
+
+            background: var(--ff-gradient-main);
+            color: var(--ff-text-primary);
+        }
+
+
+        /* Background Decoration */
+
+        .favorite-games-section::before {
+            content: "";
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            top: 10%;
+            right: -200px;
+
+            background: var(--ff-arcane-glow);
+            filter: blur(120px);
+            border-radius: 50%;
+            pointer-events: none;
+            opacity: 0.35;
+        }
+
+        .favorite-games-section::after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            bottom: 5%;
+            left: -180px;
+
+            background: rgba(76, 166, 217, 0.15);
+            filter: blur(110px);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+
+        /* Section Introduction */
+
+        .favorite-games-intro {
+            position: relative;
+            max-width: 850px;
+            margin: 60px auto 90px;
+            padding: 45px 40px;
+
+            text-align: center;
+
+            background: var(--ff-bg-card);
+            border: 1px solid var(--ff-border);
+            border-radius: 18px;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+
+        .games-intro-decoration {
+            color: var(--ff-royal-gold);
+            font-size: 28px;
+            margin-bottom: 15px;
+
+            text-shadow: var(--ff-glow-gold);
+        }
+
+        .games-intro-label {
+            display: block;
+            margin-bottom: 15px;
+
+            color: var(--ff-crystal-blue);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+        }
+
+        .favorite-games-intro h3 {
+            margin-bottom: 20px;
+
+            color: var(--ff-text-primary);
+            font-size: 27px;
+            font-weight: 700;
+        }
+
+        .favorite-games-intro p {
+            margin: 0 auto;
+            max-width: 700px;
+
+            color: var(--ff-text-secondary);
+            font-size: 15px;
+            line-height: 2;
+        }
+
+
+        /* Games Heading */
+
+        .favorite-games-heading {
+            position: relative;
+            margin-bottom: 45px;
+            text-align: center;
+        }
+
+        .favorite-games-heading>span {
+            display: block;
+            margin-bottom: 12px;
+
+            color: var(--ff-magic-violet);
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 4px;
+        }
+
+        .favorite-games-heading h3 {
+            color: var(--ff-text-primary);
+            font-size: 30px;
+            margin-bottom: 12px;
+        }
+
+        .favorite-games-heading p {
+            color: var(--ff-text-secondary);
+            font-size: 14px;
+        }
+
+
+        /* Games Grid */
+
+        .favorite-games-grid {
+            position: relative;
+            display: grid;
+
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+
+            gap: 28px;
+            max-width: 1350px;
+            margin: 0 auto;
+        }
+
+
+        /* Game Card */
+
+        .favorite-game-card {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+
+            overflow: hidden;
+
+            background: var(--ff-bg-card);
+            border: 1px solid var(--ff-border);
+            border-radius: 16px;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            transition:
+                transform 0.4s ease,
+                border-color 0.4s ease,
+                box-shadow 0.4s ease;
+        }
+
+        .favorite-game-card:hover {
+            transform: translateY(-10px);
+
+            border-color: var(--ff-arcane-light);
+
+            box-shadow:
+                0 15px 40px rgba(0, 0, 0, 0.3),
+                var(--ff-magitek-shadow);
+        }
+
+
+        /* Game Image */
+
+        .favorite-game-image {
+            position: relative;
+            height: 260px;
+            overflow: hidden;
+
+            background: var(--ff-bg-secondary);
+        }
+
+        .favorite-game-image::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+
+            background: linear-gradient(to bottom,
+                    rgba(16, 24, 39, 0.05),
+                    rgba(16, 24, 39, 0.75));
+
+            pointer-events: none;
+        }
+
+        .favorite-game-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            transition: transform 0.6s ease;
+        }
+
+        .favorite-game-card:hover .favorite-game-image img {
+            transform: scale(1.08);
+        }
+
+
+        /* Category Badge */
+
+        .game-category {
+            position: absolute;
+            z-index: 2;
+            top: 18px;
+            left: 18px;
+
+            padding: 7px 13px;
+
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+
+            border-radius: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .game-category.fps {
+            color: var(--ff-aether);
+            background: rgba(76, 166, 217, 0.2);
+            border: 1px solid var(--ff-crystal-blue);
+        }
+
+        .game-category.metroidvania {
+            color: var(--ff-magic-violet);
+            background: rgba(117, 86, 168, 0.3);
+            border: 1px solid var(--ff-mystic-purple);
+        }
+
+        .game-category.mmorpg {
+            color: var(--ff-royal-gold);
+            background: rgba(214, 180, 106, 0.2);
+            border: 1px solid var(--ff-royal-gold);
+        }
+
+
+        /* Game Index */
+
+        .game-index {
+            position: absolute;
+            z-index: 2;
+            right: 18px;
+            bottom: 18px;
+
+            color: var(--ff-moon-silver);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+
+        /* Game Content */
+
+        .favorite-game-content {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+
+            padding: 28px 25px 30px;
+        }
+
+        .game-genre {
+            display: block;
+            margin-bottom: 12px;
+
+            color: var(--ff-magic-violet);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+            line-height: 1.6;
+        }
+
+        .favorite-game-content h3 {
+            min-height: 55px;
+            margin-bottom: 8px;
+
+            color: var(--ff-text-primary);
+            font-size: 21px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .favorite-game-content h4 {
+            margin-bottom: 18px;
+
+            color: var(--ff-crystal-blue);
+            font-size: 15px;
+            font-weight: 500;
+        }
+
+        .favorite-game-content>p {
+            min-height: 125px;
+            margin-bottom: 22px;
+
+            color: var(--ff-text-secondary);
+            font-size: 13px;
+            line-height: 2;
+        }
+
+
+        /* Game Highlights */
+
+        .game-highlights {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+
+            margin-bottom: 25px;
+        }
+
+        .game-highlights span {
+            padding: 6px 12px;
+
+            color: var(--ff-moon-silver);
+            background: rgba(117, 216, 232, 0.08);
+
+            border: 1px solid var(--ff-border);
+            border-radius: 20px;
+
+            font-size: 11px;
+        }
+
+
+        /* Recommendation Reason */
+
+        .game-reason {
+            margin-top: auto;
+            padding: 18px;
+
+            background: rgba(117, 86, 168, 0.12);
+            border-left: 3px solid var(--ff-arcane-purple);
+            border-radius: 0 10px 10px 0;
+        }
+
+        .game-reason>span {
+            display: block;
+            margin-bottom: 10px;
+
+            color: var(--ff-royal-gold);
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1.5px;
+        }
+
+        .game-reason p {
+            margin: 0;
+
+            color: var(--ff-text-secondary);
+            font-size: 12px;
+            line-height: 1.9;
+        }
+
+
+        /* Footer */
+
+        .favorite-games-footer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 25px;
+
+            margin-top: 85px;
+            text-align: center;
+        }
+
+        .favorite-games-footer>span {
+            color: var(--ff-royal-gold);
+            font-size: 24px;
+
+            text-shadow: var(--ff-glow-gold);
+        }
+
+        .favorite-games-footer p {
+            margin: 0;
+
+            color: var(--ff-magic-violet);
+            font-size: 16px;
+            font-weight: 600;
+            line-height: 2;
+        }
+
+
+        /* =========================================
+   RESPONSIVE
+========================================= */
+
+        /* Tablet */
+
+        @media (max-width: 992px) {
+
+            .favorite-games-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .favorite-game-card:last-child {
+                grid-column: 1 / -1;
+                max-width: 600px;
+                width: 100%;
+                margin: 0 auto;
+            }
+
+        }
+
+
+        /* Mobile */
+
+        @media (max-width: 600px) {
+
+            .favorite-games-section {
+                padding: 70px 5%;
+            }
+
+            .favorite-games-intro {
+                margin: 40px auto 65px;
+                padding: 30px 22px;
+            }
+
+            .favorite-games-intro h3 {
+                font-size: 22px;
+            }
+
+            .favorite-games-heading h3 {
+                font-size: 24px;
+            }
+
+            .favorite-games-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .favorite-game-card:last-child {
+                grid-column: auto;
+                max-width: none;
+            }
+
+            .favorite-game-image {
+                height: 230px;
+            }
+
+            .favorite-game-content {
+                padding: 25px 22px;
+            }
+
+            .favorite-game-content h3 {
+                min-height: auto;
+                font-size: 20px;
+            }
+
+            .favorite-game-content>p {
+                min-height: auto;
+            }
+
+            .favorite-games-footer {
+                gap: 12px;
+                margin-top: 60px;
+            }
+
+            .favorite-games-footer p {
+                font-size: 13px;
+            }
+
+        }
+
+
+        /* =========================================
+   SECTION 13 - CONTACT ME
+   Final Fantasy Crystal / Magitek Theme
+   ID: sec13
+========================================= */
+
+        #sec13 {
+            position: relative;
+            padding: 90px 0;
+            overflow: hidden;
+
+            background: var(--ff-gradient-main);
+            color: var(--ff-text-primary);
+        }
+
+        /* 背景魔法光暈 */
+        #sec13::before {
+            content: "";
+            position: absolute;
+
+            width: 450px;
+            height: 450px;
+
+            top: -180px;
+            left: -120px;
+
+            background: radial-gradient(circle,
+                    rgba(76, 166, 217, 0.16),
+                    transparent 70%);
+
+            pointer-events: none;
+        }
+
+        #sec13::after {
+            content: "";
+            position: absolute;
+
+            width: 500px;
+            height: 500px;
+
+            right: -180px;
+            bottom: -220px;
+
+            background: radial-gradient(circle,
+                    var(--ff-arcane-glow),
+                    transparent 70%);
+
+            pointer-events: none;
+        }
+
+        /* 內容層級 */
+        #sec13 .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        #sec13 .row {
+            row-gap: 35px;
+        }
+
+        /* =========================================
+   CONTACT COLUMN
+========================================= */
+
+        #sec13 .contact-column {
+            position: relative;
+            padding: 30px;
+
+            background: var(--ff-bg-card);
+
+            border: 1px solid var(--ff-border);
+            border-radius: 20px;
+
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+
+            box-shadow:
+                0 10px 35px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.05);
+
+            transition: all 0.35s ease;
+        }
+
+        #sec13 .contact-column:hover {
+            border-color: rgba(117, 216, 232, 0.55);
+
+            box-shadow:
+                0 12px 40px rgba(76, 166, 217, 0.12),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        /* =========================================
+   TITLE
+========================================= */
+
+        #sec13 .contact-title {
+            position: relative;
+
+            margin-bottom: 25px !important;
+
+            color: var(--ff-crystal-blue);
+
+            font-size: clamp(1.5rem, 2.5vw, 2rem);
+            font-weight: 800;
+            letter-spacing: 2px;
+
+            text-shadow: var(--ff-glow-blue);
+        }
+
+        /* 標題裝飾線 */
+        #sec13 .contact-title::after {
+            content: "";
+            display: block;
+
+            width: 75px;
+            height: 3px;
+
+            margin: 15px auto 0;
+
+            background: var(--ff-gradient-crystal);
+
+            border-radius: 10px;
+
+            box-shadow: var(--ff-glow-blue);
+        }
+
+        /* =========================================
+   DESCRIPTION
+========================================= */
+
+        #sec13 .contact-description {
+            color: var(--ff-text-secondary);
+
+            font-size: 1rem;
+            line-height: 2;
+
+            letter-spacing: 0.5px;
+        }
+
+        /* =========================================
+   FORM INPUT
+========================================= */
+
+        #sec13 .form-control,
+        #sec13 .form-select {
+            min-height: 58px;
+
+            padding: 14px 16px;
+
+            color: var(--ff-text-primary);
+
+            background-color: rgba(16, 24, 39, 0.85);
+
+            border: 1px solid rgba(117, 216, 232, 0.25);
+
+            border-radius: 10px;
+
+            font-size: 1rem;
+
+            transition:
+                border-color 0.3s ease,
+                box-shadow 0.3s ease,
+                background-color 0.3s ease;
+        }
+
+        /* Placeholder */
+        #sec13 .form-control::placeholder {
+            color: rgba(170, 184, 201, 0.65);
+        }
+
+        /* Select */
+        #sec13 .form-select {
+            color: var(--ff-text-secondary);
+
+            background-color: rgba(16, 24, 39, 0.85);
+
+            cursor: pointer;
+        }
+
+        /* 下拉選項 */
+        #sec13 .form-select option {
+            color: var(--ff-text-primary);
+
+            background-color: var(--ff-deep-blue);
+        }
+
+        /* Focus */
+        #sec13 .form-control:focus,
+        #sec13 .form-select:focus {
+            color: var(--ff-text-primary);
+
+            background-color: rgba(23, 44, 69, 0.95);
+
+            border-color: var(--ff-aether);
+
+            outline: none;
+
+            box-shadow:
+                0 0 0 3px rgba(117, 216, 232, 0.12),
+                0 0 18px rgba(76, 166, 217, 0.25);
+        }
+
+        /* =========================================
+   FLOATING LABEL
+========================================= */
+
+        #sec13 .form-floating>label {
+            color: var(--ff-text-secondary);
+
+            padding-left: 16px;
+
+            transition: color 0.3s ease;
+        }
+
+        #sec13 .form-floating>.form-control:focus~label,
+        #sec13 .form-floating>.form-control:not(:placeholder-shown)~label {
+            color: var(--ff-aether);
+        }
+
+        /* Label 背景 */
+        #sec13 .form-floating>.form-control~label::after {
+            background-color: transparent;
+        }
+
+        /* =========================================
+   TEXTAREA
+========================================= */
+
+        #sec13 textarea.form-control {
+            min-height: 180px;
+
+            resize: vertical;
+
+            line-height: 1.8;
+        }
+
+        /* =========================================
+   BUTTON COMMON
+========================================= */
+
+        #sec13 .btn {
+            position: relative;
+
+            padding: 12px 24px;
+
+            border: 1px solid transparent;
+            border-radius: 10px;
+
+            font-weight: 700;
+            letter-spacing: 1px;
+
+            transition: all 0.3s ease;
+
+            overflow: hidden;
+        }
+
+        /* =========================================
+   SUBMIT BUTTON
+========================================= */
+
+        #sec13 .btn-submit {
+            color: var(--ff-midnight);
+
+            background: var(--ff-gradient-crystal);
+
+            border-color: rgba(214, 180, 106, 0.55);
+
+            box-shadow:
+                0 4px 15px rgba(76, 166, 217, 0.2);
+        }
+
+        #sec13 .btn-submit:hover {
+            color: var(--ff-text-primary);
+
+            transform: translateY(-3px);
+
+            box-shadow:
+                var(--ff-glow-blue),
+                var(--ff-glow-gold);
+
+            border-color: var(--ff-royal-gold);
+        }
+
+        #sec13 .btn-submit:active {
+            transform: translateY(0);
+        }
+
+        /* =========================================
+   CANCEL BUTTON
+========================================= */
+
+        #sec13 .btn-cancel {
+            margin-left: 8px;
+
+            color: var(--ff-moon-silver);
+
+            background: var(--ff-magitek-card);
+
+            border-color: var(--ff-magitek-border);
+        }
+
+        #sec13 .btn-cancel:hover {
+            color: var(--ff-text-primary);
+
+            background: var(--ff-magitek-deep);
+
+            border-color: var(--ff-arcane-light);
+
+            box-shadow: var(--ff-magitek-shadow);
+
+            transform: translateY(-3px);
+        }
+
+        /* =========================================
+   GOOGLE MAP
+========================================= */
+
+        #sec13 .map-container {
+            position: relative;
+
+            width: 100%;
+            height: 450px;
+
+            padding: 8px;
+
+            background: linear-gradient(135deg,
+                    rgba(76, 166, 217, 0.35),
+                    rgba(117, 216, 232, 0.1),
+                    rgba(152, 114, 204, 0.35));
+
+            border: 1px solid var(--ff-border);
+
+            border-radius: 15px;
+
+            box-shadow:
+                0 0 20px rgba(76, 166, 217, 0.15),
+                0 0 35px rgba(117, 216, 232, 0.08);
+
+            overflow: hidden;
+
+            transition: all 0.35s ease;
+        }
+
+        #sec13 .map-container:hover {
+            border-color: var(--ff-aether);
+
+            box-shadow:
+                var(--ff-glow-blue),
+                var(--ff-magitek-shadow);
+        }
+
+        #sec13 .map-container iframe {
+            display: block;
+
+            width: 100%;
+            height: 100%;
+
+            border: none;
+
+            border-radius: 10px;
+
+            filter: saturate(0.85) contrast(1.05);
+        }
+
+        /* =========================================
+   RESPONSIVE - TABLET
+========================================= */
+
+        @media (max-width: 991px) {
+
+            #sec13 {
+                padding: 65px 0;
+            }
+
+            #sec13 .contact-column {
+                padding: 25px;
+            }
+
+            #sec13 .map-container {
+                height: 380px;
+            }
+
+        }
+
+        /* =========================================
+   RESPONSIVE - MOBILE
+========================================= */
+
+        @media (max-width: 575px) {
+
+            #sec13 {
+                padding: 45px 0;
+            }
+
+            #sec13 .contact-column {
+                padding: 20px 16px;
+
+                border-radius: 15px;
+            }
+
+            #sec13 .contact-title {
+                font-size: 1.4rem;
+            }
+
+            #sec13 .contact-description {
+                font-size: 0.9rem;
+            }
+
+            #sec13 .map-container {
+                height: 320px;
+            }
+
+            #sec13 .btn {
+                padding: 10px 16px;
+
+                font-size: 0.9rem;
+            }
+
+        }
+
+        /* =========================================
+   SECTION 14 - FUTURE VISION & CAREER
+========================================= */
+
+        #sec14 {
+            position: relative;
+            overflow: hidden;
+            padding: 110px 7%;
+            color: var(--ff-text-primary);
+            background: var(--ff-gradient-magitek);
+        }
+
+        #sec14::before {
+            content: "";
+            position: absolute;
+            width: 450px;
+            height: 450px;
+            top: -180px;
+            right: -100px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    var(--ff-arcane-glow),
+                    transparent 70%);
+            pointer-events: none;
+        }
+
+        #sec14::after {
+            content: "";
+            position: absolute;
+            width: 350px;
+            height: 350px;
+            bottom: -180px;
+            left: -100px;
+            border-radius: 50%;
+            background: radial-gradient(circle,
+                    rgba(76, 166, 217, 0.2),
+                    transparent 70%);
+            pointer-events: none;
+        }
+
+        .future-vision-container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        /* Header */
+
+        .future-vision-header {
+            text-align: center;
+            margin-bottom: 65px;
+        }
+
+        .section-eyebrow {
+            color: var(--ff-royal-gold);
+            letter-spacing: 4px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .future-vision-title {
+            margin: 22px 0 10px;
+            font-size: clamp(32px, 5vw, 54px);
+            font-weight: 800;
+            line-height: 1.4;
+        }
+
+        .future-vision-title span {
+            color: var(--ff-arcane-light);
+        }
+
+        .future-vision-subtitle {
+            color: var(--ff-text-secondary);
+            letter-spacing: 3px;
+            font-size: 12px;
+        }
+
+        .vision-divider {
+            width: 90px;
+            height: 2px;
+            margin: 28px auto;
+            background: var(--ff-gradient-crystal);
+            box-shadow: var(--ff-glow-gold);
+        }
+
+        .future-vision-intro {
+            max-width: 720px;
+            margin: auto;
+            color: var(--ff-text-secondary);
+            font-size: 16px;
+            line-height: 2.1;
+        }
+
+        /* Vision Cards */
+
+        .future-vision-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .vision-card {
+            position: relative;
+            padding: 35px 28px;
+            border: 1px solid var(--ff-magitek-border);
+            border-radius: 18px;
+            background: rgba(255, 255, 255, 0.045);
+            backdrop-filter: blur(12px);
+            transition: 0.35s ease;
+        }
+
+        .vision-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--ff-arcane-light);
+            box-shadow: var(--ff-magitek-shadow);
+            background: rgba(152, 114, 204, 0.12);
+        }
+
+        .vision-icon {
+            color: var(--ff-magic-gold);
+            font-size: 35px;
+            margin-bottom: 20px;
+        }
+
+        .vision-number {
+            display: block;
+            color: var(--ff-arcane-light);
+            font-size: 11px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+
+        .vision-card h3 {
+            color: var(--ff-text-primary);
+            font-size: 21px;
+            margin-bottom: 18px;
+        }
+
+        .vision-card p {
+            color: var(--ff-text-secondary);
+            font-size: 14px;
+            line-height: 2;
+            margin: 0;
+        }
+
+        /* Career Statement */
+
+        .career-statement {
+            margin-top: 85px;
+            padding: 65px 30px;
+            text-align: center;
+            border-top: 1px solid var(--ff-magitek-border);
+            border-bottom: 1px solid var(--ff-magitek-border);
+        }
+
+        .statement-decoration {
+            display: block;
+            color: var(--ff-royal-gold);
+            font-size: 25px;
+            margin: 15px;
+        }
+
+        .statement-label {
+            color: var(--ff-arcane-light);
+            font-size: 11px;
+            letter-spacing: 4px;
+        }
+
+        .career-statement h3 {
+            margin: 25px 0;
+            font-size: clamp(25px, 4vw, 38px);
+            line-height: 1.7;
+        }
+
+        .career-statement h3 span {
+            color: var(--ff-crystal-pink);
+        }
+
+        .statement-description {
+            max-width: 680px;
+            margin: auto;
+            color: var(--ff-text-secondary);
+            line-height: 2;
+            font-size: 15px;
+        }
+
+        /* Portfolio CTA */
+
+        .portfolio-cta {
+            padding-top: 75px;
+            text-align: center;
+        }
+
+        .cta-eyebrow {
+            color: var(--ff-royal-gold);
+            font-size: 11px;
+            letter-spacing: 4px;
+        }
+
+        .portfolio-cta h3 {
+            color: var(--ff-text-primary);
+            font-size: clamp(24px, 4vw, 34px);
+            margin: 20px 0;
+        }
+
+        .portfolio-cta>p:not(.cta-eyebrow) {
+            color: var(--ff-text-secondary);
+            line-height: 1.9;
+            margin-bottom: 30px;
+        }
+
+        .portfolio-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 15px 35px;
+            color: var(--ff-text-primary);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            border: 1px solid var(--ff-arcane-light);
+            border-radius: 50px;
+            background: linear-gradient(135deg,
+                    var(--ff-arcane-purple),
+                    var(--ff-mystic-purple));
+            box-shadow: var(--ff-magitek-shadow);
+            transition: 0.35s ease;
+        }
+
+        .portfolio-button:hover {
+            transform: translateY(-4px);
+            color: var(--ff-midnight);
+            background: var(--ff-arcane-light);
+            box-shadow: 0 0 25px var(--ff-arcane-glow);
+        }
+
+        .button-arrow {
+            font-size: 19px;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-button:hover .button-arrow {
+            transform: translate(4px, -4px);
+        }
+
+        /* Responsive */
+
+        @media (max-width: 900px) {
+            .future-vision-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            #sec14 {
+                padding: 80px 6%;
+            }
+
+            .future-vision-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .vision-card {
+                padding: 28px 24px;
+            }
+
+            .career-statement {
+                margin-top: 55px;
+                padding: 45px 15px;
+            }
+
+            .portfolio-cta {
+                padding-top: 55px;
+            }
+        }
+        
+/* =========================================
+   SECTION 15 - FOOTER
+========================================= */
+
+#sec15 {
+    position: relative;
+    padding: 55px 7% 25px;
+    color: var(--ff-text-primary);
+    background: linear-gradient(
+        135deg,
+        var(--ff-midnight),
+        var(--ff-magitek-bg),
+        var(--ff-magitek-deep)
+    );
+    border-top: 1px solid var(--ff-magitek-border);
+}
+
+.footer-container {
+    position: relative;
+    max-width: 1200px;
+    margin: auto;
+    text-align: center;
+}
+
+/* Brand */
+
+.footer-brand h2 {
+    color: var(--ff-arcane-light);
+    font-size: 22px;
+    letter-spacing: 3px;
+    margin-bottom: 12px;
+}
+
+.footer-brand p {
+    color: var(--ff-text-secondary);
+    font-size: 13px;
+    letter-spacing: 2px;
+}
+
+/* Navigation */
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin: 30px 0;
+}
+
+.footer-links a {
+    color: var(--ff-text-secondary);
+    text-decoration: none;
+    font-size: 13px;
+    transition: 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--ff-royal-gold);
+    text-shadow: var(--ff-glow-gold);
+}
+
+/* Divider */
+
+.footer-divider {
+    width: 100%;
+    height: 1px;
+    margin: 25px 0;
+    background: linear-gradient(
+        90deg,
+        transparent,
+        var(--ff-arcane-purple),
+        var(--ff-royal-gold),
+        transparent
+    );
+}
+
+/* Copyright */
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.footer-bottom p {
+    color: var(--ff-text-secondary);
+    font-size: 11px;
+    margin: 0;
+}
+
+/* Back To Top */
+
+.back-to-top {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 38px;
+    height: 38px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid var(--ff-magitek-border);
+    border-radius: 50%;
+    color: var(--ff-arcane-light);
+    text-decoration: none;
+    font-size: 20px;
+    transition: 0.3s ease;
+}
+
+.back-to-top:hover {
+    color: var(--ff-midnight);
+    background: var(--ff-arcane-light);
+    box-shadow: var(--ff-magitek-shadow);
+    transform: translateY(-4px);
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+    #sec15 {
+        padding: 45px 6% 25px;
+    }
+
+    .footer-links {
+        gap: 20px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        padding-bottom: 35px;
+        text-align: center;
+    }
+
+    .back-to-top {
+        right: 50%;
+        bottom: -5px;
+        transform: translateX(50%);
+    }
+
+    .back-to-top:hover {
+        transform: translate(50%, -4px);
+    }
+}
+
+    </style>
+</head>
+
+<body>
+    <!-- 社群 -->
+    <section id="sec1">
+        <div class="container">
+            <div class="row">
+                <div class="text-end pb-2">
+                    <a href="https://www.threads.com" class="text-decoration-none" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-threads fa-canvas-roomy fa-2x"></i>
+                    </a>
+
+                    <a href="https://www.instagram.com/" class="text-decoration-none" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fa-brands fa-instagram fa-canvas-roomy fa-2x"></i>
+                    </a>
+
+                    <a href="https://www.facebook.com" class="text-decoration-none" target="_blank"
+                        rel="noopener noreferrer">
+                        <i class="fa-brands fa-square-facebook fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 選單 -->
+    <section id="sec2" class="sticky-top shadow-sm">
+
+        <nav class="navbar navbar-expand-lg bg-secondary">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">快速目錄</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sec1">首頁</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sec6">工作經驗</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sec9">證照</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#sec12">興趣</a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                                aria-expanded="false">
+                                個人推薦
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="#">Action</a></li>
+                                <li><a class="dropdown-item" href="#">Another action</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" target="_blank"
+                                        href="https://youtu.be/dQw4w9WgXcQ?si=GmKCnYkXgRJPF1yM">這裡沒東西別按</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </section>
+    <!-- Hero Section｜首頁主視覺 -->
+    <section id="sec3">
+
+        <!-- 圖片輪播區 -->
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
+
+            <!-- 輪播指示器 -->
+            <div class="carousel-indicators">
+
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                    aria-current="true" aria-label="Slide 1">
+                </button>
+
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                    aria-label="Slide 2">
+                </button>
+
+                <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                    aria-label="Slide 3">
+                </button>
+
+            </div>
+
+            <!-- 輪播圖片 -->
+            <div class="carousel-inner">
+
+                <div class="carousel-item active">
+                    <img src="image/FF14-6.png" class="d-block w-100" alt="個人展示圖片">
+                </div>
+
+                <div class="carousel-item">
+                    <img src="image/FF.png" class="d-block w-100" alt="Final Fantasy">
+                </div>
+            </div>
+
+            <!-- 左右切換按鈕 -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="prev">
+
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+
+                <span class="visually-hidden">Previous</span>
+            </button>
+
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+                data-bs-slide="next">
+
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+
+                <span class="visually-hidden">Next</span>
+            </button>
+
+        </div>
+
+        <!-- 固定式自我介紹：放在 Carousel 外面 -->
+        <div class="profile-overlay">
+
+            <div class="profile-content">
+
+                <span class="profile-tag">
+                    ✦ PERSONAL PROFILE
+                </span>
+
+                <h1>你好，我是 XXX</h1>
+
+                <h4>探索未知，創造屬於自己的可能。</h4>
+
+                <p>
+                    我是一位對新事物充滿好奇的人，
+                    喜歡接觸不同領域、學習新的技能，
+                    並且享受將想法轉化為實際成果的過程。
+                </p>
+            </div>
+        </div>
+
+
+
+    </section>
+    <!-- About Me｜關於我 -->
+    <section id="sec4">
+
+        <div class="container-fluid">
+
+            <div class="row align-items-center">
+
+                <!-- 左側：情境圖片 -->
+                <div class="col-md-4 sec4-image-wrapper">
+                    <img src="image/images.png" alt="個人工作形象" class="sec4-image">
+
+                </div>
+                <!-- 右側：文案與量化數據 -->
+                <div class="col-md-8 py-5 px-4 px-md-5 text-center text-md-start sec4-content">
+
+                    <!-- 主標題 -->
+                    <h1 class="fw-bold mb-3 sec4-title">
+                        追求卓越，相信熱情源自於精通
+                    </h1>
+
+                    <p class="sec4-subtitle">
+                        不斷累積經驗，持續突破自我，創造更多可能。
+                    </p>
+                    <!-- 量化數據 -->
+                    <div class="row mt-5 g-4">
+
+                        <!-- 數據 1 -->
+                        <div class="col-6 col-md-3 text-center">
+                            <div class="sec4-stat-card">
+                                <h5>被社會毒打</h5>
+
+                                <div>
+                                    <span class="counter01 display-5 fw-bold">
+                                        5
+                                    </span>
+                                    <small>年+</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 數據 2 -->
+                        <div class="col-6 col-md-3 text-center">
+                            <div class="sec4-stat-card">
+                                <h5>精選傑作</h5>
+
+                                <div>
+                                    <span class="counter02 display-5 fw-bold">
+                                        可能不多
+                                    </span>
+                                    <small>件</small>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- 數據 3 -->
+                        <div class="col-6 col-md-3 text-center">
+                            <div class="sec4-stat-card">
+                                <h5>同仁信任度</h5>
+                                <div>
+                                    <span class="counter03 display-5 fw-bold">
+                                        98
+                                    </span>
+                                    <small>%</small>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- 數據 4 -->
+                        <div class="col-6 col-md-3 text-center">
+                            <div class="sec4-stat-card">
+                                <h5>準時交付</h5>
+
+                                <div>
+                                    <span class="counter04 display-5 fw-bold">
+                                        100
+                                    </span>
+                                    <small>%</small>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- 工作理念 -->
+    <section id="sec5" class="py-5">
+
+        <div class="container py-5">
+            <!-- 區塊標題 -->
+            <h2 class="text-center display-4 fw-bold my-4 sec5-title">
+                我的工作理念
+            </h2>
+            <p class="text-center sec5-subtitle mb-5">
+                PROFESSIONAL PHILOSOPHY
+            </p>
+            <div class="row g-5 mt-2">
+                <!-- 理念 1：主動解決問題 -->
+                <div class="col-md-4">
+                    <div class="sec5-card sec5-card-blue text-center p-4 rounded h-100">
+                        <i class="fa-solid fa-bullseye fa-4x mb-3 sec5-icon"></i>
+                        <h3 class="my-3 sec5-card-title">
+                            主動解決問題
+                        </h3>
+                        <p class="text-start sec5-description">
+                            面對未知挑戰與突發狀況時，我習慣主動出擊，
+                            將複雜問題釐清並拆解為可執行的步驟。
+                            不只找出根本原因，更能跨團隊溝通協調，
+                            提出具體可行的優化方案，將危機轉化為團隊成長的契機。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 理念 2：時間管理 -->
+                <div class="col-md-4">
+                    <div class="sec5-card sec5-card-purple text-center p-4 rounded h-100">
+                        <i class="fa-solid fa-clock fa-4x mb-3 sec5-icon"></i>
+                        <h3 class="my-3 sec5-card-title">
+                            時間管理
+                        </h3>
+                        <p class="text-start sec5-description">
+                            善用排定優先順序與敏捷規劃，合理分配工作時間。
+                            在多工環境下依舊能保持敏銳度，
+                            精準掌控專案進度，並在規劃的時程內高效交付
+                            高品質的成果，落實自律且從容的職場節奏。
+                        </p>
+                    </div>
+                </div>
+
+                <!-- 理念 3：使命必達 -->
+                <div class="col-md-4">
+                    <div class="sec5-card sec5-card-gold text-center p-4 rounded h-100">
+                        <i class="fa-solid fa-fire fa-4x mb-3 sec5-icon"></i>
+                        <h3 class="my-3 sec5-card-title">
+                            使命必達
+                        </h3>
+                        <p class="text-start sec5-description">
+                            對工作抱持高度的責任感與專業執著，
+                            交辦事項必定全力以赴達成。
+                            具備強大的抗壓性與執行力，
+                            即使面對高難度的任務，也能透過靈活彈性的應變能力，
+                            突破瓶頸並超越預期目標。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Work Experience｜工作經歷 -->
+    <section id="sec6" class="py-5">
+
+        <div class="container py-5">
+            <!-- 區塊標題 -->
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold sec6-title">
+                    我的工作經歷
+                </h2>
+                <p class="sec6-subtitle">
+                    MY CAREER JOURNEY
+                </p>
+                <p class="sec6-intro">
+                    每一段經歷，都是累積實力與突破自我的旅程。
+                </p>
+            </div>
+            <!-- Timeline -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        2025/05-2025/10
+                    </div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">
+                            CURRENT POSITION
+                        </span>
+                        <h3>WorldGym</h3>
+                        <h5>業務行銷專員</h5>
+                        <p>
+                            會員相關資料管理變更作業，
+                            陌生開發招攬新會員，
+                            介紹館內所有設施等...
+                        </p>
+                        <div class="timeline-achievement">
+                            <h6>✦ 主要工作成果</h6>
+                            <ul>
+                                <li>主要訓練與他人溝通能力，</li>
+                                <li>以及與其他人交涉相關技巧，</li>
+                                <li>附帶取得一些運動相關知識。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        2022/01 - 2025/03
+                    </div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">
+                            PROFESSIONAL EXPERIENCE
+                        </span>
+                        <h3>振宇五金</h3>
+                        <h5>店務員</h5>
+                        <p>
+                            主要處理店內進貨出貨，
+                            招呼客人給予顧客支援等...
+                        </p>
+                        <div class="timeline-achievement">
+                            <h6>✦ 主要工作成果</h6>
+                            <ul>
+                                <li>熟悉常見進銷存系統操作，</li>
+                                <li>順帶學習大量基礎五金物品操作，</li>
+                                <li>以及部分路線規劃能力(外送)。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-date">
+                        2019/12 - 2021/02
+                    </div>
+                    <div class="timeline-card">
+                        <span class="timeline-tag">
+                            EARLY CAREER
+                        </span>
+                        <h3>中山醫學大學附設醫院</h3>
+                        <h5>軟體工程師</h5>
+                        <p>
+                            管理藥品資料庫提供相關報表，
+                            協助院內人員系統操作，
+                            撰寫主觀交辦之程式。
+                        </p>
+                        <div class="timeline-achievement">
+                            <h6>✦ 主要工作成果</h6>
+                            <ul>
+                                <li>建立職場基本專業能力。</li>
+                                <li>熟悉工作流程與作業規範。</li>
+                                <li>培養責任感及執行能力。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+    <!-- Technical Skills｜專業技術能力 -->
+    <section id="sec7" class="py-5">
+
+        <div class="container py-5">
+            <!-- 標題 -->
+            <div class="text-center mb-5">
+                <h2 class="display-4 fw-bold sec7-title">
+                    我的專業技能
+                </h2>
+                <p class="sec7-subtitle">
+                    MY PROFESSIONAL SKILLS
+                </p>
+                <p class="sec7-intro">
+                    掌握多元技能，持續提升專業能力與實務經驗。
+                </p>
+            </div>
+            <div class="row g-4">
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sec7-card skill-blue">
+                        <div class="sec7-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3>C#</h3>
+                        <p class="sec7-en">PROGRAMMING</p>
+
+                        <p class="sec7-description">
+                            具備 C# 程式設計基礎，
+                            能夠進行程式邏輯撰寫、
+                            功能開發及問題除錯。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sec7-card skill-purple">
+                        <div class="sec7-icon">
+                            <i class="fa-solid fa-database"></i>
+                        </div>
+                        <h3>資料庫</h3>
+                        <p class="sec7-en">DATABASE MANAGEMENT</p>
+                        <p class="sec7-description">
+                            了解資料庫基本架構，
+                            能夠進行資料查詢、
+                            新增、修改及資料管理。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sec7-card skill-gold">
+                        <div class="sec7-icon">
+                            <i class="fa-solid fa-file-excel"></i>
+                        </div>
+                        <h3>Office</h3>
+                        <p class="sec7-en">OFFICE APPLICATION</p>
+
+                        <p class="sec7-description">
+                            熟悉 Office 文書處理工具，
+                            包含 Word、Excel、PowerPoint，
+                            能夠製作文件、報表及簡報。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sec7-card skill-purple">
+                        <div class="sec7-icon">
+                            <i class="fa-solid fa-screwdriver-wrench"></i>
+                        </div>
+                        <h3>電腦裝修</h3>
+                        <p class="sec7-en">COMPUTER HARDWARE</p>
+                        <p class="sec7-description">
+                            具備電腦硬體組裝、
+                            零組件更換、系統安裝
+                            及基本故障排除能力。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sec7-card skill-blue">
+                        <div class="sec7-icon">
+                            <i class="fa-solid fa-plug"></i>
+                        </div>
+                        <h3>基礎水電</h3>
+                        <p class="sec7-en">BASIC ELECTRICAL & PLUMBING</p>
+                        <p class="sec7-description">
+                            了解基礎水電設備與管線概念，
+                            能夠進行簡單設備檢查、
+                            日常維護及異常判斷。
+                        </p>
+                    </div>
+                </div>
+                <div class="col-12 col-md-6 col-lg-4">
+                    <div class="sec7-card skill-gold">
+                        <div class="sec7-icon">
+                            <i class="fa-solid fa-handshake"></i>
+                        </div>
+                        <h3>業務技巧</h3>
+                        <p class="sec7-en">BUSINESS COMMUNICATION</p>
+                        <p class="sec7-description">
+                            具備溝通協調與需求分析能力，
+                            能夠了解客戶需求、
+                            建立良好關係並推動合作。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Soft Skills｜軟實力 -->
+    <section id="sec8" class="soft-skills-section">
+        <div class="section-header">
+            <span class="section-subtitle">CHARACTER ATTRIBUTES</span>
+            <h2>Soft Skills <span>｜軟實力</span></h2>
+            <p>除了專業能力，更重視個人特質與團隊價值。</p>
+        </div>
+
+        <div class="soft-skills-grid">
+
+            <!-- 01 認真負責 -->
+            <div class="soft-skill-card">
+                <div class="skill-icon">⚔️</div>
+                <span class="skill-number">01 / RESPONSIBILITY</span>
+                <h3>認真負責</h3>
+                <p>
+                    對待每項任務皆保持積極且嚴謹的態度，
+                    重視工作品質與執行細節，承諾的事情
+                    盡力完成，並主動承擔責任，確保任務
+                    能夠如期且有效地達成。
+                </p>
+                <div class="skill-tags">
+                    <span>主動積極</span>
+                    <span>責任承擔</span>
+                    <span>注重細節</span>
+                </div>
+            </div>
+
+            <!-- 02 抗壓與情緒管理 -->
+            <div class="soft-skill-card">
+                <div class="skill-icon">💎</div>
+                <span class="skill-number">02 / RESILIENCE</span>
+                <h3>抗壓與情緒管理</h3>
+                <p>
+                    面對工作壓力與突發狀況時，能保持
+                    冷靜與理性，適時調整情緒及工作步調，
+                    以正向態度分析問題、尋找解決方法，
+                    並維持穩定的工作效率。
+                </p>
+                <div class="skill-tags">
+                    <span>冷靜應變</span>
+                    <span>情緒調適</span>
+                    <span>問題解決</span>
+                </div>
+            </div>
+
+            <!-- 03 溝通表達與傾聽 -->
+            <div class="soft-skill-card">
+                <div class="skill-icon">🔮</div>
+                <span class="skill-number">03 / COMMUNICATION</span>
+                <h3>溝通表達與傾聽</h3>
+                <p>
+                    具備良好的溝通與表達能力，能清楚
+                    傳達想法及工作資訊，同時重視他人
+                    的意見與需求，透過有效傾聽與雙向
+                    溝通，減少認知落差並促進合作。
+                </p>
+                <div class="skill-tags">
+                    <span>清晰表達</span>
+                    <span>主動傾聽</span>
+                    <span>雙向溝通</span>
+                </div>
+            </div>
+
+            <!-- 04 團隊合作與適應力 -->
+            <div class="soft-skill-card">
+                <div class="skill-icon">🌟</div>
+                <span class="skill-number">04 / TEAMWORK</span>
+                <h3>團隊合作與適應力</h3>
+                <p>
+                    能尊重團隊成員的不同觀點，配合
+                    團隊目標分工合作，並願意分享經驗
+                    與互相支援。面對新環境及不同工作
+                    挑戰時，也能保持彈性並快速調整。
+                </p>
+                <div class="skill-tags">
+                    <span>協作精神</span>
+                    <span>彈性調整</span>
+                    <span>快速適應</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- Certifications & Awards｜證照與獎項 -->
+    <section id="sec9" class="certifications-section">
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <span class="section-subtitle">ACHIEVEMENTS & HONORS</span>
+            <h2>Certifications <span>｜證照與獎項</span></h2>
+            <p>每一份證明，都是持續學習與努力累積的成果。</p>
+        </div>
+
+        <!-- Certificate Gallery -->
+        <div class="certificates-grid">
+
+            <!-- Certificate 01 -->
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="image/認證1.jpg" alt="Cloud Platform 認證">
+                    <div class="certificate-overlay">
+                        <span>⌕</span>
+                        <p>CLICK TO PREVIEW</p>
+                    </div>
+                </div>
+                <div class="certificate-info">
+                    <span class="certificate-number">CERTIFICATE 01</span>
+                    <h3>Cloud Platform 認證</h3>
+                </div>
+            </div>
+
+            <!-- Certificate 02 -->
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="image/認證2.jpg" alt="C# 認證">
+                    <div class="certificate-overlay">
+                        <span>⌕</span>
+                        <p>CLICK TO PREVIEW</p>
+                    </div>
+                </div>
+                <div class="certificate-info">
+                    <span class="certificate-number">CERTIFICATE 02</span>
+                    <h3>C# 認證</h3>
+                </div>
+            </div>
+
+            <!-- Certificate 03 -->
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="image/EXCEL2010.jpg" alt="Excel 2010證書">
+                    <div class="certificate-overlay">
+                        <span>⌕</span>
+                        <p>CLICK TO PREVIEW</p>
+                    </div>
+                </div>
+                <div class="certificate-info">
+                    <span class="certificate-number">CERTIFICATE 03</span>
+                    <h3>Excel 2010證書</h3>
+                </div>
+            </div>
+
+            <!-- Certificate 04 -->
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="image/PPT2010.jpg" alt="PowerPoint 2010證書">
+                    <div class="certificate-overlay">
+                        <span>⌕</span>
+                        <p>CLICK TO PREVIEW</p>
+                    </div>
+                </div>
+                <div class="certificate-info">
+                    <span class="certificate-number">CERTIFICATE 04</span>
+                    <h3>PowerPoint 2010證書</h3>
+                </div>
+            </div>
+
+            <!-- Certificate 05 -->
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="image/PPT2013.jpg" alt="PowerPoint 2013證書">
+                    <div class="certificate-overlay">
+                        <span>⌕</span>
+                        <p>CLICK TO PREVIEW</p>
+                    </div>
+                </div>
+                <div class="certificate-info">
+                    <span class="certificate-number">CERTIFICATE 05</span>
+                    <h3>PowerPoint 2013證書</h3>
+                </div>
+            </div>
+
+            <!-- Certificate 06 -->
+            <div class="certificate-card">
+                <div class="certificate-image">
+                    <img src="image/Word2010.jpg" alt="Word 2010證書">
+                    <div class="certificate-overlay">
+                        <span>⌕</span>
+                        <p>CLICK TO PREVIEW</p>
+                    </div>
+                </div>
+                <div class="certificate-info">
+                    <span class="certificate-number">CERTIFICATE 06</span>
+                    <h3>Word 2010證書</h3>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Lightbox -->
+        <div id="certificateLightbox" class="certificate-lightbox" aria-hidden="true">
+
+            <!-- Close Button -->
+            <button class="lightbox-close" type="button" aria-label="關閉圖片">
+                &times;
+            </button>
+
+            <!-- Enlarged Image -->
+            <div class="lightbox-content">
+                <img id="lightboxImage" src="" alt="證照放大預覽">
+
+                <p id="lightboxCaption"></p>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Testimonials｜推薦與評價 -->
+    <section id="sec10" class="testimonials-section">
+
+        <!-- Section Header -->
+        <div class="section-header">
+            <span class="section-subtitle">TESTIMONIALS & RECOMMENDATIONS</span>
+            <h2>Testimonials <span>｜推薦與評價</span></h2>
+            <p>來自不同工作經歷的肯定，是持續成長與前進的動力。</p>
+        </div>
+
+        <!-- Testimonials Grid -->
+        <div class="testimonials-grid">
+
+            <!-- Testimonial 01 -->
+            <div class="testimonial-card">
+
+                <div class="testimonial-quote">“</div>
+
+                <div class="testimonial-category">
+                    KNOWLEDGE & EXPLORATION
+                </div>
+
+                <h3>追根究柢・主動探索</h3>
+
+                <p class="testimonial-content">
+                    擁有追根究柢的精神，對於未知及不確定的事物，
+                    一定會想辦法弄明白。
+                    不會只停留在問題表面，而是願意深入了解原因、
+                    尋找答案，直到真正理解問題的核心。
+                    這種主動學習與持續鑽研的態度，是值得肯定的特質。
+                </p>
+
+                <div class="testimonial-divider"></div>
+
+                <div class="testimonial-author">
+                    <div class="author-icon">01</div>
+                    <div class="author-info">
+                        <h4>中山的前輩</h4>
+                        <span>前輩推薦</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Testimonial 02 -->
+            <div class="testimonial-card">
+
+                <div class="testimonial-quote">“</div>
+
+                <div class="testimonial-category">
+                    RESPONSIBILITY & EXECUTION
+                </div>
+
+                <h3>認真負責・值得信賴</h3>
+
+                <p class="testimonial-content">
+                    交辦的事項必定會完成，是一位讓人放心的工作夥伴。
+                    面對主管交辦的工作，能夠抱持認真負責的態度，
+                    重視任務的完成度與執行品質。
+                    對於被賦予的責任會盡力完成，不輕易推諉，
+                    展現良好的工作紀律與執行力。
+                </p>
+
+                <div class="testimonial-divider"></div>
+
+                <div class="testimonial-author">
+                    <div class="author-icon">02</div>
+                    <div class="author-info">
+                        <h4>振宇五金店長</h4>
+                        <span>工作主管推薦</span>
+                    </div>
+                </div>
+
+            </div>
+
+
+            <!-- Testimonial 03 -->
+            <div class="testimonial-card">
+
+                <div class="testimonial-quote">“</div>
+
+                <div class="testimonial-category">
+                    DEDICATION & PERSEVERANCE
+                </div>
+
+                <h3>積極投入・勤奮踏實</h3>
+
+                <p class="testimonial-content">
+                    工作時任勞任怨，願意投入心力完成每一項工作。
+                    面對不同工作內容與任務安排，都能保持認真投入
+                    的精神。即使遇到繁忙或較具挑戰性的工作，
+                    也願意主動配合、承擔責任，
+                    展現良好的耐心、毅力與工作韌性。
+                </p>
+
+                <div class="testimonial-divider"></div>
+
+                <div class="testimonial-author">
+                    <div class="author-icon">03</div>
+                    <div class="author-info">
+                        <h4>World Gym 店經理</h4>
+                        <span>工作主管推薦</span>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Bottom Statement -->
+        <div class="testimonial-footer">
+            <span>✦</span>
+            <p>
+                每一份肯定，都是成長路上的重要印記。
+            </p>
+            <span>✦</span>
+        </div>
+
+    </section>
+
+    <!-- Interests & Hobbies｜興趣 -->
+    <section id="sec11" class="interests-section">
+
+        <!-- Section Header -->
+        <div class="section-header wow animate__fadeInDown">
+            <span class="section-subtitle">
+                INTERESTS & HOBBIES
+            </span>
+
+            <h2>
+                My Interests
+                <span>｜興趣</span>
+            </h2>
+
+            <p>
+                在日常生活之外，尋找屬於自己的樂趣與熱情。
+            </p>
+        </div>
+
+
+        <!-- Personal Introduction -->
+        <div class="gaming-intro wow animate__fadeInUp" data-wow-delay="0.3s">
+
+            <div class="intro-decoration">✦</div>
+
+            <span class="intro-label">
+                ABOUT MYSELF
+            </span>
+
+            <h3>
+                Work Hard, Play Hard.
+            </h3>
+
+            <p>
+                本人感興趣的事情其實不算多，平時的生活大多是
+                工作與家裡兩點一線，生活步調相對單純。
+                而在工作之餘，最喜歡做的事情就是打遊戲。
+            </p>
+
+            <p>
+                對我而言，遊戲不只是休閒娛樂，
+                也是能夠投入時間、享受挑戰與探索樂趣的興趣。
+                不同類型的遊戲，也帶給我截然不同的體驗。
+            </p>
+
+            <div class="intro-highlight">
+                <span>MY FAVORITE ACTIVITY</span>
+                <strong>GAMING IS MY PASSION</strong>
+            </div>
+
+        </div>
+
+
+        <!-- Gaming Categories -->
+        <div class="gaming-heading wow fadeInUp" data-wow-delay="0.3s">
+
+            <span>GAME GENRES</span>
+            <h3>Favorite Game Genres</h3>
+            <p>我最喜歡的三種遊戲類型</p>
+
+        </div>
+
+
+        <div class="gaming-grid">
+
+            <!-- FPS -->
+            <div class="gaming-card wow animate__fadeInUp" data-wow-delay="0.2s">
+
+                <div class="gaming-card-icon">
+                    <i class="fa-solid fa-crosshairs"></i>
+                </div>
+
+                <span class="gaming-number">
+                    GENRE 01
+                </span>
+
+                <h3>FPS</h3>
+
+                <h4>First Person Shooter</h4>
+
+                <p>
+                    第一人稱射擊遊戲，喜歡其中緊張刺激的
+                    對戰節奏、即時反應與戰術配合。
+                    享受在瞬息萬變的戰場中觀察局勢、
+                    掌握時機並迎接挑戰的過程。
+                </p>
+
+                <div class="gaming-tags">
+                    <span>射擊對戰</span>
+                    <span>反應能力</span>
+                    <span>戰術思考</span>
+                </div>
+
+            </div>
+
+
+            <!-- Metroidvania -->
+            <div class="gaming-card wow animate__fadeInUp" data-wow-delay="0.4s">
+
+                <div class="gaming-card-icon">
+                    <i class="fa-solid fa-map"></i>
+                </div>
+
+                <span class="gaming-number">
+                    GENRE 02
+                </span>
+
+                <h3>METROIDVANIA</h3>
+
+                <h4>類銀河戰士惡魔城</h4>
+
+                <p>
+                    喜歡探索未知地圖、發現隱藏區域，
+                    以及隨著能力提升逐步解鎖新路線的過程。
+                    享受探索、解謎與挑戰關卡所帶來的成就感。
+                </p>
+
+                <div class="gaming-tags">
+                    <span>地圖探索</span>
+                    <span>解謎挑戰</span>
+                    <span>能力成長</span>
+                </div>
+
+            </div>
+
+
+            <!-- MMORPG -->
+            <div class="gaming-card wow animate__fadeInUp" data-wow-delay="0.6s">
+                <div class="gaming-card-icon">
+                    <i class="fa-solid fa-dragon"></i>
+                </div>
+
+                <span class="gaming-number">
+                    GENRE 03
+                </span>
+
+                <h3>MMORPG</h3>
+
+                <h4>Massively Multiplayer Online RPG</h4>
+
+                <p>
+                    大型多人線上角色扮演遊戲，喜歡其中
+                    豐富的世界觀、角色養成與裝備收集。
+                    也享受與其他玩家交流、組隊合作，
+                    共同完成任務與挑戰副本的樂趣。
+                </p>
+
+                <div class="gaming-tags">
+                    <span>角色養成</span>
+                    <span>世界探索</span>
+                    <span>團隊合作</span>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- Bottom Statement -->
+        <div class="interest-footer wow animate__fadeInUp" data-wow-delay="0.3s">
+
+            <span>✦</span>
+
+            <p>
+                Find Your Own Adventure.
+                <br>
+                在自己的世界裡，享受每一次冒險。
+            </p>
+
+            <span>✦</span>
+
+        </div>
+        <div class="wow animate__fadeInUp" style="padding:50px; text-align:center;">
+
+
+        </div>
+
+    </section>
+
+    <!-- Section 12｜My Favorite Games -->
+    <section id="sec12" class="favorite-games-section">
+
+        <!-- Section Header -->
+        <div class="section-header wow animate__fadeInDown">
+
+            <span class="section-subtitle">
+                MY FAVORITE GAMES
+            </span>
+
+            <h2>
+                Game Recommendations
+                <span>｜個人推薦</span>
+            </h2>
+
+            <p>
+                三款不同類型的遊戲，帶來截然不同的冒險與體驗。
+            </p>
+
+        </div>
+
+
+        <!-- Games Introduction -->
+        <div class="favorite-games-intro wow animate__fadeInUp" data-wow-delay="0.2s">
+
+            <div class="games-intro-decoration">✦</div>
+
+            <span class="games-intro-label">
+                MY PERSONAL PICKS
+            </span>
+
+            <h3>
+                Three Games, Three Different Worlds.
+            </h3>
+
+            <p>
+                從緊張刺激的戰術射擊、充滿探索樂趣的經典冒險，
+                到擁有豐富世界觀的奇幻 MMORPG，
+                這三款遊戲分別代表了我最喜歡的遊戲體驗。
+            </p>
+
+        </div>
+
+
+        <!-- Game Recommendations Heading -->
+        <div class="favorite-games-heading wow animate__fadeInUp">
+
+            <span>RECOMMENDED GAMES</span>
+
+            <h3>My Top 3 Favorite Games</h3>
+
+            <p>值得推薦，也值得投入時間體驗的作品</p>
+
+        </div>
+
+
+        <!-- Games Grid -->
+        <div class="favorite-games-grid">
+
+
+            <!-- Game 01 : Escape from Tarkov -->
+            <article class="favorite-game-card wow animate__fadeInUp" data-wow-delay="0.2s">
+
+                <div class="favorite-game-image">
+
+                    <img src="image/塔科夫.jpg" alt="Escape from Tarkov">
+
+                    <span class="game-category fps">
+                        FPS
+                    </span>
+
+                    <span class="game-index">
+                        GAME 01
+                    </span>
+
+                </div>
+
+                <div class="favorite-game-content">
+
+                    <span class="game-genre">
+                        FIRST PERSON SHOOTER
+                    </span>
+
+                    <h3>
+                        Escape from Tarkov
+                    </h3>
+
+                    <h4>
+                        逃離塔科夫
+                    </h4>
+
+                    <p>
+                        以高度擬真的戰術射擊為特色，
+                        玩家需要在危險的戰場中搜尋物資、
+                        管理裝備並設法成功撤離。
+                        每次行動都充滿未知與挑戰。
+                    </p>
+
+                    <div class="game-highlights">
+
+                        <span>戰術射擊</span>
+                        <span>物資搜刮</span>
+                        <span>生存撤離</span>
+
+                    </div>
+
+                    <div class="game-reason">
+
+                        <span>WHY I RECOMMEND IT</span>
+
+                        <p>
+                            最吸引我的地方在於高度緊張的遊戲節奏，
+                            每一次交戰與撤離都需要謹慎判斷，
+                            成功帶著戰利品離開時特別有成就感。
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Game 02 : Castlevania -->
+            <article class="favorite-game-card wow animate__fadeInUp" data-wow-delay="0.4s">
+
+                <div class="favorite-game-image">
+
+                    <img src="image/月下.jpg" alt="Castlevania Symphony of the Night">
+
+                    <span class="game-category metroidvania">
+                        METROIDVANIA
+                    </span>
+
+                    <span class="game-index">
+                        GAME 02
+                    </span>
+
+                </div>
+
+                <div class="favorite-game-content">
+
+                    <span class="game-genre">
+                        EXPLORATION ACTION RPG
+                    </span>
+
+                    <h3>
+                        Castlevania:
+                        Symphony of the Night
+                    </h3>
+
+                    <h4>
+                        惡魔城：月下夜想曲
+                    </h4>
+
+                    <p>
+                        以充滿神秘氣息的惡魔城為舞台，
+                        玩家將探索廣大的城堡，
+                        尋找隱藏區域、取得新能力，
+                        並逐步揭開城堡深處的秘密。
+                    </p>
+
+                    <div class="game-highlights">
+
+                        <span>自由探索</span>
+                        <span>隱藏要素</span>
+                        <span>角色成長</span>
+
+                    </div>
+
+                    <div class="game-reason">
+
+                        <span>WHY I RECOMMEND IT</span>
+
+                        <p>
+                            喜歡它精巧的地圖設計與探索樂趣，
+                            隨著能力提升逐漸解鎖新的區域，
+                            以及發現隱藏內容時的驚喜感。
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+            <!-- Game 03 : Final Fantasy XIV -->
+            <article class="favorite-game-card wow animate__fadeInUp" data-wow-delay="0.6s">
+
+                <div class="favorite-game-image">
+
+                    <img src="image/FF14.jpg" alt="Final Fantasy XIV">
+
+                    <span class="game-category mmorpg">
+                        MMORPG
+                    </span>
+
+                    <span class="game-index">
+                        GAME 03
+                    </span>
+
+                </div>
+
+                <div class="favorite-game-content">
+
+                    <span class="game-genre">
+                        MASSIVELY MULTIPLAYER ONLINE RPG
+                    </span>
+
+                    <h3>
+                        FINAL FANTASY XIV
+                    </h3>
+
+                    <h4>
+                        太空戰士 XIV
+                    </h4>
+
+                    <p>
+                        擁有龐大的奇幻世界觀與豐富的主線劇情，
+                        結合多元職業、角色養成、副本挑戰，
+                        以及與其他玩家共同冒險的 MMORPG 作品。
+                    </p>
+
+                    <div class="game-highlights">
+
+                        <span>史詩劇情</span>
+                        <span>職業養成</span>
+                        <span>團隊副本</span>
+
+                    </div>
+
+                    <div class="game-reason">
+
+                        <span>WHY I RECOMMEND IT</span>
+
+                        <p>
+                            最喜歡它完整的故事內容、
+                            豐富的職業系統與壯觀的奇幻世界。
+                            無論是獨自探索或與朋友組隊冒險，
+                            都能找到不同的遊戲樂趣。
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+        </div>
+
+
+        <!-- Bottom Statement -->
+        <div class="favorite-games-footer wow animate__fadeInUp" data-wow-delay="0.3s">
+
+            <span>✦</span>
+
+            <p>
+                Every Game Tells a Different Story.
+                <br>
+                每一場冒險，都有屬於自己的精彩故事。
+            </p>
+
+            <span>✦</span>
+
+        </div>
+
+    </section>
+
+    <!-- Contact Me｜聯絡我 -->
+
+    <section id="sec13" class="sec13-section">
+
+        <div class="container">
+
+            <div class="row">
+
+                <!-- 左側：聯絡表單 -->
+                <div class="col-md-6 contact-column">
+
+                    <h2 class="contact-title text-center my-4">
+                        聯絡我 CONTACT ME
+                    </h2>
+
+                    <p class="contact-description mb-4">
+                        如果您有工作邀約、專案合作或技術交流需求，
+                        歡迎透過以下表單與我聯繫，我會盡快回覆您的訊息。
+                    </p>
+
+                    <!-- 姓名 -->
+                    <div class="mb-3 form-floating">
+
+                        <input type="text" class="form-control form-control-lg" id="contactName" placeholder="請輸入姓名">
+
+                        <label for="contactName">
+                            姓名
+                        </label>
+
+                    </div>
+
+                    <!-- Email -->
+                    <div class="mb-3 form-floating">
+
+                        <input type="email" class="form-control form-control-lg" id="contactEmail"
+                            placeholder="請輸入 Email">
+
+                        <label for="contactEmail">
+                            Email
+                        </label>
+
+                    </div>
+
+                    <!-- 聯絡主題 -->
+                    <select name="contactSubject" id="contactSubject" class="form-select form-select-lg">
+
+                        <option value="" disabled selected>
+                            --- 聯絡主題 ---
+                        </option>
+
+                        <option value="面試邀約">面試邀約</option>
+                        <option value="專案討論">專案討論</option>
+                        <option value="接案洽詢">接案洽詢</option>
+                        <option value="其他">其他</option>
+
+                    </select>
+
+                    <!-- 訊息內容 -->
+                    <textarea name="contactMessage" id="contactMessage" class="form-control my-3" cols="10" rows="8"
+                        placeholder="請輸入訊息內容......">
+                </textarea>
+
+                    <!-- 按鈕 -->
+                    <div class="text-end my-3">
+
+                        <button type="button" class="btn btn-submit px-4">
+                            <i class="fa-solid fa-paper-plane me-2"></i>
+                            送出
+                        </button>
+
+                        <button type="reset" class="btn btn-cancel px-4">
+                            <i class="fa-solid fa-rotate-left me-2"></i>
+                            取消
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- 右側：Google 地圖 -->
+                <div class="col-md-6 contact-column">
+
+                    <h2 class="contact-title text-center my-4">
+                        聯絡位置 LOCATION
+                    </h2>
+
+                    <div class="map-container">
+
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14560.337086414793!2d120.60467951735455!3d24.168777142388212!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x34693e048d342aa9%3A0x2b6f18a6783fa3b!2z5Yue5YuV6YOo5Yue5YuV5Yqb55m85bGV572y5Lit5b2w5oqV5YiG572y77yI6Ie65Lit6IG36KiT5bGA77yJ!5e0!3m2!1szh-TW!2stw!4v1793674253031!5m2!1szh-TW!2stw"
+                            allowfullscreen loading="lazy" referrerpolicy="strict-origin-when-cross-origin">
+                        </iframe>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SECTION 14：未來願景與職涯發展 -->
+    <section id="sec14" class="future-vision-section">
+
+        <div class="future-vision-container">
+
+            <!-- Section Header -->
+            <div class="future-vision-header">
+                <span class="section-eyebrow">CHAPTER XIV · BEYOND THE HORIZON</span>
+
+                <h2 class="future-vision-title">
+                    未來願景
+                    <span>&amp; 職涯發展</span>
+                </h2>
+
+                <p class="future-vision-subtitle">
+                    FUTURE VISION & CAREER DEVELOPMENT
+                </p>
+
+                <div class="vision-divider"></div>
+
+                <p class="future-vision-intro">
+                    每一次探索，都是邁向未來的起點。<br>
+                    以熱情為核心、以專業為基礎，持續突破自我，
+                    將知識轉化為實踐，讓每一份創意與努力都成為成長的力量。
+                </p>
+            </div>
+
+            <!-- Vision Cards -->
+            <div class="future-vision-grid">
+
+                <article class="vision-card">
+                    <div class="vision-icon">✧</div>
+                    <span class="vision-number">01 / VISION</span>
+                    <h3>探索未來可能</h3>
+                    <p>
+                        保持對新知識與新技術的好奇心，
+                        持續探索不同領域的可能性，
+                        培養跨領域思考與解決問題的能力，
+                        創造更多具有價值的成果。
+                    </p>
+                </article>
+
+                <article class="vision-card">
+                    <div class="vision-icon">◇</div>
+                    <span class="vision-number">02 / CAREER</span>
+                    <h3>深化專業實力</h3>
+                    <p>
+                        以扎實的專業知識為基礎，
+                        累積實務經驗與專案執行能力，
+                        在團隊合作與實際挑戰中持續成長，
+                        建立具備競爭力的職涯優勢。
+                    </p>
+                </article>
+
+                <article class="vision-card">
+                    <div class="vision-icon">✦</div>
+                    <span class="vision-number">03 / GROWTH</span>
+                    <h3>持續精進突破</h3>
+                    <p>
+                        勇於接受挑戰，從每一次經驗中學習，
+                        培養自主學習、溝通協作與創新思維，
+                        讓自己在不斷變化的環境中，
+                        始終保持成長與前進的動力。
+                    </p>
+                </article>
+
+            </div>
+
+            <!-- Career Statement -->
+            <div class="career-statement">
+                <span class="statement-decoration">✧</span>
+
+                <p class="statement-label">MY NEXT JOURNEY</p>
+
+                <h3>
+                    不設限於現在，<br>
+                    <span>持續創造下一個可能。</span>
+                </h3>
+
+                <p class="statement-description">
+                    未來，我期許自己成為一位兼具專業能力、
+                    創意思維與實踐精神的人才，
+                    在每一次挑戰中累積經驗，
+                    以行動實現理想，打造屬於自己的發展道路。
+                </p>
+
+                <span class="statement-decoration">✧</span>
+            </div>
+
+            <!-- Portfolio CTA -->
+            <div class="portfolio-cta">
+                <p class="cta-eyebrow">EXPLORE MY WORKS</p>
+
+                <h3>探索我的作品世界</h3>
+
+                <p>
+                    每一份作品，都是學習歷程的紀錄，
+                    也是將想法化為實際成果的證明。
+                </p>
+
+                <a href="YOUR_PORTFOLIO_URL" class="portfolio-button" target="_blank" rel="noopener noreferrer">
+                    <span>查看我的作品集</span>
+                    <span class="button-arrow">↗</span>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    
+<!-- SECTION 15 : FOOTER -->
+<section id="sec15">
+
+    <div class="footer-container">
+
+        <div class="footer-brand">
+            <h2>✧ MY PORTFOLIO</h2>
+            <p>探索自我・累積實力・創造未來</p>
+        </div>
+
+        <div class="footer-divider"></div>
+
+        <div class="footer-bottom">
+            <p>© 2026 MY PORTFOLIO. All Rights Reserved.</p>
+            <p>Designed with ✦ Passion & Creativity</p>
+        </div>
+
+        <a href="#top" class="back-to-top" aria-label="返回頂部">
+            ↑
+        </a>
+
+    </div>
+
+</section>
+
+
+    <script>
+        const counterUp = window.counterUp?.default ?? window.counterUp;
+
+        const callback = entries => {
+            entries.forEach(entry => {
+                const el = entry.target
+                if (entry.isIntersecting && !el.classList.contains
+                    ('is-visible')) {
+                    if (typeof counterUp === "function") {
+                        counterUp(el, {
+                            duration: 5000,
+                            delay: 16,
+                        });
+                    }
+                    el.classList.add('is-visible')
+                }
+            })
+        }
+
+        const IO = new IntersectionObserver(callback, { threshold: 1 })
+
+        const el01 = document.querySelector('.counter01')
+        IO.observe(el01)
+
+        const el02 = document.querySelector('.counter02')
+        IO.observe(el02)
+
+        const el03 = document.querySelector('.counter03')
+        IO.observe(el03)
+
+        const el04 = document.querySelector('.counter04')
+        IO.observe(el04)
+
+
+
+        /* =========================================
+           Section 09
+           Certifications Lightbox
+        ========================================= */
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            // 取得 Lightbox 元素
+            const lightbox = document.getElementById(
+                "certificateLightbox"
+            );
+
+            const lightboxImage = document.getElementById(
+                "lightboxImage"
+            );
+
+            const lightboxCaption = document.getElementById(
+                "lightboxCaption"
+            );
+
+            const closeButton = document.querySelector(
+                ".lightbox-close"
+            );
+
+            const certificateCards = document.querySelectorAll(
+                ".certificate-image"
+            );
+
+            // 檢查元素是否存在
+            if (!lightbox || !lightboxImage || !lightboxCaption) {
+                console.error("Certificate Lightbox 初始化失敗！");
+                return;
+            }
+
+            // 開啟圖片
+            function openCertificate(card) {
+
+                const img = card.querySelector("img");
+
+                const title = card
+                    .closest(".certificate-card")
+                    .querySelector(".certificate-info h3");
+
+                if (!img) return;
+
+                // 設定圖片
+                lightboxImage.src = img.src;
+                lightboxImage.alt = img.alt;
+
+                // 設定證照名稱
+                lightboxCaption.textContent = title
+                    ? title.textContent
+                    : "";
+
+                // 顯示 Lightbox
+                lightbox.classList.add("active");
+
+                lightbox.setAttribute("aria-hidden", "false");
+
+                // 禁止背景捲動
+                document.body.style.overflow = "hidden";
+
+            }
+
+            // 關閉圖片
+            function closeCertificate() {
+
+                lightbox.classList.remove("active");
+
+                lightbox.setAttribute("aria-hidden", "true");
+
+                // 恢復背景捲動
+                document.body.style.overflow = "";
+
+            }
+
+            // 綁定六張證照圖片
+            certificateCards.forEach(function (card) {
+
+                card.addEventListener("click", function () {
+
+                    openCertificate(card);
+
+                });
+
+            });
+
+            // 關閉按鈕
+            if (closeButton) {
+
+                closeButton.addEventListener("click", function () {
+
+                    closeCertificate();
+
+                });
+
+            }
+
+            // 點擊背景關閉
+            lightbox.addEventListener("click", function (event) {
+
+                if (event.target === lightbox) {
+
+                    closeCertificate();
+
+                }
+
+            });
+
+            // ESC 鍵關閉
+            document.addEventListener("keydown", function (event) {
+
+                if (
+                    event.key === "Escape" &&
+                    lightbox.classList.contains("active")
+                ) {
+
+                    closeCertificate();
+
+                }
+
+            });
+
+            console.log("Certificate Lightbox 初始化成功！");
+
+        });
+
+
+    </script>
+    <script src="JS/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="JS/jquery-4.0.0.js"></script>
+    <script src="https://unpkg.com/counterup2@2.0.2/dist/index.js">	</script>
+
+
+    <script>
+        // =========================================
+        // WOW.js Manager
+        // Animate.css 4.x
+        // SPA Compatible
+        // =========================================
+
+        let wowInstance = null;
+
+        // 初始化 WOW.js
+        function initWOW() {
+
+            if (typeof WOW === "undefined") {
+                console.error("WOW.js 尚未載入！");
+                return;
+            }
+
+            // 第一次初始化
+            if (!wowInstance) {
+
+                wowInstance = new WOW({
+
+                    boxClass: 'wow',
+
+                    animateClass: 'animate__animated',
+
+                    offset: 100,
+
+                    mobile: true,
+
+                    live: true,
+
+                    callback: function (box) {
+                        console.log("WOW Animation:", box);
+                    }
+
+                });
+
+                wowInstance.init();
+
+                console.log("WOW.js 初始化完成");
+
+            } else {
+
+                // 已初始化時重新掃描
+                wowInstance.sync();
+
+                console.log("WOW.js 重新掃描完成");
+
+            }
+        }
+
+
+        // 網頁載入完成後初始化
+        document.addEventListener("DOMContentLoaded", function () {
+
+            initWOW();
+
+        });
+    </script>
+</body>
+
+</html>
