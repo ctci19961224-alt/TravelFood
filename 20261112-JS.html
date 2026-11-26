@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JS 重點</title>
+</head>
+
+<body>
+    <script src="JS/jquery-4.0.0.js"></script>
+    <script src="JS/TravelFood.js"></script>
+    <script>
+        //1.map()
+        const shops = [
+            {
+                name: "好吃小吃店",
+                city: "臺北市",
+                tel: "02-12312345",
+                address: "臺北市中正區忠孝東路一段100號",
+                category: "小吃"
+            },
+            {
+                name: "幸福咖啡館",
+                city: "新北市",
+                tel: "02-23456789",
+                address: "新北市板橋區文化路一段200號",
+                category: "咖啡廳"
+            },
+            {
+                name: "美味牛肉麵",
+                city: "臺中市",
+                tel: "04-22345678",
+                address: "臺中市西區公益路150號",
+                category: "中式料理"
+            },
+            {
+                name: "日式食堂",
+                city: "高雄市",
+                tel: "07-34567890",
+                address: "高雄市左營區博愛二路300號",
+                category: "日式料理"
+            },
+            {
+                name: "晨光早午餐",
+                city: "臺南市",
+                tel: "06-45678901",
+                address: "臺南市東區東門路一段50號",
+                category: "早午餐"
+            }
+        ];
+
+        const names = shops.map(function (item) {
+            return item.name;
+        });
+
+        console.log("原始資料,shops");
+        console.log("轉換後的資料", names);
+
+        //使用map()並產生新的結構
+        const simpleData = shops.map(function (item) {
+            return {
+                title: item.name,
+                location: item.city
+            }
+        })
+        console.log("使用map()並產生新的結構", simpleData);
+
+        const travelfood = food.map(function (item, index) {
+            return {
+                id: index + 1,
+                title: item.Name,
+                location: item.Address,
+                Tel: item.Tel,
+                Email: item.Email,
+                HostWords: item.HostWords
+            }
+        })
+        console.log("使用map()並產生新的結構", travelfood);
+
+        //資料清洗 拒絕 1.null 2.undefimed 3.字串前後空白
+        // shops.forEach(function(item){
+        //     console.log(item.tel.length);
+        // });
+        const normalize = shops.map(function (item) {
+            return {
+                name: (item.name ?? "未提供").trim(),
+                city: (item.city ?? "未提供").trim(),
+                tel: (item.tel ?? "未提供").trim(),
+                owner: (item.owner ?? "未提供").trim(),
+                address: (item.address ?? "未提供").trim(),
+            }
+        });
+
+        console.log("使用自訂函式(副程式)執行資料清洗: ", normalize);
+
+        //搜尋 filter
+        const result = shops.filter(function (item) {
+            return item.city === "新北市"
+        });
+        console.log("用原本的資料搜尋結果: ", result);
+
+        const resultCleanData = normalize.filter(function (item) {
+            return item.name.includes("漢堡") && item.city === "新北市"
+        });
+        console.log("清洗後的資料搜尋結果: ", resultCleanData);
+
+
+        //travelfood.js 1.清洗資料(副程式) 2. 篩選出新北市有介紹(FoodFeature)"美食"的店家
+
+        //1.清洗資料(副程式)
+        function normalizeFood(data) {
+            return data.map(function (item) {
+                return {
+                    name: (item.Name ?? "未提供").trim(),
+                    city: (item.City ?? "未提供").trim(),
+                    tel: (item.Tel ?? "未提供").trim(),
+                    img: (item.PicURL ?? "未提供").trim(),
+                    remark: (item.FoodFeature ?? "未提供").trim(),
+                }
+            });
+        }
+
+        console.log("使用自訂函式(副程式)執行Food資料清洗: ", normalizeFood(food));
+
+        const resultFoodFilter = normalizeFood(food).filter(function (item) {
+            return item.remark.includes("美食") && item.city === "臺中市";
+        });
+        console.log("篩選出新北市有介紹(FoodFeature)[美食]的店家: ", resultFoodFilter);
+
+        //分頁
+        //將分頁的思考邏輯轉換成演算法在寫成程式碼
+        //0 1 2 3 4 5 6 7
+        const pageSize = 5;//一頁5筆
+        const page = 3;//目前頁碼
+
+        const start = (page - 1) * pageSize;
+        const end = start + pageSize;
+        const pageData = shops.slice(start, end)
+        console.log("原始資料: ", shops);
+        console.log("分頁資料: ", pageData);
+
+        //1. 使用travelfood資料練習分頁的邏輯
+        //2. 清洗 => 篩選 => 分頁
+        const cleanFood = normalizeFood(food);
+        //清洗
+        console.log("清洗後的資料: ", cleanFood);
+        //篩選 台中市的介紹內容包含[美食]的店家
+        const filterFood = cleanFood.filter(function (item) {
+            return item.city === "臺中市" && item.remark.includes("美食")
+        })
+        console.log("篩選後的資料: ", filterFood);
+        console.log("符合條件的總比數: ", filterFood.length);
+
+        //分頁
+
+        const foodPageSize = 4;
+        const foodPage = 2;
+
+        const foodStart = (foodPage - 1) * foodPageSize;
+        const foodEnd = foodStart + foodPageSize;
+
+        const foodPageData = filterFood.slice(foodStart, foodEnd);
+        console.log("第" + foodPage + "頁的結果: ", foodPageData);
+
+        //將分頁整理成 副程式
+        function pagination(data, pageSize, page) {
+            const start = (page - 1) * pageSize;
+            const end = start + pageSize;
+
+            return data.slice(start, end);
+        }
+
+        const foodPageSize01 = 4;
+        const foodPage01 = 3;
+        const foodPageData01 = pagination(filterFood, foodPageSize01, foodPage01)
+        console.log("第" + foodPage01 + "頁的結果: ", foodPageData01);
+        
+    </script>
+</body>
+
+</html>

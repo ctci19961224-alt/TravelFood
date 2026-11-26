@@ -1,0 +1,2628 @@
+<html lang="zh-Hant">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="企業 ERP 產品與庫存管理系統">
+    <title>產品與庫存管理｜NEXUS ERP</title>
+
+    <!-- Bootstrap 5：原始封存檔未包含本機 css/js，因此改用 CDN，方便直接執行 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&amp;display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --erp-navy: #172b4d;
+            --erp-blue: #2457a7;
+            --erp-bg: #f4f6fa;
+            --erp-text: #253247;
+            --erp-muted: #748198;
+            --erp-border: #e7ebf2;
+            --erp-green: #16865b;
+            --erp-orange: #c47b12;
+            --erp-red: #cf3f4f;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            background: var(--erp-bg);
+            color: var(--erp-text);
+            font-family: "Noto Sans TC", "Microsoft JhengHei", sans-serif;
+            font-size: 14px;
+        }
+
+        .erp-navbar {
+            min-height: 68px;
+            background: var(--erp-navy);
+            box-shadow: 0 3px 14px rgba(20, 37, 64, .16);
+        }
+
+        .erp-brand {
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: #fff !important;
+            font-size: 18px;
+            font-weight: 800;
+            letter-spacing: .4px;
+        }
+
+        .brand-mark {
+            display: inline-grid;
+            width: 35px;
+            height: 35px;
+            place-items: center;
+            border-radius: 10px;
+            background: #3e79d0;
+            color: #fff;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .brand-subtitle {
+            display: block;
+            margin-top: 1px;
+            color: #b8c7dc;
+            font-size: 10px;
+            font-weight: 500;
+            letter-spacing: 1.3px;
+        }
+
+        .erp-navbar .navbar-nav {
+            gap: 5px;
+        }
+
+        .erp-navbar .nav-link {
+            position: relative;
+            margin: 0 2px;
+            padding: 22px 15px !important;
+            color: #c7d2e2;
+            font-weight: 600;
+            transition: color .2s, background .2s;
+        }
+
+        .erp-navbar .nav-link:hover,
+        .erp-navbar .nav-link.active {
+            color: #fff;
+            background: rgba(255, 255, 255, .09);
+        }
+
+        .erp-navbar .nav-link.active::after {
+            position: absolute;
+            right: 14px;
+            bottom: 0;
+            left: 14px;
+            height: 3px;
+            border-radius: 3px 3px 0 0;
+            background: #75a9f4;
+            content: "";
+        }
+
+        .navbar-user {
+            display: flex;
+            align-items: center;
+            gap: 9px;
+            color: #dce5f1;
+            font-size: 12px;
+        }
+
+        .user-avatar {
+            display: grid;
+            width: 32px;
+            height: 32px;
+            place-items: center;
+            border: 1px solid rgba(255, 255, 255, .25);
+            border-radius: 50%;
+            background: #29466e;
+            color: #fff;
+            font-weight: 700;
+        }
+
+        .page-shell {
+            max-width: 1440px;
+            padding: 28px 28px 44px;
+        }
+
+        .breadcrumb {
+            margin-bottom: 13px;
+            font-size: 12px;
+        }
+
+        .breadcrumb-item a {
+            color: var(--erp-muted);
+            text-decoration: none;
+        }
+
+        .breadcrumb-item.active {
+            color: #40516a;
+            font-weight: 600;
+        }
+
+        .page-heading {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 18px;
+            margin-bottom: 23px;
+        }
+
+        .page-title {
+            margin: 0;
+            color: #1d2c43;
+            font-size: 25px;
+            font-weight: 800;
+            letter-spacing: .2px;
+        }
+
+        .page-description {
+            margin: 7px 0 0;
+            color: var(--erp-muted);
+            font-size: 13px;
+        }
+
+        .page-context {
+            color: #8793a6;
+            font-size: 11px;
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 15px;
+            margin-bottom: 21px;
+        }
+
+        .summary-card {
+            position: relative;
+            min-height: 112px;
+            overflow: hidden;
+            padding: 18px 19px;
+            border: 1px solid var(--erp-border);
+            border-radius: 11px;
+            background: #fff;
+            box-shadow: 0 2px 8px rgba(31, 48, 75, .025);
+        }
+
+        .summary-card::after {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 4px;
+            height: 100%;
+            background: var(--card-accent, #4778c7);
+            content: "";
+        }
+
+        .summary-label {
+            color: #77849a;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .summary-value {
+            margin-top: 8px;
+            color: #23334b;
+            font-size: 28px;
+            font-weight: 800;
+            line-height: 1;
+        }
+
+        .summary-note {
+            margin-top: 7px;
+            color: #9aa4b3;
+            font-size: 11px;
+        }
+
+        .summary-icon {
+            position: absolute;
+            top: 18px;
+            right: 20px;
+            display: grid;
+            width: 36px;
+            height: 36px;
+            place-items: center;
+            border-radius: 10px;
+            background: var(--icon-bg, #edf3fc);
+            color: var(--card-accent, #4778c7);
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .content-card {
+            overflow: hidden;
+            border: 1px solid var(--erp-border);
+            border-radius: 11px;
+            background: #fff;
+            box-shadow: 0 3px 12px rgba(31, 48, 75, .035);
+        }
+
+        .content-card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            padding: 19px 21px;
+            border-bottom: 1px solid var(--erp-border);
+        }
+
+        .section-title {
+            margin: 0;
+            color: #26364d;
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .section-subtitle {
+            margin: 5px 0 0;
+            color: #8a96a8;
+            font-size: 11px;
+        }
+
+        .record-count {
+            color: #8995a6;
+            font-size: 12px;
+            white-space: nowrap;
+        }
+
+        .table-wrap {
+            padding: 0 20px;
+        }
+
+        .erp-table {
+            margin: 0;
+            vertical-align: middle;
+        }
+
+        .erp-table thead th {
+            padding: 14px 12px;
+            border-bottom: 1px solid #e9edf3;
+            background: #f8f9fc;
+            color: #748198;
+            font-size: 11px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .erp-table tbody td {
+            padding: 15px 12px;
+            border-color: #edf0f5;
+            color: #42516a;
+            font-size: 12px;
+        }
+
+        .erp-table tbody tr:hover {
+            background: #fbfcfe;
+        }
+
+        .product-name {
+            color: #26364d;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .product-id {
+            display: block;
+            margin-top: 4px;
+            color: #9aa4b3;
+            font-size: 10px;
+        }
+
+        .price-text {
+            color: #2c3d57;
+            font-weight: 700;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stock-cell {
+            min-width: 135px;
+        }
+
+        .stock-number {
+            display: inline-block;
+            min-width: 26px;
+            color: #33445e;
+            font-weight: 800;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .stock-unit {
+            margin-left: 3px;
+            color: #8995a6;
+            font-size: 10px;
+        }
+
+        .stock-badge,
+        .category-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 5px 9px;
+            border-radius: 20px;
+            font-size: 10px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .stock-badge::before {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: currentColor;
+            content: "";
+        }
+
+        .stock-good {
+            background: #e8f6ef;
+            color: var(--erp-green);
+        }
+
+        .stock-low {
+            background: #fff3df;
+            color: var(--erp-orange);
+        }
+
+        .stock-out {
+            background: #fdebed;
+            color: var(--erp-red);
+        }
+
+        .category-badge {
+            background: #eef2f8;
+            color: #66758d;
+        }
+
+        .remark-text {
+            display: inline-block;
+            max-width: 180px;
+            overflow: hidden;
+            color: #7d899b;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .btn-action {
+            padding: 5px 10px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: 600;
+        }
+
+        .btn-edit {
+            border: 1px solid #d8e4f6;
+            background: #f0f5fd;
+            color: #315f9f;
+        }
+
+        .btn-edit:hover {
+            border-color: #315f9f;
+            background: #315f9f;
+            color: #fff;
+        }
+
+        .btn-remove {
+            border: 1px solid #f3d9dc;
+            background: #fff7f7;
+            color: #bd4c58;
+        }
+
+        .btn-remove:hover {
+            border-color: #bd4c58;
+            background: #bd4c58;
+            color: #fff;
+        }
+
+        .empty-state {
+            padding: 38px 15px !important;
+            color: #929daf !important;
+            text-align: center;
+        }
+
+        .table-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 15px 20px 18px;
+        }
+
+        .table-hint {
+            color: #98a2b1;
+            font-size: 11px;
+        }
+
+        .pagination {
+            margin: 0;
+        }
+
+        .pagination .page-link {
+            margin: 0 2px;
+            border: 1px solid #e5eaf1;
+            border-radius: 6px !important;
+            color: #62718a;
+            font-size: 11px;
+        }
+
+        .pagination .page-item.active .page-link {
+            border-color: var(--erp-blue);
+            background: var(--erp-blue);
+            color: #fff;
+        }
+
+        .pagination .page-item.disabled .page-link {
+            color: #b5bdc9;
+        }
+
+        .status-legend {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 13px;
+            padding: 13px 21px;
+            border-top: 1px solid #edf0f5;
+            background: #fcfcfd;
+        }
+
+        .legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #8994a5;
+            font-size: 10px;
+        }
+
+        .legend-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .system-footer {
+            padding-top: 20px;
+            color: #a0a9b6;
+            font-size: 10px;
+            text-align: center;
+        }
+
+        .modal-content {
+            border: 0;
+            border-radius: 12px;
+            box-shadow: 0 15px 50px rgba(20, 37, 64, .18);
+        }
+
+        .modal-header {
+            padding: 19px 22px;
+            border-bottom: 1px solid var(--erp-border);
+        }
+
+        .modal-title {
+            color: #26364d;
+            font-size: 16px;
+            font-weight: 800;
+        }
+
+        .modal-body {
+            padding: 22px;
+        }
+
+        .form-label {
+            color: #53627a;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .form-control,
+        .form-select {
+            min-height: 40px;
+            border-color: #dfe5ee;
+            border-radius: 7px;
+            font-size: 13px;
+        }
+
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #7ea4dc;
+            box-shadow: 0 0 0 .2rem rgba(58, 112, 190, .12);
+        }
+
+        .form-control:disabled,
+        .form-control[readonly] {
+            background: #f6f8fb;
+        }
+
+        .modal-footer {
+            padding: 14px 22px;
+            border-top: 1px solid var(--erp-border);
+        }
+
+        .btn-primary {
+            border-color: var(--erp-blue);
+            background: var(--erp-blue);
+        }
+
+        .btn-primary:hover {
+            border-color: #1d4788;
+            background: #1d4788;
+        }
+
+        @media (max-width: 991.98px) {
+            .erp-navbar .nav-link {
+                padding: 12px 14px !important;
+            }
+
+            .erp-navbar .nav-link.active::after {
+                right: auto;
+                left: 14px;
+                width: 32px;
+            }
+
+            .navbar-user {
+                padding: 10px 14px;
+            }
+
+            .page-shell {
+                padding: 23px 18px 35px;
+            }
+
+            .summary-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+
+        @media (max-width: 767.98px) {
+            .page-heading {
+                flex-direction: column;
+                gap: 8px;
+            }
+
+            .page-context {
+                text-align: left;
+            }
+
+            .page-title {
+                font-size: 22px;
+            }
+
+            .content-card-header {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .table-wrap {
+                padding: 0 12px;
+            }
+
+            .erp-table thead {
+                display: none;
+            }
+
+            .erp-table,
+            .erp-table tbody,
+            .erp-table tr,
+            .erp-table td {
+                display: block;
+                width: 100%;
+            }
+
+            .erp-table tbody tr {
+                margin: 12px 0;
+                padding: 7px 12px;
+                border: 1px solid #e7ebf2;
+                border-radius: 9px;
+            }
+
+            .erp-table tbody td {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+                gap: 12px;
+                padding: 9px 3px;
+                border-bottom: 1px dashed #edf0f5;
+                text-align: right;
+            }
+
+            .erp-table tbody td:last-child {
+                border-bottom: 0;
+            }
+
+            .erp-table tbody td::before {
+                flex: 0 0 86px;
+                color: #8995a6;
+                content: attr(data-th);
+                font-size: 11px;
+                font-weight: 600;
+                text-align: left;
+            }
+
+            .product-name-wrap {
+                text-align: right;
+            }
+
+            .remark-text {
+                max-width: 190px;
+            }
+
+            .table-footer {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .status-legend {
+                padding: 12px 16px;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .summary-grid {
+                gap: 9px;
+            }
+
+            .summary-card {
+                min-height: 103px;
+                padding: 14px;
+            }
+
+            .summary-icon {
+                top: 13px;
+                right: 13px;
+                width: 30px;
+                height: 30px;
+            }
+
+            .summary-value {
+                font-size: 24px;
+            }
+
+            .page-shell {
+                padding-right: 12px;
+                padding-left: 12px;
+            }
+        }
+    </style>
+    <style>
+        :root {
+            --swal2-outline: 0 0 0 3px rgba(100, 150, 200, 0.5);
+            --swal2-container-padding: 0.625em;
+            --swal2-backdrop: rgba(0, 0, 0, 0.4);
+            --swal2-backdrop-transition: background-color 0.15s;
+            --swal2-width: 32em;
+            --swal2-padding: 0 0 1.25em;
+            --swal2-border: none;
+            --swal2-border-radius: 0.3125rem;
+            --swal2-background: white;
+            --swal2-color: #545454;
+            --swal2-show-animation: swal2-show 0.3s;
+            --swal2-hide-animation: swal2-hide 0.15s forwards;
+            --swal2-icon-zoom: 1;
+            --swal2-title-padding: 0.8em 1em 0;
+            --swal2-html-container-padding: 1em 1.6em 0.3em;
+            --swal2-input-border: 1px solid #d9d9d9;
+            --swal2-input-border-radius: 0.1875em;
+            --swal2-input-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px transparent;
+            --swal2-input-background: transparent;
+            --swal2-input-transition: border-color 0.2s, box-shadow 0.2s;
+            --swal2-input-hover-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px transparent;
+            --swal2-input-focus-border: 1px solid #b4dbed;
+            --swal2-input-focus-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.06), 0 0 0 3px rgba(100, 150, 200, 0.5);
+            --swal2-progress-step-background: #add8e6;
+            --swal2-validation-message-background: #f0f0f0;
+            --swal2-validation-message-color: #666;
+            --swal2-footer-border-color: #eee;
+            --swal2-footer-background: transparent;
+            --swal2-footer-color: inherit;
+            --swal2-timer-progress-bar-background: rgba(0, 0, 0, 0.3);
+            --swal2-close-button-position: initial;
+            --swal2-close-button-inset: auto;
+            --swal2-close-button-font-size: 2.5em;
+            --swal2-close-button-color: #ccc;
+            --swal2-close-button-transition: color 0.2s, box-shadow 0.2s;
+            --swal2-close-button-outline: initial;
+            --swal2-close-button-box-shadow: inset 0 0 0 3px transparent;
+            --swal2-close-button-focus-box-shadow: inset var(--swal2-outline);
+            --swal2-close-button-hover-transform: none;
+            --swal2-actions-justify-content: center;
+            --swal2-actions-width: auto;
+            --swal2-actions-margin: 1.25em auto 0;
+            --swal2-actions-padding: 0;
+            --swal2-actions-border-radius: 0;
+            --swal2-actions-background: transparent;
+            --swal2-action-button-transition: background-color 0.2s, box-shadow 0.2s;
+            --swal2-action-button-hover: black 10%;
+            --swal2-action-button-active: black 10%;
+            --swal2-confirm-button-box-shadow: none;
+            --swal2-confirm-button-border-radius: 0.25em;
+            --swal2-confirm-button-background-color: #7066e0;
+            --swal2-confirm-button-color: #fff;
+            --swal2-deny-button-box-shadow: none;
+            --swal2-deny-button-border-radius: 0.25em;
+            --swal2-deny-button-background-color: #dc3741;
+            --swal2-deny-button-color: #fff;
+            --swal2-cancel-button-box-shadow: none;
+            --swal2-cancel-button-border-radius: 0.25em;
+            --swal2-cancel-button-background-color: #6e7881;
+            --swal2-cancel-button-color: #fff;
+            --swal2-toast-show-animation: swal2-toast-show 0.5s;
+            --swal2-toast-hide-animation: swal2-toast-hide 0.1s forwards;
+            --swal2-toast-border: none;
+            --swal2-toast-box-shadow: 0 0 1px hsl(0deg 0% 0% / 0.075), 0 1px 2px hsl(0deg 0% 0% / 0.075), 1px 2px 4px hsl(0deg 0% 0% / 0.075), 1px 3px 8px hsl(0deg 0% 0% / 0.075), 2px 4px 16px hsl(0deg 0% 0% / 0.075)
+        }
+
+        [data-swal2-theme=dark] {
+            --swal2-dark-theme-black: #19191a;
+            --swal2-dark-theme-white: #e1e1e1;
+            --swal2-background: var(--swal2-dark-theme-black);
+            --swal2-color: var(--swal2-dark-theme-white);
+            --swal2-footer-border-color: #555;
+            --swal2-input-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+            --swal2-validation-message-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+            --swal2-validation-message-color: var(--swal2-dark-theme-white);
+            --swal2-timer-progress-bar-background: rgba(255, 255, 255, 0.7)
+        }
+
+        @media(prefers-color-scheme: dark) {
+            [data-swal2-theme=auto] {
+                --swal2-dark-theme-black: #19191a;
+                --swal2-dark-theme-white: #e1e1e1;
+                --swal2-background: var(--swal2-dark-theme-black);
+                --swal2-color: var(--swal2-dark-theme-white);
+                --swal2-footer-border-color: #555;
+                --swal2-input-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+                --swal2-validation-message-background: color-mix(in srgb, var(--swal2-dark-theme-black), var(--swal2-dark-theme-white) 10%);
+                --swal2-validation-message-color: var(--swal2-dark-theme-white);
+                --swal2-timer-progress-bar-background: rgba(255, 255, 255, 0.7)
+            }
+        }
+
+        body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) {
+            overflow: hidden
+        }
+
+        body.swal2-height-auto {
+            height: auto !important
+        }
+
+        body.swal2-no-backdrop .swal2-container {
+            background-color: rgba(0, 0, 0, 0) !important;
+            pointer-events: none
+        }
+
+        body.swal2-no-backdrop .swal2-container .swal2-popup {
+            pointer-events: auto
+        }
+
+        body.swal2-no-backdrop .swal2-container .swal2-modal {
+            box-shadow: 0 0 10px var(--swal2-backdrop)
+        }
+
+        body.swal2-toast-shown .swal2-container {
+            box-sizing: border-box;
+            width: 360px;
+            max-width: 100%;
+            background-color: rgba(0, 0, 0, 0);
+            pointer-events: none
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top {
+            inset: 0 auto auto 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top-end,
+        body.swal2-toast-shown .swal2-container.swal2-top-right {
+            inset: 0 0 auto auto
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-top-start,
+        body.swal2-toast-shown .swal2-container.swal2-top-left {
+            inset: 0 auto auto 0
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center-start,
+        body.swal2-toast-shown .swal2-container.swal2-center-left {
+            inset: 50% auto auto 0;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center {
+            inset: 50% auto auto 50%;
+            transform: translate(-50%, -50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-center-end,
+        body.swal2-toast-shown .swal2-container.swal2-center-right {
+            inset: 50% 0 auto auto;
+            transform: translateY(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom-start,
+        body.swal2-toast-shown .swal2-container.swal2-bottom-left {
+            inset: auto auto 0 0
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom {
+            inset: auto auto 0 50%;
+            transform: translateX(-50%)
+        }
+
+        body.swal2-toast-shown .swal2-container.swal2-bottom-end,
+        body.swal2-toast-shown .swal2-container.swal2-bottom-right {
+            inset: auto 0 0 auto
+        }
+
+        @media print {
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) {
+                overflow-y: scroll !important
+            }
+
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown)>[aria-hidden=true] {
+                display: none
+            }
+
+            body.swal2-shown:not(.swal2-no-backdrop, .swal2-toast-shown) .swal2-container {
+                position: static !important
+            }
+        }
+
+        div:where(.swal2-container) {
+            display: grid;
+            position: fixed;
+            z-index: 1060;
+            inset: 0;
+            box-sizing: border-box;
+            grid-template-areas: "top-start     top            top-end" "center-start  center         center-end" "bottom-start  bottom-center  bottom-end";
+            grid-template-rows: minmax(min-content, auto) minmax(min-content, auto) minmax(min-content, auto);
+            height: 100%;
+            padding: var(--swal2-container-padding);
+            overflow-x: hidden;
+            transition: var(--swal2-backdrop-transition);
+            -webkit-overflow-scrolling: touch
+        }
+
+        div:where(.swal2-container).swal2-backdrop-show,
+        div:where(.swal2-container).swal2-noanimation {
+            background: var(--swal2-backdrop)
+        }
+
+        div:where(.swal2-container).swal2-backdrop-hide {
+            background: rgba(0, 0, 0, 0) !important
+        }
+
+        div:where(.swal2-container).swal2-top-start,
+        div:where(.swal2-container).swal2-center-start,
+        div:where(.swal2-container).swal2-bottom-start {
+            grid-template-columns: minmax(0, 1fr) auto auto
+        }
+
+        div:where(.swal2-container).swal2-top,
+        div:where(.swal2-container).swal2-center,
+        div:where(.swal2-container).swal2-bottom {
+            grid-template-columns: auto minmax(0, 1fr) auto
+        }
+
+        div:where(.swal2-container).swal2-top-end,
+        div:where(.swal2-container).swal2-center-end,
+        div:where(.swal2-container).swal2-bottom-end {
+            grid-template-columns: auto auto minmax(0, 1fr)
+        }
+
+        div:where(.swal2-container).swal2-top-start>.swal2-popup {
+            align-self: start
+        }
+
+        div:where(.swal2-container).swal2-top>.swal2-popup {
+            grid-column: 2;
+            place-self: start center
+        }
+
+        div:where(.swal2-container).swal2-top-end>.swal2-popup,
+        div:where(.swal2-container).swal2-top-right>.swal2-popup {
+            grid-column: 3;
+            place-self: start end
+        }
+
+        div:where(.swal2-container).swal2-center-start>.swal2-popup,
+        div:where(.swal2-container).swal2-center-left>.swal2-popup {
+            grid-row: 2;
+            align-self: center
+        }
+
+        div:where(.swal2-container).swal2-center>.swal2-popup {
+            grid-column: 2;
+            grid-row: 2;
+            place-self: center center
+        }
+
+        div:where(.swal2-container).swal2-center-end>.swal2-popup,
+        div:where(.swal2-container).swal2-center-right>.swal2-popup {
+            grid-column: 3;
+            grid-row: 2;
+            place-self: center end
+        }
+
+        div:where(.swal2-container).swal2-bottom-start>.swal2-popup,
+        div:where(.swal2-container).swal2-bottom-left>.swal2-popup {
+            grid-column: 1;
+            grid-row: 3;
+            align-self: end
+        }
+
+        div:where(.swal2-container).swal2-bottom>.swal2-popup {
+            grid-column: 2;
+            grid-row: 3;
+            place-self: end center
+        }
+
+        div:where(.swal2-container).swal2-bottom-end>.swal2-popup,
+        div:where(.swal2-container).swal2-bottom-right>.swal2-popup {
+            grid-column: 3;
+            grid-row: 3;
+            place-self: end end
+        }
+
+        div:where(.swal2-container).swal2-grow-row>.swal2-popup,
+        div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup {
+            grid-column: 1/4;
+            width: 100%
+        }
+
+        div:where(.swal2-container).swal2-grow-column>.swal2-popup,
+        div:where(.swal2-container).swal2-grow-fullscreen>.swal2-popup {
+            grid-row: 1/4;
+            align-self: stretch
+        }
+
+        div:where(.swal2-container).swal2-no-transition {
+            transition: none !important
+        }
+
+        div:where(.swal2-container)[popover] {
+            width: auto;
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup) {
+            display: none;
+            position: relative;
+            box-sizing: border-box;
+            grid-template-columns: minmax(0, 100%);
+            width: var(--swal2-width);
+            max-width: 100%;
+            padding: var(--swal2-padding);
+            border: var(--swal2-border);
+            border-radius: var(--swal2-border-radius);
+            background: var(--swal2-background);
+            color: var(--swal2-color);
+            font-family: inherit;
+            font-size: 1rem
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup):focus {
+            outline: none
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-loading {
+            overflow-y: hidden
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable {
+            cursor: grab
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-draggable div:where(.swal2-icon) {
+            cursor: grab
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging {
+            cursor: grabbing
+        }
+
+        div:where(.swal2-container) div:where(.swal2-popup).swal2-dragging div:where(.swal2-icon) {
+            cursor: grabbing
+        }
+
+        div:where(.swal2-container) h2:where(.swal2-title) {
+            position: relative;
+            max-width: 100%;
+            margin: 0;
+            padding: var(--swal2-title-padding);
+            color: inherit;
+            font-size: 1.875em;
+            font-weight: 600;
+            text-align: center;
+            text-transform: none;
+            overflow-wrap: break-word;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) div:where(.swal2-actions) {
+            display: flex;
+            z-index: 1;
+            box-sizing: border-box;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: var(--swal2-actions-justify-content);
+            width: var(--swal2-actions-width);
+            margin: var(--swal2-actions-margin);
+            padding: var(--swal2-actions-padding);
+            border-radius: var(--swal2-actions-border-radius);
+            background: var(--swal2-actions-background)
+        }
+
+        div:where(.swal2-container) div:where(.swal2-loader) {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            width: 2.2em;
+            height: 2.2em;
+            margin: 0 1.875em;
+            animation: swal2-rotate-loading 1.5s linear 0s infinite normal;
+            border-width: .25em;
+            border-style: solid;
+            border-radius: 100%;
+            border-color: #2778c4 rgba(0, 0, 0, 0) #2778c4 rgba(0, 0, 0, 0)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled) {
+            margin: .3125em;
+            padding: .625em 1.1em;
+            transition: var(--swal2-action-button-transition);
+            border: none;
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0);
+            font-weight: 500
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):not([disabled]) {
+            cursor: pointer
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm) {
+            border-radius: var(--swal2-confirm-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-confirm-button-background-color);
+            box-shadow: var(--swal2-confirm-button-box-shadow);
+            color: var(--swal2-confirm-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):hover {
+            background-color: color-mix(in srgb, var(--swal2-confirm-button-background-color), var(--swal2-action-button-hover))
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-confirm):active {
+            background-color: color-mix(in srgb, var(--swal2-confirm-button-background-color), var(--swal2-action-button-active))
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny) {
+            border-radius: var(--swal2-deny-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-deny-button-background-color);
+            box-shadow: var(--swal2-deny-button-box-shadow);
+            color: var(--swal2-deny-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny):hover {
+            background-color: color-mix(in srgb, var(--swal2-deny-button-background-color), var(--swal2-action-button-hover))
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-deny):active {
+            background-color: color-mix(in srgb, var(--swal2-deny-button-background-color), var(--swal2-action-button-active))
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel) {
+            border-radius: var(--swal2-cancel-button-border-radius);
+            background: initial;
+            background-color: var(--swal2-cancel-button-background-color);
+            box-shadow: var(--swal2-cancel-button-box-shadow);
+            color: var(--swal2-cancel-button-color);
+            font-size: 1em
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel):hover {
+            background-color: color-mix(in srgb, var(--swal2-cancel-button-background-color), var(--swal2-action-button-hover))
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):where(.swal2-cancel):active {
+            background-color: color-mix(in srgb, var(--swal2-cancel-button-background-color), var(--swal2-action-button-active))
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled):focus-visible {
+            outline: none;
+            box-shadow: var(--swal2-action-button-focus-box-shadow)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled)[disabled]:not(.swal2-loading) {
+            opacity: .4
+        }
+
+        div:where(.swal2-container) button:where(.swal2-styled)::-moz-focus-inner {
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-footer) {
+            margin: 1em 0 0;
+            padding: 1em 1em 0;
+            border-top: 1px solid var(--swal2-footer-border-color);
+            background: var(--swal2-footer-background);
+            color: var(--swal2-footer-color);
+            font-size: 1em;
+            text-align: center;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) .swal2-timer-progress-bar-container {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            grid-column: auto !important;
+            overflow: hidden;
+            border-bottom-right-radius: var(--swal2-border-radius);
+            border-bottom-left-radius: var(--swal2-border-radius)
+        }
+
+        div:where(.swal2-container) div:where(.swal2-timer-progress-bar) {
+            width: 100%;
+            height: .25em;
+            background: var(--swal2-timer-progress-bar-background)
+        }
+
+        div:where(.swal2-container) img:where(.swal2-image) {
+            max-width: 100%;
+            margin: 2em auto 1em;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close) {
+            position: var(--swal2-close-button-position);
+            inset: var(--swal2-close-button-inset);
+            z-index: 2;
+            align-items: center;
+            justify-content: center;
+            width: 1.2em;
+            height: 1.2em;
+            margin-top: 0;
+            margin-right: 0;
+            margin-bottom: -1.2em;
+            padding: 0;
+            overflow: hidden;
+            transition: var(--swal2-close-button-transition);
+            border: none;
+            border-radius: var(--swal2-border-radius);
+            outline: var(--swal2-close-button-outline);
+            background: rgba(0, 0, 0, 0);
+            color: var(--swal2-close-button-color);
+            font-family: monospace;
+            font-size: var(--swal2-close-button-font-size);
+            cursor: pointer;
+            justify-self: end
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close):hover {
+            transform: var(--swal2-close-button-hover-transform);
+            background: rgba(0, 0, 0, 0);
+            color: #f27474
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close):focus-visible {
+            outline: none;
+            box-shadow: var(--swal2-close-button-focus-box-shadow)
+        }
+
+        div:where(.swal2-container) button:where(.swal2-close)::-moz-focus-inner {
+            border: 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-html-container) {
+            z-index: 1;
+            justify-content: center;
+            margin: 0;
+            padding: var(--swal2-html-container-padding);
+            overflow: auto;
+            color: inherit;
+            font-size: 1.125em;
+            font-weight: normal;
+            line-height: normal;
+            text-align: center;
+            overflow-wrap: break-word;
+            word-break: break-word;
+            cursor: initial
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input),
+        div:where(.swal2-container) input:where(.swal2-file),
+        div:where(.swal2-container) textarea:where(.swal2-textarea),
+        div:where(.swal2-container) select:where(.swal2-select),
+        div:where(.swal2-container) div:where(.swal2-radio),
+        div:where(.swal2-container) label:where(.swal2-checkbox) {
+            margin: 1em 2em 3px
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input),
+        div:where(.swal2-container) input:where(.swal2-file),
+        div:where(.swal2-container) textarea:where(.swal2-textarea) {
+            box-sizing: border-box;
+            width: auto;
+            transition: var(--swal2-input-transition);
+            border: var(--swal2-input-border);
+            border-radius: var(--swal2-input-border-radius);
+            background: var(--swal2-input-background);
+            box-shadow: var(--swal2-input-box-shadow);
+            color: inherit;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input).swal2-inputerror,
+        div:where(.swal2-container) input:where(.swal2-file).swal2-inputerror,
+        div:where(.swal2-container) textarea:where(.swal2-textarea).swal2-inputerror {
+            border-color: #f27474 !important;
+            box-shadow: 0 0 2px #f27474 !important
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input):hover,
+        div:where(.swal2-container) input:where(.swal2-file):hover,
+        div:where(.swal2-container) textarea:where(.swal2-textarea):hover {
+            box-shadow: var(--swal2-input-hover-box-shadow)
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input):focus,
+        div:where(.swal2-container) input:where(.swal2-file):focus,
+        div:where(.swal2-container) textarea:where(.swal2-textarea):focus {
+            border: var(--swal2-input-focus-border);
+            outline: none;
+            box-shadow: var(--swal2-input-focus-box-shadow)
+        }
+
+        div:where(.swal2-container) input:where(.swal2-input)::placeholder,
+        div:where(.swal2-container) input:where(.swal2-file)::placeholder,
+        div:where(.swal2-container) textarea:where(.swal2-textarea)::placeholder {
+            color: #ccc
+        }
+
+        div:where(.swal2-container) .swal2-range {
+            margin: 1em 2em 3px;
+            background: var(--swal2-background)
+        }
+
+        div:where(.swal2-container) .swal2-range input {
+            width: 80%
+        }
+
+        div:where(.swal2-container) .swal2-range output {
+            width: 20%;
+            color: inherit;
+            font-weight: 600;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-range input,
+        div:where(.swal2-container) .swal2-range output {
+            height: 2.625em;
+            padding: 0;
+            font-size: 1.125em;
+            line-height: 2.625em
+        }
+
+        div:where(.swal2-container) .swal2-input {
+            height: 2.625em;
+            padding: 0 .75em
+        }
+
+        div:where(.swal2-container) .swal2-file {
+            width: 75%;
+            margin-right: auto;
+            margin-left: auto;
+            background: var(--swal2-input-background);
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-textarea {
+            height: 6.75em;
+            padding: .75em
+        }
+
+        div:where(.swal2-container) .swal2-select {
+            min-width: 50%;
+            max-width: 100%;
+            padding: .375em .625em;
+            background: var(--swal2-input-background);
+            color: inherit;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-radio,
+        div:where(.swal2-container) .swal2-checkbox {
+            align-items: center;
+            justify-content: center;
+            background: var(--swal2-background);
+            color: inherit
+        }
+
+        div:where(.swal2-container) .swal2-radio label,
+        div:where(.swal2-container) .swal2-checkbox label {
+            margin: 0 .6em;
+            font-size: 1.125em
+        }
+
+        div:where(.swal2-container) .swal2-radio input,
+        div:where(.swal2-container) .swal2-checkbox input {
+            flex-shrink: 0;
+            margin: 0 .4em
+        }
+
+        div:where(.swal2-container) label:where(.swal2-input-label) {
+            display: flex;
+            justify-content: center;
+            margin: 1em auto 0
+        }
+
+        div:where(.swal2-container) div:where(.swal2-validation-message) {
+            align-items: center;
+            justify-content: center;
+            margin: 1em 0 0;
+            padding: .625em;
+            overflow: hidden;
+            background: var(--swal2-validation-message-background);
+            color: var(--swal2-validation-message-color);
+            font-size: 1em;
+            font-weight: 300
+        }
+
+        div:where(.swal2-container) div:where(.swal2-validation-message)::before {
+            content: "!";
+            display: inline-block;
+            width: 1.5em;
+            min-width: 1.5em;
+            height: 1.5em;
+            margin: 0 .625em;
+            border-radius: 50%;
+            background-color: #f27474;
+            color: #fff;
+            font-weight: 600;
+            line-height: 1.5em;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps {
+            flex-wrap: wrap;
+            align-items: center;
+            max-width: 100%;
+            margin: 1.25em auto;
+            padding: 0;
+            background: rgba(0, 0, 0, 0);
+            font-weight: 600
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps li {
+            display: inline-block;
+            position: relative
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step {
+            z-index: 20;
+            flex-shrink: 0;
+            width: 2em;
+            height: 2em;
+            border-radius: 2em;
+            background: #2778c4;
+            color: #fff;
+            line-height: 2em;
+            text-align: center
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step {
+            background: #2778c4
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step {
+            background: var(--swal2-progress-step-background);
+            color: #fff
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step.swal2-active-progress-step~.swal2-progress-step-line {
+            background: var(--swal2-progress-step-background)
+        }
+
+        div:where(.swal2-container) .swal2-progress-steps .swal2-progress-step-line {
+            z-index: 10;
+            flex-shrink: 0;
+            width: 2.5em;
+            height: .4em;
+            margin: 0 -1px;
+            background: #2778c4
+        }
+
+        div:where(.swal2-icon) {
+            position: relative;
+            box-sizing: content-box;
+            justify-content: center;
+            width: 5em;
+            height: 5em;
+            margin: 2.5em auto .6em;
+            zoom: var(--swal2-icon-zoom);
+            border: .25em solid rgba(0, 0, 0, 0);
+            border-radius: 50%;
+            border-color: #000;
+            font-family: inherit;
+            line-height: 5em;
+            cursor: default;
+            user-select: none
+        }
+
+        div:where(.swal2-icon) .swal2-icon-content {
+            display: flex;
+            align-items: center;
+            font-size: 3.75em
+        }
+
+        div:where(.swal2-icon).swal2-error {
+            border-color: #f27474;
+            color: #f27474
+        }
+
+        div:where(.swal2-icon).swal2-error .swal2-x-mark {
+            position: relative;
+            flex-grow: 1
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line] {
+            display: block;
+            position: absolute;
+            top: 2.3125em;
+            width: 2.9375em;
+            height: .3125em;
+            border-radius: .125em;
+            background-color: #f27474
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=left] {
+            left: 1.0625em;
+            transform: rotate(45deg)
+        }
+
+        div:where(.swal2-icon).swal2-error [class^=swal2-x-mark-line][class$=right] {
+            right: 1em;
+            transform: rotate(-45deg)
+        }
+
+        div:where(.swal2-icon).swal2-error.swal2-icon-show {
+            animation: swal2-animate-error-icon .5s
+        }
+
+        div:where(.swal2-icon).swal2-error.swal2-icon-show .swal2-x-mark {
+            animation: swal2-animate-error-x-mark .5s
+        }
+
+        div:where(.swal2-icon).swal2-warning {
+            border-color: #f8bb86;
+            color: #f8bb86
+        }
+
+        div:where(.swal2-icon).swal2-warning.swal2-icon-show {
+            animation: swal2-animate-error-icon .5s
+        }
+
+        div:where(.swal2-icon).swal2-warning.swal2-icon-show .swal2-icon-content {
+            animation: swal2-animate-i-mark .5s
+        }
+
+        div:where(.swal2-icon).swal2-info {
+            border-color: #3fc3ee;
+            color: #3fc3ee
+        }
+
+        div:where(.swal2-icon).swal2-info.swal2-icon-show {
+            animation: swal2-animate-error-icon .5s
+        }
+
+        div:where(.swal2-icon).swal2-info.swal2-icon-show .swal2-icon-content {
+            animation: swal2-animate-i-mark .8s
+        }
+
+        div:where(.swal2-icon).swal2-question {
+            border-color: #87adbd;
+            color: #87adbd
+        }
+
+        div:where(.swal2-icon).swal2-question.swal2-icon-show {
+            animation: swal2-animate-error-icon .5s
+        }
+
+        div:where(.swal2-icon).swal2-question.swal2-icon-show .swal2-icon-content {
+            animation: swal2-animate-question-mark .8s
+        }
+
+        div:where(.swal2-icon).swal2-success {
+            border-color: #a5dc86;
+            color: #a5dc86
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line] {
+            position: absolute;
+            width: 3.75em;
+            height: 7.5em;
+            border-radius: 50%
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=left] {
+            top: -0.4375em;
+            left: -2.0635em;
+            transform: rotate(-45deg);
+            transform-origin: 3.75em 3.75em;
+            border-radius: 7.5em 0 0 7.5em
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-circular-line][class$=right] {
+            top: -0.6875em;
+            left: 1.875em;
+            transform: rotate(-45deg);
+            transform-origin: 0 3.75em;
+            border-radius: 0 7.5em 7.5em 0
+        }
+
+        div:where(.swal2-icon).swal2-success .swal2-success-ring {
+            position: absolute;
+            z-index: 2;
+            top: -0.25em;
+            left: -0.25em;
+            box-sizing: content-box;
+            width: 100%;
+            height: 100%;
+            border: .25em solid rgba(165, 220, 134, .3);
+            border-radius: 50%
+        }
+
+        div:where(.swal2-icon).swal2-success .swal2-success-fix {
+            position: absolute;
+            z-index: 1;
+            top: .5em;
+            left: 1.625em;
+            width: .4375em;
+            height: 5.625em;
+            transform: rotate(-45deg)
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line] {
+            display: block;
+            position: absolute;
+            z-index: 2;
+            height: .3125em;
+            border-radius: .125em;
+            background-color: #a5dc86
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=tip] {
+            top: 2.875em;
+            left: .8125em;
+            width: 1.5625em;
+            transform: rotate(45deg)
+        }
+
+        div:where(.swal2-icon).swal2-success [class^=swal2-success-line][class$=long] {
+            top: 2.375em;
+            right: .5em;
+            width: 2.9375em;
+            transform: rotate(-45deg)
+        }
+
+        div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-tip {
+            animation: swal2-animate-success-line-tip .75s
+        }
+
+        div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-line-long {
+            animation: swal2-animate-success-line-long .75s
+        }
+
+        div:where(.swal2-icon).swal2-success.swal2-icon-show .swal2-success-circular-line-right {
+            animation: swal2-rotate-success-circular-line 4.25s ease-in
+        }
+
+        [class^=swal2] {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
+        }
+
+        .swal2-show {
+            animation: var(--swal2-show-animation)
+        }
+
+        .swal2-hide {
+            animation: var(--swal2-hide-animation)
+        }
+
+        .swal2-noanimation {
+            transition: none
+        }
+
+        .swal2-scrollbar-measure {
+            position: absolute;
+            top: -9999px;
+            width: 50px;
+            height: 50px;
+            overflow: scroll
+        }
+
+        .swal2-rtl .swal2-close {
+            margin-right: initial;
+            margin-left: 0
+        }
+
+        .swal2-rtl .swal2-timer-progress-bar {
+            right: 0;
+            left: auto
+        }
+
+        .swal2-toast {
+            box-sizing: border-box;
+            grid-column: 1/4 !important;
+            grid-row: 1/4 !important;
+            grid-template-columns: min-content auto min-content;
+            padding: 1em;
+            overflow-y: hidden;
+            border: var(--swal2-toast-border);
+            background: var(--swal2-background);
+            box-shadow: var(--swal2-toast-box-shadow);
+            pointer-events: auto
+        }
+
+        .swal2-toast>* {
+            grid-column: 2
+        }
+
+        .swal2-toast h2:where(.swal2-title) {
+            margin: .5em 1em;
+            padding: 0;
+            font-size: 1em;
+            text-align: initial
+        }
+
+        .swal2-toast .swal2-loading {
+            justify-content: center
+        }
+
+        .swal2-toast input:where(.swal2-input) {
+            height: 2em;
+            margin: .5em;
+            font-size: 1em
+        }
+
+        .swal2-toast .swal2-validation-message {
+            font-size: 1em
+        }
+
+        .swal2-toast div:where(.swal2-footer) {
+            margin: .5em 0 0;
+            padding: .5em 0 0;
+            font-size: .8em
+        }
+
+        .swal2-toast button:where(.swal2-close) {
+            grid-column: 3/3;
+            grid-row: 1/99;
+            align-self: center;
+            width: .8em;
+            height: .8em;
+            margin: 0;
+            font-size: 2em
+        }
+
+        .swal2-toast div:where(.swal2-html-container) {
+            margin: .5em 1em;
+            padding: 0;
+            overflow: initial;
+            font-size: 1em;
+            text-align: initial
+        }
+
+        .swal2-toast div:where(.swal2-html-container):empty {
+            padding: 0
+        }
+
+        .swal2-toast .swal2-loader {
+            grid-column: 1;
+            grid-row: 1/99;
+            align-self: center;
+            width: 2em;
+            height: 2em;
+            margin: .25em
+        }
+
+        .swal2-toast .swal2-icon {
+            grid-column: 1;
+            grid-row: 1/99;
+            align-self: center;
+            width: 2em;
+            min-width: 2em;
+            height: 2em;
+            margin: 0 .5em 0 0
+        }
+
+        .swal2-toast .swal2-icon .swal2-icon-content {
+            display: flex;
+            align-items: center;
+            font-size: 1.8em;
+            font-weight: bold
+        }
+
+        .swal2-toast .swal2-icon.swal2-success .swal2-success-ring {
+            width: 2em;
+            height: 2em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line] {
+            top: .875em;
+            width: 1.375em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=left] {
+            left: .3125em
+        }
+
+        .swal2-toast .swal2-icon.swal2-error [class^=swal2-x-mark-line][class$=right] {
+            right: .3125em
+        }
+
+        .swal2-toast div:where(.swal2-actions) {
+            justify-content: flex-start;
+            height: auto;
+            margin: 0;
+            margin-top: .5em;
+            padding: 0 .5em
+        }
+
+        .swal2-toast button:where(.swal2-styled) {
+            margin: .25em .5em;
+            padding: .4em .6em;
+            font-size: 1em
+        }
+
+        .swal2-toast .swal2-success {
+            border-color: #a5dc86
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line] {
+            position: absolute;
+            width: 1.6em;
+            height: 3em;
+            border-radius: 50%
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=left] {
+            top: -0.8em;
+            left: -0.5em;
+            transform: rotate(-45deg);
+            transform-origin: 2em 2em;
+            border-radius: 4em 0 0 4em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-circular-line][class$=right] {
+            top: -0.25em;
+            left: .9375em;
+            transform-origin: 0 1.5em;
+            border-radius: 0 4em 4em 0
+        }
+
+        .swal2-toast .swal2-success .swal2-success-ring {
+            width: 2em;
+            height: 2em
+        }
+
+        .swal2-toast .swal2-success .swal2-success-fix {
+            top: 0;
+            left: .4375em;
+            width: .4375em;
+            height: 2.6875em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line] {
+            height: .3125em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line][class$=tip] {
+            top: 1.125em;
+            left: .1875em;
+            width: .75em
+        }
+
+        .swal2-toast .swal2-success [class^=swal2-success-line][class$=long] {
+            top: .9375em;
+            right: .1875em;
+            width: 1.375em
+        }
+
+        .swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-tip {
+            animation: swal2-toast-animate-success-line-tip .75s
+        }
+
+        .swal2-toast .swal2-success.swal2-icon-show .swal2-success-line-long {
+            animation: swal2-toast-animate-success-line-long .75s
+        }
+
+        .swal2-toast.swal2-show {
+            animation: var(--swal2-toast-show-animation)
+        }
+
+        .swal2-toast.swal2-hide {
+            animation: var(--swal2-toast-hide-animation)
+        }
+
+        @keyframes swal2-show {
+            0% {
+                transform: translate3d(0, -50px, 0) scale(0.9);
+                opacity: 0
+            }
+
+            100% {
+                transform: translate3d(0, 0, 0) scale(1);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-hide {
+            0% {
+                transform: translate3d(0, 0, 0) scale(1);
+                opacity: 1
+            }
+
+            100% {
+                transform: translate3d(0, -50px, 0) scale(0.9);
+                opacity: 0
+            }
+        }
+
+        @keyframes swal2-animate-success-line-tip {
+            0% {
+                top: 1.1875em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: 1.0625em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: 2.1875em;
+                left: -0.375em;
+                width: 3.125em
+            }
+
+            84% {
+                top: 3em;
+                left: 1.3125em;
+                width: 1.0625em
+            }
+
+            100% {
+                top: 2.8125em;
+                left: .8125em;
+                width: 1.5625em
+            }
+        }
+
+        @keyframes swal2-animate-success-line-long {
+            0% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            65% {
+                top: 3.375em;
+                right: 2.875em;
+                width: 0
+            }
+
+            84% {
+                top: 2.1875em;
+                right: 0;
+                width: 3.4375em
+            }
+
+            100% {
+                top: 2.375em;
+                right: .5em;
+                width: 2.9375em
+            }
+        }
+
+        @keyframes swal2-rotate-success-circular-line {
+            0% {
+                transform: rotate(-45deg)
+            }
+
+            5% {
+                transform: rotate(-45deg)
+            }
+
+            12% {
+                transform: rotate(-405deg)
+            }
+
+            100% {
+                transform: rotate(-405deg)
+            }
+        }
+
+        @keyframes swal2-animate-error-x-mark {
+            0% {
+                margin-top: 1.625em;
+                transform: scale(0.4);
+                opacity: 0
+            }
+
+            50% {
+                margin-top: 1.625em;
+                transform: scale(0.4);
+                opacity: 0
+            }
+
+            80% {
+                margin-top: -0.375em;
+                transform: scale(1.15)
+            }
+
+            100% {
+                margin-top: 0;
+                transform: scale(1);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-animate-error-icon {
+            0% {
+                transform: rotateX(100deg);
+                opacity: 0
+            }
+
+            100% {
+                transform: rotateX(0deg);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-rotate-loading {
+            0% {
+                transform: rotate(0deg)
+            }
+
+            100% {
+                transform: rotate(360deg)
+            }
+        }
+
+        @keyframes swal2-animate-question-mark {
+            0% {
+                transform: rotateY(-360deg)
+            }
+
+            100% {
+                transform: rotateY(0)
+            }
+        }
+
+        @keyframes swal2-animate-i-mark {
+            0% {
+                transform: rotateZ(45deg);
+                opacity: 0
+            }
+
+            25% {
+                transform: rotateZ(-25deg);
+                opacity: .4
+            }
+
+            50% {
+                transform: rotateZ(15deg);
+                opacity: .8
+            }
+
+            75% {
+                transform: rotateZ(-5deg);
+                opacity: 1
+            }
+
+            100% {
+                transform: rotateX(0);
+                opacity: 1
+            }
+        }
+
+        @keyframes swal2-toast-show {
+            0% {
+                transform: translateY(-0.625em) rotateZ(2deg)
+            }
+
+            33% {
+                transform: translateY(0) rotateZ(-2deg)
+            }
+
+            66% {
+                transform: translateY(0.3125em) rotateZ(2deg)
+            }
+
+            100% {
+                transform: translateY(0) rotateZ(0deg)
+            }
+        }
+
+        @keyframes swal2-toast-hide {
+            100% {
+                transform: rotateZ(1deg);
+                opacity: 0
+            }
+        }
+
+        @keyframes swal2-toast-animate-success-line-tip {
+            0% {
+                top: .5625em;
+                left: .0625em;
+                width: 0
+            }
+
+            54% {
+                top: .125em;
+                left: .125em;
+                width: 0
+            }
+
+            70% {
+                top: .625em;
+                left: -0.25em;
+                width: 1.625em
+            }
+
+            84% {
+                top: 1.0625em;
+                left: .75em;
+                width: .5em
+            }
+
+            100% {
+                top: 1.125em;
+                left: .1875em;
+                width: .75em
+            }
+        }
+
+        @keyframes swal2-toast-animate-success-line-long {
+            0% {
+                top: 1.625em;
+                right: 1.375em;
+                width: 0
+            }
+
+            65% {
+                top: 1.25em;
+                right: .9375em;
+                width: 0
+            }
+
+            84% {
+                top: .9375em;
+                right: 0;
+                width: 1.125em
+            }
+
+            100% {
+                top: .9375em;
+                right: .1875em;
+                width: 1.375em
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 保留原本 Navbar 導覽列架構；僅保留可實際導向的頁面，不新增未實作的建檔功能 -->
+    <nav class="navbar navbar-expand-lg navbar-dark erp-navbar">
+        <div class="container-fluid px-lg-4">
+            <a class="navbar-brand erp-brand" href="#overview" aria-label="NEXUS ERP 首頁">
+                <span class="brand-mark">N</span>
+                <span>NEXUS ERP<span class="brand-subtitle">ENTERPRISE RESOURCE PLATFORM</span></span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#erpNavbar"
+                aria-controls="erpNavbar" aria-expanded="false" aria-label="切換導覽選單">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="erpNavbar">
+                <ul class="navbar-nav ms-lg-5 me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#overview">總覽</a></li>
+                    <li class="nav-item"><a class="nav-link" href="ERP-Product-Create.html">產品建檔</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#product-list" aria-current="page">產品與庫存</a>
+                    </li>
+                    <li class="nav-item"><a class="nav-link" href="#system-note">系統說明</a></li>
+                </ul>
+                <div class="navbar-user">
+                    <span class="user-avatar">管</span>
+                    <span>管理員</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid page-shell" id="overview">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#overview">首頁</a></li>
+                <li class="breadcrumb-item"><a href="#product-list">庫存管理</a></li>
+                <li class="breadcrumb-item active" aria-current="page">產品列表</li>
+            </ol>
+        </nav>
+
+        <section class="page-heading">
+            <div>
+                <h1 class="page-title">產品與庫存管理</h1>
+                <p class="page-description">集中檢視產品基本資料與即時庫存狀態，協助掌握庫存水位及產品異動。</p>
+            </div>
+            <div class="page-context">管理中心　/　產品管理<br>PRODUCT &amp; INVENTORY</div>
+        </section>
+
+        <section class="summary-grid" aria-label="庫存摘要">
+            <article class="summary-card" style="--card-accent:#4778c7;--icon-bg:#edf3fc">
+                <div class="summary-label">產品總數</div>
+                <div class="summary-value" id="totalProducts">10</div>
+                <div class="summary-note">目前資料庫產品筆數</div><span class="summary-icon">P</span>
+            </article>
+            <article class="summary-card" style="--card-accent:#16865b;--icon-bg:#e8f6ef">
+                <div class="summary-label">庫存充足</div>
+                <div class="summary-value" id="goodStock">6</div>
+                <div class="summary-note">庫存數量大於 10</div><span class="summary-icon">✓</span>
+            </article>
+            <article class="summary-card" style="--card-accent:#c47b12;--icon-bg:#fff3df">
+                <div class="summary-label">低庫存</div>
+                <div class="summary-value" id="lowStock">2</div>
+                <div class="summary-note">庫存數量介於 1 至 10</div><span class="summary-icon">!</span>
+            </article>
+            <article class="summary-card" style="--card-accent:#cf3f4f;--icon-bg:#fdebed">
+                <div class="summary-label">缺貨產品</div>
+                <div class="summary-value" id="outStock">0</div>
+                <div class="summary-note">庫存數量為 0</div><span class="summary-icon">×</span>
+            </article>
+        </section>
+
+        <section class="content-card" id="product-list">
+            <div class="content-card-header">
+                <div>
+                    <h2 class="section-title">產品庫存列表</h2>
+                    <p class="section-subtitle">檢視產品名稱、分類、售價及庫存狀態；可依權限執行既有的更新與刪除操作。</p>
+                </div>
+                <div class="record-count">資料來源：產品管理 API　<span class="mx-1">|</span>　共 <strong
+                        id="recordCount">10</strong> 筆</div>
+            </div>
+
+            <div class="table-wrap">
+                <div class="table-responsive">
+                    <table class="table erp-table" aria-label="產品庫存列表">
+                        <thead>
+                            <tr>
+                                <th style="width:20%">產品資訊</th>
+                                <th style="width:12%">產品價格</th>
+                                <th style="width:17%">庫存數量</th>
+                                <th style="width:13%">庫存狀態</th>
+                                <th style="width:12%">產品分類</th>
+                                <th style="width:15%">備註</th>
+                                <th style="width:11%">操作</th>
+                            </tr>
+                        </thead>
+                        <tbody id="mytbody">
+                            <tr>
+                                <td data-th="產品資訊">
+                                    <div class="product-name-wrap"><span class="product-name">未命名產品</span><span
+                                            class="product-id">產品編號：1</span></div>
+                                </td>
+                                <td data-th="產品價格"><span class="price-text">$ 200</span></td>
+                                <td data-th="庫存數量" class="stock-cell"><span class="stock-number">—</span><span
+                                        class="stock-unit">件</span></td>
+                                <td data-th="庫存狀態"><span class="stock-badge stock-good">庫存充足</span></td>
+                                <td data-th="產品分類"><span class="category-badge">未分類</span></td>
+                                <td data-th="備註"><span class="remark-text" title="—">—</span></td>
+                                <td data-th="操作">
+                                    <div class="d-flex gap-2 justify-content-end justify-content-md-start"><button
+                                            type="button" class="btn btn-action btn-edit btn-update"
+                                            data-bs-toggle="modal" data-bs-target="#updateModal"
+                                            data-id="1">更新</button><button type="button"
+                                            class="btn btn-action btn-remove btn-delete" data-id="1">刪除</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="產品資訊">
+                                    <div class="product-name-wrap"><span class="product-name">鮮奶吐司</span><span
+                                            class="product-id">產品編號：2</span></div>
+                                </td>
+                                <td data-th="產品價格"><span class="price-text">$ 20</span></td>
+                                <td data-th="庫存數量" class="stock-cell"><span class="stock-number">52</span><span
+                                        class="stock-unit">件</span></td>
+                                <td data-th="庫存狀態"><span class="stock-badge stock-good">庫存充足</span></td>
+                                <td data-th="產品分類"><span class="category-badge">烘焙</span></td>
+                                <td data-th="備註"><span class="remark-text" title="效期較短">效期較短</span></td>
+                                <td data-th="操作">
+                                    <div class="d-flex gap-2 justify-content-end justify-content-md-start"><button
+                                            type="button" class="btn btn-action btn-edit btn-update"
+                                            data-bs-toggle="modal" data-bs-target="#updateModal"
+                                            data-id="2">更新</button><button type="button"
+                                            class="btn btn-action btn-remove btn-delete" data-id="2">刪除</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="產品資訊">
+                                    <div class="product-name-wrap"><span class="product-name">御飯糰</span><span
+                                            class="product-id">產品編號：3</span></div>
+                                </td>
+                                <td data-th="產品價格"><span class="price-text">$ 45</span></td>
+                                <td data-th="庫存數量" class="stock-cell"><span class="stock-number">20</span><span
+                                        class="stock-unit">件</span></td>
+                                <td data-th="庫存狀態"><span class="stock-badge stock-good">庫存充足</span></td>
+                                <td data-th="產品分類"><span class="category-badge">鮮食</span></td>
+                                <td data-th="備註"><span class="remark-text" title="即食商品">即食商品</span></td>
+                                <td data-th="操作">
+                                    <div class="d-flex gap-2 justify-content-end justify-content-md-start"><button
+                                            type="button" class="btn btn-action btn-edit btn-update"
+                                            data-bs-toggle="modal" data-bs-target="#updateModal"
+                                            data-id="3">更新</button><button type="button"
+                                            class="btn btn-action btn-remove btn-delete" data-id="3">刪除</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="產品資訊">
+                                    <div class="product-name-wrap"><span class="product-name">洋芋片</span><span
+                                            class="product-id">產品編號：4</span></div>
+                                </td>
+                                <td data-th="產品價格"><span class="price-text">$ 60</span></td>
+                                <td data-th="庫存數量" class="stock-cell"><span class="stock-number">50</span><span
+                                        class="stock-unit">件</span></td>
+                                <td data-th="庫存狀態"><span class="stock-badge stock-good">庫存充足</span></td>
+                                <td data-th="產品分類"><span class="category-badge">零食</span></td>
+                                <td data-th="備註"><span class="remark-text" title="易碎品請小心運送">易碎品請小心運送</span></td>
+                                <td data-th="操作">
+                                    <div class="d-flex gap-2 justify-content-end justify-content-md-start"><button
+                                            type="button" class="btn btn-action btn-edit btn-update"
+                                            data-bs-toggle="modal" data-bs-target="#updateModal"
+                                            data-id="4">更新</button><button type="button"
+                                            class="btn btn-action btn-remove btn-delete" data-id="4">刪除</button></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td data-th="產品資訊">
+                                    <div class="product-name-wrap"><span class="product-name">重乳酪蛋糕</span><span
+                                            class="product-id">產品編號：5</span></div>
+                                </td>
+                                <td data-th="產品價格"><span class="price-text">$ 250</span></td>
+                                <td data-th="庫存數量" class="stock-cell"><span class="stock-number">5</span><span
+                                        class="stock-unit">件</span></td>
+                                <td data-th="庫存狀態"><span class="stock-badge stock-low">低庫存</span></td>
+                                <td data-th="產品分類"><span class="category-badge">甜點</span></td>
+                                <td data-th="備註"><span class="remark-text" title="需冷凍">需冷凍</span></td>
+                                <td data-th="操作">
+                                    <div class="d-flex gap-2 justify-content-end justify-content-md-start"><button
+                                            type="button" class="btn btn-action btn-edit btn-update"
+                                            data-bs-toggle="modal" data-bs-target="#updateModal"
+                                            data-id="5">更新</button><button type="button"
+                                            class="btn btn-action btn-remove btn-delete" data-id="5">刪除</button></div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="table-footer">
+                <div class="table-hint" id="tableHint">顯示第 1–5 筆，共 10 筆產品資料</div>
+                <nav aria-label="產品列表分頁">
+                    <ul class="pagination" id="pageList">
+                        <li class="page-item disabled"><a class="page-link" href="#product-list" aria-label="上一頁"
+                                tabindex="-1">上一頁</a></li>
+                        <li class="page-item active"><a class="page-link" href="#product-list" data-page="1"
+                                aria-current="page">1</a></li>
+                        <li class="page-item "><a class="page-link" href="#product-list" data-page="2">2</a></li>
+                        <li class="page-item "><a class="page-link" href="#product-list" data-page="2"
+                                aria-label="下一頁">下一頁</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="status-legend" aria-label="庫存狀態說明">
+                <span class="legend-item"><i class="legend-dot" style="background:#16865b"></i>庫存充足：大於 10</span>
+                <span class="legend-item"><i class="legend-dot" style="background:#c47b12"></i>低庫存：1–10</span>
+                <span class="legend-item"><i class="legend-dot" style="background:#cf3f4f"></i>缺貨：0</span>
+            </div>
+        </section>
+
+        <footer class="system-footer" id="system-note">NEXUS ERP　© 2026 Product &amp; Inventory Management　|　企業資源管理系統
+        </footer>
+    </main>
+
+    <!-- 沿用原本更新 Modal 與欄位 ID，保留既有 PATCH 操作 -->
+    <div class="modal fade" id="updateModal" tabindex="-1" aria-labelledby="updateModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div>
+                        <h5 class="modal-title" id="updateModalLabel">更新產品資料</h5>
+                        <div class="text-secondary small mt-1">修改產品價格與現有庫存數量</div>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="關閉"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="pname" class="form-label">產品名稱</label>
+                        <input type="text" class="form-control" id="pname" readonly="">
+                    </div>
+                    <div class="row g-3">
+                        <div class="col-sm-6">
+                            <label for="price" class="form-label">產品價格</label>
+                            <div class="input-group"><span class="input-group-text">$</span><input type="number"
+                                    class="form-control" id="price" min="1" step="1" required=""></div>
+                            <div class="valid-feedback">價格格式正確</div>
+                            <div class="invalid-feedback">請輸入大於 0 的有效價格</div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="num" class="form-label">庫存數量</label>
+                            <input type="range" class="form-range mt-2" id="num" min="0" max="100" step="1">
+                            <div class="d-flex justify-content-between text-secondary small"><span>0</span><strong><span
+                                        id="num-text">0</span> 件</strong><span>100</span></div>
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="category" class="form-label">產品分類</label>
+                            <input type="text" class="form-control" id="category" readonly="">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="remark" class="form-label">產品備註</label>
+                            <input type="text" class="form-control" id="remark" readonly="">
+                        </div>
+                    </div>
+                    <div class="alert alert-light border mt-4 mb-0 py-2 small text-secondary">
+                        目前沿用原始系統設定：產品名稱、分類及備註為唯讀，僅更新價格與庫存數量。</div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light btn-sm px-3" data-bs-dismiss="modal">取消</button>
+                    <button type="button" class="btn btn-primary btn-sm px-4" id="updateModal-btn-update">確認更新</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        // API 位址沿用原始專案；後端仍須在本機 3000 Port 執行。
+        const API_BASE = "http://localhost:3000";
+        const pageSize = 5;
+        let page = 1;
+        let productData = [];
+        let flag_price = true;
+        let uid = "";
+
+        $(function () {
+            loadProducts();
+
+            // 分頁：使用委派事件，並統一讀取 data-page，修正原始上一頁屬性名稱錯誤。
+            $("#pageList").on("click", ".page-link[data-page]", function (event) {
+                event.preventDefault();
+                page = Number($(this).data("page"));
+                showdata(productData);
+            });
+
+            // 取得單筆產品資料並開啟原有更新 Modal。
+            $("#mytbody").on("click", ".btn-update", function () {
+                const id = $(this).data("id");
+                uid = id;
+                $.ajax({
+                    type: "GET",
+                    url: API_BASE + "/product/" + encodeURIComponent(id),
+                    dataType: "json",
+                    success: showUpdateData,
+                    error: function () {
+                        Swal.fire({ title: "讀取失敗", text: "無法取得產品資料，請確認後端 API。", icon: "error" });
+                    }
+                });
+            });
+
+            // 庫存滑桿即時顯示數量。
+            $("#num").on("input", function () {
+                $("#num-text").text($(this).val());
+            });
+
+            // 價格驗證：改為大於 0，不再限制 100，避免與原始產品 250 元資料衝突。
+            $("#price").on("input change", function () {
+                const price = Number($(this).val());
+                flag_price = Number.isFinite(price) && price > 0;
+                $(this).toggleClass("is-valid", flag_price).toggleClass("is-invalid", !flag_price);
+            });
+
+            // PATCH：只送出原始系統允許修改的 price 與 num。
+            $("#updateModal-btn-update").on("click", function () {
+                const price = Number($("#price").val());
+                const num = Number($("#num").val());
+                flag_price = Number.isFinite(price) && price > 0;
+                if (!flag_price || !Number.isFinite(num) || num < 0) {
+                    $("#price").toggleClass("is-invalid", !flag_price);
+                    Swal.fire({ title: "更新失敗", text: "請確認價格大於 0，且庫存數量不可小於 0。", icon: "error" });
+                    return;
+                }
+
+                $.ajax({
+                    type: "PATCH",
+                    url: API_BASE + "/product/" + encodeURIComponent(uid),
+                    dataType: "json",
+                    data: JSON.stringify({ price: price, num: num }),
+                    contentType: "application/json",
+                    success: function () {
+                        bootstrap.Modal.getOrCreateInstance(document.getElementById("updateModal")).hide();
+                        Swal.fire({ title: "更新成功", text: "產品資料已更新。", icon: "success" });
+                        loadProducts();
+                    },
+                    error: function () {
+                        Swal.fire({ title: "更新失敗", text: "無法更新產品資料，請確認後端 API。", icon: "error" });
+                    }
+                });
+            });
+
+            // DELETE：保留原有刪除確認及 API 操作。
+            $("#mytbody").on("click", ".btn-delete", function () {
+                const did = $(this).data("id");
+                Swal.fire({
+                    title: "確認刪除產品？",
+                    text: "刪除後需由後端資料來源重新建立，請確認操作。",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "確認刪除",
+                    cancelButtonText: "取消",
+                    confirmButtonColor: "#bd4c58"
+                }).then(function (result) {
+                    if (!result.isConfirmed) return;
+                    $.ajax({
+                        type: "DELETE",
+                        url: API_BASE + "/product/" + encodeURIComponent(did),
+                        dataType: "json",
+                        success: function () {
+                            Swal.fire({ title: "刪除成功", text: "產品資料已刪除。", icon: "success" });
+                            loadProducts();
+                        },
+                        error: function () {
+                            Swal.fire({ title: "刪除失敗", text: "無法刪除產品資料，請確認後端 API。", icon: "error" });
+                        }
+                    });
+                });
+            });
+        });
+
+        function loadProducts() {
+            $.ajax({
+                type: "GET",
+                url: API_BASE + "/product",
+                dataType: "json",
+                success: function (data) {
+                    if (!Array.isArray(data)) {
+                        showApiError("後端回傳格式不是產品陣列，請檢查 GET /product 的資料格式。");
+                        return;
+                    }
+                    const totalPage = Math.ceil(data.length / pageSize);
+                    if (page > totalPage) page = Math.max(1, totalPage);
+                    showdata(data);
+                },
+                error: function () {
+                    showApiError("無法連接 http://localhost:3000/product。請先啟動後端 API，再重新整理頁面。");
+                }
+            });
+        }
+
+        function showApiError(message) {
+            productData = [];
+            updateSummary([]);
+            $("#mytbody").html(`<tr><td colspan="7" class="empty-state">${escapeHtml(message)}</td></tr>`);
+            $("#pageList").empty();
+            $("#recordCount").text("0");
+            $("#tableHint").text("目前無法顯示產品資料");
+            Swal.fire({ title: "產品資料載入失敗", text: message, icon: "error" });
+        }
+
+        function getStockStatus(quantity) {
+            const stock = Number(quantity);
+            if (stock <= 0) return { label: "缺貨", className: "stock-out" };
+            if (stock <= 10) return { label: "低庫存", className: "stock-low" };
+            return { label: "庫存充足", className: "stock-good" };
+        }
+
+        function updateSummary(data) {
+            const good = data.filter(item => Number(item.num) > 10).length;
+            const low = data.filter(item => Number(item.num) > 0 && Number(item.num) <= 10).length;
+            const out = data.filter(item => Number(item.num) <= 0).length;
+            $("#totalProducts").text(data.length);
+            $("#goodStock").text(good);
+            $("#lowStock").text(low);
+            $("#outStock").text(out);
+            $("#recordCount").text(data.length);
+        }
+
+        function showdata(data) {
+            productData = Array.isArray(data) ? data : [];
+            updateSummary(productData);
+            const totalPage = Math.ceil(productData.length / pageSize);
+            if (totalPage === 0) page = 1;
+            else page = Math.min(Math.max(1, page), totalPage);
+
+            const pageData = pagination(productData, pageSize, page);
+            $("#mytbody").empty();
+
+            if (pageData.length === 0) {
+                $("#mytbody").html('<tr><td colspan="7" class="empty-state">目前沒有產品資料</td></tr>');
+            } else {
+                pageData.forEach(function (item) {
+                    const status = getStockStatus(item.num);
+                    const productId = item.id == null ? "" : String(item.id);
+                    const name = item.name == null ? "未命名產品" : String(item.name);
+                    const category = item.category == null ? "未分類" : String(item.category);
+                    const remark = item.remark == null || item.remark === "" ? "—" : String(item.remark);
+                    const row = `
+            <tr>
+              <td data-th="產品資訊"><div class="product-name-wrap"><span class="product-name">${escapeHtml(name)}</span><span class="product-id">產品編號：${escapeHtml(productId || "—")}</span></div></td>
+              <td data-th="產品價格"><span class="price-text">$ ${formatNumber(item.price)}</span></td>
+              <td data-th="庫存數量" class="stock-cell"><span class="stock-number">${formatNumber(item.num)}</span><span class="stock-unit">件</span></td>
+              <td data-th="庫存狀態"><span class="stock-badge ${status.className}">${status.label}</span></td>
+              <td data-th="產品分類"><span class="category-badge">${escapeHtml(category)}</span></td>
+              <td data-th="備註"><span class="remark-text" title="${escapeHtml(remark)}">${escapeHtml(remark)}</span></td>
+              <td data-th="操作"><div class="d-flex gap-2 justify-content-end justify-content-md-start"><button type="button" class="btn btn-action btn-edit btn-update" data-bs-toggle="modal" data-bs-target="#updateModal" data-id="${escapeHtml(productId)}">更新</button><button type="button" class="btn btn-action btn-remove btn-delete" data-id="${escapeHtml(productId)}">刪除</button></div></td>
+            </tr>`;
+                    $("#mytbody").append(row);
+                });
+            }
+
+            renderPagination(totalPage);
+            const start = productData.length ? (page - 1) * pageSize + 1 : 0;
+            const end = Math.min(page * pageSize, productData.length);
+            $("#tableHint").text(`顯示第 ${start}–${end} 筆，共 ${productData.length} 筆產品資料`);
+        }
+
+        function renderPagination(totalPage) {
+            const list = $("#pageList").empty();
+            if (totalPage <= 1) return;
+            list.append(`<li class="page-item ${page === 1 ? "disabled" : ""}"><a class="page-link" href="#product-list" data-page="${page - 1}" aria-label="上一頁">上一頁</a></li>`);
+            for (let i = 1; i <= totalPage; i++) {
+                list.append(`<li class="page-item ${i === page ? "active" : ""}"><a class="page-link" href="#product-list" data-page="${i}" ${i === page ? 'aria-current="page"' : ""}>${i}</a></li>`);
+            }
+            list.append(`<li class="page-item ${page === totalPage ? "disabled" : ""}"><a class="page-link" href="#product-list" data-page="${page + 1}" aria-label="下一頁">下一頁</a></li>`);
+            list.find(".disabled a").removeAttr("data-page").attr("tabindex", "-1");
+        }
+
+        function showUpdateData(data) {
+            $("#pname").val(data.name ?? "");
+            $("#price").val(data.price ?? "").removeClass("is-valid is-invalid");
+            $("#num").val(data.num ?? 0);
+            $("#num-text").text(data.num ?? 0);
+            $("#category").val(data.category ?? "");
+            $("#remark").val(data.remark ?? "");
+            flag_price = Number(data.price) > 0;
+        }
+
+        function pagination(data, size, currentPage) {
+            const start = (currentPage - 1) * size;
+            return data.slice(start, start + size);
+        }
+
+        function formatNumber(value) {
+            const number = Number(value);
+            return Number.isFinite(number) ? number.toLocaleString("zh-TW") : "—";
+        }
+
+        // 將 API 資料安全地放入動態 HTML，避免產品文字被當成 HTML 執行。
+        function escapeHtml(value) {
+            return String(value).replace(/[&<>"']/g, function (char) {
+                return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[char];
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>

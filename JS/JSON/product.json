@@ -1,0 +1,52 @@
+{
+    "product": [
+    {
+      "id": 1,
+      "name": "汽水",
+      "category": "飲料",
+      "price": 100,
+      "num": 10,
+      "remark": "需冷藏"
+    },
+    {
+      "id": 2,
+      "name": "鮮奶吐司",
+      "category": "烘焙",
+      "price": 85,
+      "num": 15,
+      "remark": "效期較短"
+    },
+    {
+      "id": 3,
+      "name": "御飯糰",
+      "category": "鮮食",
+      "price": 45,
+      "num": 20,
+      "remark": "即食商品"
+    },
+    {
+      "id": 4,
+      "name": "洋芋片",
+      "category": "零食",
+      "price": 60,
+      "num": 50,
+      "remark": "易碎品請小心運送"
+    },
+    {
+      "id": 5,
+      "name": "重乳酪蛋糕",
+      "category": "甜點",
+      "price": 250,
+      "num": 5,
+      "remark": "需冷凍"
+    },
+    {
+      "id": 6,
+      "name": "美式咖啡",
+      "category": "飲料",
+      "price": 70,
+      "num": 30,
+      "remark": "可調整冰熱"
+    }
+  ]
+}
